@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+        crossorigin="anonymous">
+    <script src="editing-page.js"></script>
+    <title>Project</title>
+</head>
+<style>
+    .card-wide.mdl-card {
+        width: 100%;
+    }
+
+    .card-wide>.mdl-card__title {
+        color: #fff;
+        height: 4rem;
+        font-family: Helvetica, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', Arial, sans-serif;
+        background-color: #43a047;
+    }
+
+    .card-wide>.mdl-card__menu {
+        color: #fff;
+    }
+
+    .lyrics {
+        font-family: Helvetica, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', Arial, sans-serif;
+        font-size: 12px
+    }
+</style>
+
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header" style="background-color:#00b8d4">
+            <div class="mdl-layout__header-row">
+                <span class="mdl-layout-title" id="project-title" style="font-family:微软雅黑">Title</span>
+                <script>
+                    var songName = replaceAll(getUrlVars()['song_name'], "+", " ")
+                    $('#project-title').html("翻译工程 " + songName)
+                </script>
+            </div>
+        </header>
+        <a href="index.html" aria-expanded="false" role="button" tabindex="0" class="mdl-layout__drawer-button">
+            <i class="material-icons" style="color:white">arrow_back</i>
+        </a>
+
+        <header class="mdl-layout__header" style="background-color:white">
+            <div class="mdl-layout__header-row">
+                <span class="mdl-layout-title" id="project-title" style="color:black">Taylor Swift</span>
+            </div>
+        </header>
+        <div class="container-fluid" style="margin-top:1rem">
+            <div class="row">
+                <div class="col">
+                    <div class="card-wide mdl-card mdl-shadow--2dp">
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">译文 Translation</h2>
+                        </div>
+                        <div class="mdl-card__supporting-text">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia...
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card-wide mdl-card mdl-shadow--2dp">
+                        <div class="mdl-card__title" style="background-color:#039be5">
+                            <h2 class="mdl-card__title-text">原文 Original</h2>
+                        </div>
+                        <div class="mdl-card__supporting-text">
+                            <form id="origin-text">
+                                <script>
+
+                                </script>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                let fontSize = 6
+                var url = "http://127.0.0.1:8000/test"
+                $.getJSON(url, function (data) {
+                    var lines = data[0]['lines']
+                    var lineHtml = ""
+                    for (i in lines) {
+                        var line = lines[i]
+                        for(j in line['splited-version']){
+                            var word = line['splited-version'][j]
+                            var wordsLength = word['origin'].length
+                            var boxLength = (wordsLength + 6)*fontSize
+                            if(word['origin'] == ""){
+                                continue
+                            }
+                            lineHtml += `<input class="form-control lyrics" style="width:${boxLength}px" id="exampleInputEmail1" value="${word['origin']}">`
+                        }
+                        $('#origin-text').append(`
+                        <div class="row" style="margin-top:20px">
+                                ${lineHtml}
+                            </div>
+                        `)
+                        lineHtml = ""
+                    }
+                })
+            </script>
+        </div>
+    </div>
+</body>
+
+</html>
