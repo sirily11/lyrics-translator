@@ -3,9 +3,10 @@ import urllib
 import json
 import boto3
 import uuid
+import time
 
 app = Chalice(app_name='translator-python-server')
-app.debug = True
+#app.debug = True
 
 dynamodb = boto3.resource('dynamodb')
 user_table = dynamodb.Table('UserData')
@@ -148,7 +149,22 @@ def login_as_user(account_id):
     #print(type(item['songs_list']))
     return item['songs_list']
 
-
+def translate_the_lyrics(changes):
+    json_to_write = ""
+    with open('test.json','rb') as f:
+        jsonData = json.loads(f.read(),encoding='utf-8')
+        for change in changes:
+            which_lyric = change['id']
+            i = int(which_lyric[10])
+            j = int(which_lyric[12])
+            translation = change['value']
+            print(which_lyric,translation)
+            jsonData[0]['lines'][i]["splited-version"][j]["translated-text"] = translation
+        json_to_write = jsonData
+    with open('test.json','wb') as f:
+        data = json.dumps(jsonData,ensure_ascii=False)
+        f.write(data.encode('utf-8'))
+        
 @app.route('/start-project/{user_id}/{title}/{artist}/{lyrics}')
 def index(user_id,title,artist,lyrics):
     lyrics = urllib.parse.unquote(lyrics)
@@ -184,13 +200,20 @@ def login(user_id):
                   })
     return l
 
+@app.route('/saving/{userid}/{song_name}/{data}',cors=True)
+def saving(userid,song_name,data):
+    #Because the clinet's http request is using utf-8
+    #So we need to use urllib to decode it
+    changes = json.loads(urllib.parse.unquote(data),encoding='utf-8')
+    #time.sleep(1)
+    print(changes[0])
+    translate_the_lyrics(changes)
+    return {"successful" : True}
+
+
 @app.route('/test',cors=True)
 def test():
     with open('test.json','rb') as f:
         lyric = f.read()
         return lyric
 
-@app.route('/t/{lyrics}')
-def test(lyrics):
-    lyrics = urllib.parse.unquote(lyrics)
-    return lyrics.split("%2%")

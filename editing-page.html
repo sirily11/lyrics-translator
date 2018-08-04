@@ -16,7 +16,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
         crossorigin="anonymous">
     <script src="editing-page.js"></script>
-    <title>Project</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <title>歌词翻译</title>
 </head>
 <style>
     .card-wide.mdl-card {
@@ -38,6 +40,10 @@
         font-family: Helvetica, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', Arial, sans-serif;
         font-size: 12px
     }
+
+    .mdl-card__title-text {
+        font-size: 14pt
+    }
 </style>
 
 <body>
@@ -58,6 +64,10 @@
         <header class="mdl-layout__header" style="background-color:white">
             <div class="mdl-layout__header-row">
                 <span class="mdl-layout-title" id="project-title" style="color:black">Taylor Swift</span>
+                <span class="mdl-layout-title" id="saving-status" style="color:black;margin-left:20px">--Saving</span>
+                <div id="saving-status">
+                    <div class="mdl-spinner mdl-js-spinner is-active" id="loading-progressbar"></div>
+                </div>
             </div>
         </header>
         <div class="container-fluid" style="margin-top:1rem">
@@ -68,50 +78,119 @@
                             <h2 class="mdl-card__title-text">译文 Translation</h2>
                         </div>
                         <div class="mdl-card__supporting-text">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia...
+                            <form id="translate-text">
+                            </form>
                         </div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="card-wide mdl-card mdl-shadow--2dp">
-                        <div class="mdl-card__title" style="background-color:#039be5">
+                        <div class="mdl-card__title" style="background-color:#039be5;">
                             <h2 class="mdl-card__title-text">原文 Original</h2>
                         </div>
                         <div class="mdl-card__supporting-text">
                             <form id="origin-text">
-                                <script>
-
-                                </script>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
             <script>
-                let fontSize = 6
+                const fontSize = 6
+                const numberChangeToSave = 8
+                var totalChanged = 0//Only save the changes when this number greater than 6
                 var url = "http://127.0.0.1:8000/test"
-                $.getJSON(url, function (data) {
+                var changesList = []
+                $("#loading-progressbar").hide()
+                $("#saving-status").html("--Saved")
+                //Fill the text for origin text box
+                function highlightTranslate(i, j) {
+                    $(`#translate-${i}-${j}`).animate({
+                        backgroundColor: "#ffeb3b",
+                        color: "black"
+                    }, 500)
+                }
+
+                function deselect(i, j) {
+                    $(`#translate-${i}-${j}`).animate({
+                        backgroundColor: "white",
+                        color: "black"
+                    }, 500)
+
+                    $(`#origin-${i}-${j}`).animate({
+                        backgroundColor: "white",
+                        color: "black"
+
+                    }, 500)
+                }
+
+                function highlightOrigin(i, j) {
+                    $(`#origin-${i}-${j}`).animate({
+                        backgroundColor: "#ffeb3b",
+                        color: "black",
+                    }, 500)
+                }
+
+                function autoSaved(userID,songName,lyrics){
+                        $("#loading-progressbar").show()
+                        $("#saving-status").html("--保存中")
+                        //We need to use utf-8 to trans the data to the server
+                        var json = encodeURI(JSON.stringify(lyrics),"utf-8")
+                        console.log(json)
+                    $.getJSON(`http://127.0.0.1:8000/saving/${userID}/${songName}/${json}`).done(function(json){
+                        totalChanged = 0
+                        changesList = []
+                        var d = new Date();
+                        var time = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+                        $("#loading-progressbar").fadeOut(1000)
+                        $("#saving-status").html(`--保存于${time}`)
+                    })
+                }
+
+                $.getJSON(url).done(function(data){
                     var lines = data[0]['lines']
                     var lineHtml = ""
+                    var translateHtml = ""
                     for (i in lines) {
                         var line = lines[i]
-                        for(j in line['splited-version']){
+                        for (j in line['splited-version']) {
                             var word = line['splited-version'][j]
                             var wordsLength = word['origin'].length
-                            var boxLength = (wordsLength + 6)*fontSize
-                            if(word['origin'] == ""){
+                            var boxLength = (wordsLength + 6) * fontSize
+                            var translate = ""
+                            if (word['origin'] == "") {
                                 continue
                             }
-                            lineHtml += `<input class="form-control lyrics" style="width:${boxLength}px" id="exampleInputEmail1" value="${word['origin']}">`
+                            if (word['translated-text'] != null) {
+                                translate = word['translated-text']
+                            }
+                            lineHtml += `<input class="form-control lyrics" id="origin-${i}-${j}" onblur="deselect(${i},${j})" onclick="highlightTranslate(${i},${j})" style="width:${boxLength}px" id="exampleInputEmail1" value="${word['origin']}">`
+                            translateHtml += `<input class="form-control lyrics" id="translate-${i}-${j}"  onblur="deselect(${i},${j})" onclick="highlightOrigin(${i},${j})" oninput="this.style.width = ((this.value.length + 1) * 20) + 'px';" style="width:${boxLength}px;" id="exampleInputEmail1" value="${translate}">`
                         }
                         $('#origin-text').append(`
                         <div class="row" style="margin-top:20px">
                                 ${lineHtml}
                             </div>
                         `)
+                        $('#translate-text').append(`
+                        <div class="row" style="margin-top:20px">
+                                ${translateHtml}
+                            </div>
+                        `)
                         lineHtml = ""
+                        translateHtml = ""
                     }
-                })
+                    //Auto saved function
+                    $(":input").change(function(){
+                        var inputId = $(this).attr('id')
+                        var newValue = $(this).val()
+                        changesList.push({id:inputId,value:newValue})
+                        totalChanged += 1
+                        if(totalChanged > numberChangeToSave){
+                            autoSaved(userID=1000,songName="Welcome to New York",lyrics=changesList)
+                        }
+                    })
+                })       
             </script>
         </div>
     </div>
