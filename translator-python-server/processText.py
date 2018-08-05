@@ -5,3 +5,5 @@ with open('test.txt','r') as f:
         for line in lines:
             returnStr += line + "*newline*"
         f1.write(returnStr)
+
+
