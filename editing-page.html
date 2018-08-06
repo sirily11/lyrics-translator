@@ -1,26 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-    <script src="jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
-        crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
-        crossorigin="anonymous">
-    <script src="editing-page.js"></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <title>歌词翻译</title>
-</head>
-<style>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+        <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+        <script
+            src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+            integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+            crossorigin="anonymous"></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+            integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+            crossorigin="anonymous"></script>
+        <link rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+            integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+            crossorigin="anonymous">
+        <script src="editing-page.js"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <title>歌词翻译</title>
+    </head>
+    <style>
     .card-wide.mdl-card {
         width: 100%;
     }
@@ -29,11 +38,11 @@
         color: #fff;
         height: 4rem;
         font-family: Helvetica, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', Arial, sans-serif;
-        background-color: #43a047;
+        background-color: #0095a8;
     }
 
     .card-wide>.mdl-card__menu {
-        color: #fff;
+        color: #bdbdbd
     }
 
     .lyrics {
@@ -44,68 +53,112 @@
     .mdl-card__title-text {
         font-size: 14pt
     }
+
+    .hint-number{
+        color: white;
+        background:#007ac1
+    }
+    .hint-number2{
+        color: whi;
+        background:#4bacb8
+    }
 </style>
 
-<body>
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-        <header class="mdl-layout__header" style="background-color:#00b8d4">
-            <div class="mdl-layout__header-row">
-                <span class="mdl-layout-title" id="project-title" style="font-family:微软雅黑">Title</span>
-                <script>
-                    var songName = replaceAll(getUrlVars()['song_name'], "+", " ")
-                    $('#project-title').html("翻译工程 " + songName)
+    <body>
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+            <header class="mdl-layout__header" style="background-color:#00b8d4">
+                <div class="mdl-layout__header-row">
+                    <span class="mdl-layout-title" id="project-title"
+                        style="font-family:微软雅黑">Title</span>
+                    <script>
+                    const title = replaceAll(getUrlVars()['song_name'], "+", " ")
+                    $('#project-title').html("翻译工程 " + title)
                 </script>
-            </div>
-        </header>
-        <a href="index.html" aria-expanded="false" role="button" tabindex="0" class="mdl-layout__drawer-button">
-            <i class="material-icons" style="color:white">arrow_back</i>
-        </a>
+                </div>
+            </header>
+            <a href="index.html" aria-expanded="false" role="button"
+                tabindex="0" class="mdl-layout__drawer-button">
+                <i class="material-icons" style="color:white">arrow_back</i>
+            </a>
 
-        <header class="mdl-layout__header" style="background-color:white">
-            <div class="mdl-layout__header-row">
-                <span class="mdl-layout-title" id="project-title" style="color:black">Taylor Swift</span>
-                <span class="mdl-layout-title" id="saving-status" style="color:black;margin-left:20px">--Saving</span>
-                <div id="saving-status">
-                    <div class="mdl-spinner mdl-js-spinner is-active" id="loading-progressbar"></div>
+            <header class="mdl-layout__header" style="background-color:white">
+                <div class="mdl-layout__header-row">
+                    <span class="mdl-layout-title" id="artist-name"
+                        style="color:black"></span>
+                        
+                    <script>
+                        const artist = replaceAll(getUrlVars()['artist'], "+", " ")
+                        $('#artist-name').html(function(){
+                            return artist
+                        })
+                    </script>
+                    <span class="mdl-layout-title" id="saving-status"
+                        style="color:black;margin-left:20px">--Saving</span>
+                    <div id="saving-status">
+                        <div class="mdl-spinner mdl-js-spinner is-active"
+                            id="loading-progressbar"></div>
+                    </div>
                 </div>
-            </div>
-        </header>
-        <div class="container-fluid" style="margin-top:1rem">
-            <div class="row">
-                <div class="col">
-                    <div class="card-wide mdl-card mdl-shadow--2dp">
-                        <div class="mdl-card__title">
-                            <h2 class="mdl-card__title-text">译文 Translation</h2>
+            </header>
+            <div id="loading-bar" style="width:100%" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
+            
+            <div class="container-fluid" style="margin-top:1rem">
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card-wide mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title">
+                                <h2 class="mdl-card__title-text">译文 Translation</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text">
+                                <form id="translate-text">
+                                </form>
+                            </div>
                         </div>
-                        <div class="mdl-card__supporting-text">
-                            <form id="translate-text">
-                            </form>
+                    </div>
+                    <div class="col">
+                        <div class="card-wide mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title"
+                                style="background-color:#039be5;">
+                                <h2 class="mdl-card__title-text">原文 Original</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text">
+                                <form id="origin-text">
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card-wide mdl-card mdl-shadow--2dp">
-                        <div class="mdl-card__title" style="background-color:#039be5;">
-                            <h2 class="mdl-card__title-text">原文 Original</h2>
-                        </div>
-                        <div class="mdl-card__supporting-text">
-                            <form id="origin-text">
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <script>
+                <script>
+                        $( function() {
+                            $( document ).tooltip({
+                                content : function(callback){
+                                    var originText = $(this).attr('value')
+                                    $.getJSON(`http://127.0.0.1:8000/translate/${originText}`).done(function(data){
+                                        var output = "翻译：" + data[0]["translation"]
+                                        callback(output)
+                                    })
+                                },
+                            })
+                        })
+                </script>
+                <script>
                 const fontSize = 6
-                const numberChangeToSave = 8
+                const numberChangeToSave = 6
+                const userID = "TestID"
                 var totalChanged = 0//Only save the changes when this number greater than 6
-                var url = "http://127.0.0.1:8000/test"
+                var url = `http://127.0.0.1:8000/load-project/${userID}/${title}/${artist}`
                 var changesList = []
                 $("#loading-progressbar").hide()
                 $("#saving-status").html("--Saved")
                 //Fill the text for origin text box
+                //Click on the origin text and highlight the translation
                 function highlightTranslate(i, j) {
                     $(`#translate-${i}-${j}`).animate({
+                        backgroundColor: "#ffeb3b",
+                        color: "black"
+                    }, 500)
+                    $(`#origin-${i}-${j}`).animate({
                         backgroundColor: "#ffeb3b",
                         color: "black"
                     }, 500)
@@ -129,15 +182,27 @@
                         backgroundColor: "#ffeb3b",
                         color: "black",
                     }, 500)
+                    $(`#translate-${i}-${j}`).animate({
+                        backgroundColor: "#ffeb3b",
+                        color: "black",
+                    }, 500)
                 }
 
-                function autoSaved(userID,songName,lyrics){
+                function isSelect(target,current){
+                    if(target == current){
+                        return "selected"
+                    }else{
+                        return ""
+                    }
+                }
+
+                function autoSaved(userID,songName,artist,changes){
                         $("#loading-progressbar").show()
                         $("#saving-status").html("--保存中")
                         //We need to use utf-8 to trans the data to the server
-                        var json = encodeURI(JSON.stringify(lyrics),"utf-8")
+                        var json = encodeURI(JSON.stringify(changes),"utf-8")
                         console.log(json)
-                    $.getJSON(`http://127.0.0.1:8000/saving/${userID}/${songName}/${json}`).done(function(json){
+                    $.getJSON(`http://127.0.0.1:8000/auto_save/${userID}/${songName}/${artist}/${json}`).done(function(json){
                         totalChanged = 0
                         changesList = []
                         var d = new Date();
@@ -148,7 +213,8 @@
                 }
 
                 $.getJSON(url).done(function(data){
-                    var lines = data[0]['lines']
+                    $('#loading-bar').fadeOut(1000)
+                    var lines = data['lines']
                     var lineHtml = ""
                     var translateHtml = ""
                     for (i in lines) {
@@ -164,13 +230,53 @@
                             if (word['translated-text'] != null) {
                                 translate = word['translated-text']
                             }
-                            lineHtml += `<input class="form-control lyrics" id="origin-${i}-${j}" onblur="deselect(${i},${j})" onclick="highlightTranslate(${i},${j})" style="width:${boxLength}px" id="exampleInputEmail1" value="${word['origin']}">`
-                            translateHtml += `<input class="form-control lyrics" id="translate-${i}-${j}"  onblur="deselect(${i},${j})" onclick="highlightOrigin(${i},${j})" oninput="this.style.width = ((this.value.length + 1) * 20) + 'px';" style="width:${boxLength}px;" id="exampleInputEmail1" value="${translate}">`
+                            lineHtml += `
+                            <div style="margin:0px">
+                                <select id="selector-${i}-${j}" class="hint-number form-control " style="margin:0px;width:100%">
+                                        <option ${isSelect(word['length'],1)}>1</option>
+                                        <option ${isSelect(word['length'],2)}>2</option>
+                                        <option ${isSelect(word['length'],3)}>3</option>
+                                        <option ${isSelect(word['length'],4)}>4</option>
+                                        <option ${isSelect(word['length'],5)}>5</option>
+                                        <option ${isSelect(word['length'],6)}>6</option>
+                                        <option ${isSelect(word['length'],7)}>7</option>
+                                        <option ${isSelect(word['length'],8)}>8</option>
+                                        <option ${isSelect(word['length'],9)}>9</option>
+                                        <option ${isSelect(word['length'],10)}>10</option>
+                                </select>
+                                <input class="form-control lyrics" id="origin-${i}-${j}" onblur="deselect(${i},${j})" onclick="highlightTranslate(${i},${j})" style="width:${boxLength}px" id="exampleInputEmail1" value="${word['origin']}" title="">
+                            </div>
+                            `
+                            translateHtml += `
+                            <div style="margin:0px">
+                            <select id="selector-${i}-${j}" class="hint-number2 form-control" style="margin:0px">
+                                    <option ${isSelect(word['length'],1)}>1</option>
+                                    <option ${isSelect(word['length'],2)}>2</option>
+                                    <option ${isSelect(word['length'],3)}>3</option>
+                                    <option ${isSelect(word['length'],4)}>4</option>
+                                    <option ${isSelect(word['length'],5)}>5</option>
+                                    <option ${isSelect(word['length'],6)}>6</option>
+                                    <option ${isSelect(word['length'],7)}>7</option>
+                                    <option ${isSelect(word['length'],8)}>8</option>
+                                    <option ${isSelect(word['length'],9)}>9</option>
+                                    <option ${isSelect(word['length'],10)}>10</option>
+                            </select>
+                                <input class="form-control lyrics" id="translate-${i}-${j}" maxlength="${word['length']}"  onblur="deselect(${i},${j})" onclick="highlightOrigin(${i},${j})" oninput="this.style.width = ((this.value.length + 1) * 20) + 'px';" style="width:${boxLength}px;" id="exampleInputEmail1" value="${translate}">
+                            </div>
+                            `
+                            console.log(typeof word['length'])
+                            //$(`#selector-${i}-${j} option[value=${word['length']}]`).attr('selected',true)
+                            
                         }
                         $('#origin-text').append(`
                         <div class="row" style="margin-top:20px">
                                 ${lineHtml}
-                            </div>
+                                <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                        <label class="custom-control-label" for="customCheck1">押韵</label>
+                                </div>
+                        
+                        </div>
                         `)
                         $('#translate-text').append(`
                         <div class="row" style="margin-top:20px">
@@ -187,13 +293,15 @@
                         changesList.push({id:inputId,value:newValue})
                         totalChanged += 1
                         if(totalChanged > numberChangeToSave){
-                            autoSaved(userID=1000,songName="Welcome to New York",lyrics=changesList)
+                            autoSaved(userID,title,artist,changesList)
+                        }else{
+                            $("#saving-status").html("--Not save")
                         }
                     })
                 })       
             </script>
+            </div>
         </div>
-    </div>
-</body>
+    </body>
 
 </html>

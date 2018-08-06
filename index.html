@@ -1,27 +1,41 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Sample FirebaseUI App</title>
+        <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-auth.js"></script>
+        <script
+            src="https://www.gstatic.com/firebasejs/ui/3.2.0/firebase-ui-auth__zh_cn.js"></script>
+        <link type="text/css" rel="stylesheet"
+            href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css"
+            />
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet"
+            href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+        <script
+            src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+        <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+            integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+            crossorigin="anonymous"></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+            integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+            crossorigin="anonymous"></script>
+        <link rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+            integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+            crossorigin="anonymous">
+        <link rel="stylesheet" href="bundle.css">
+        <script src="bundle.js" async></script>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sample FirebaseUI App</title>
-    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/ui/3.2.0/firebase-ui-auth__zh_cn.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
-    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
-        crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
-        crossorigin="anonymous">
+
     </body>
+
     <script type="text/javascript">
         var config = {
             apiKey: "AIzaSyBKle39fkAU9jZqegvTpuyA_WYl2a4FwpE",
@@ -84,14 +98,15 @@
             $('#listOfMusic').html()
         }
     </script>
-    <script src="index.js"></script>
 </head>
 
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#" id="welcome-text">Welcome</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02"
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02"
             aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -99,7 +114,9 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                    <a class="nav-link dropdown-toggle" href="#"
+                        id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true"
                         aria-expanded="false">
                         Home
                     </a>
@@ -107,51 +124,95 @@
                         <a class="dropdown-item" id="create-new-project">创建新的项目</a>
                     </div>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" id='login-btn' onclick="login()">Log-in</a>
+                        <a class="nav-link" href="#" id='login-btn'
+                            onclick="login()">Log-in</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" id='logout-btn' onclick="logOut()">Log-out</a>
+                        <a class="nav-link" href="#" id='logout-btn'
+                            onclick="logOut()">Log-out</a>
                     </li>
-            </ul>
-        </div>
-    </nav>
-    <div id="firebaseui-auth-container" style="margin-top:50px"></div>
-    <div id="listOfMusic"></div>
-    <dialog class="mdl-dialog" id="dialog-for-createProject">
-        <form action="/editing-page.html" method="GET">
-            <div class="mdl-dialog__content" style="font-family:微软雅黑">
-                <p>
-                    请在输入你的项目信息
-                </p>
-                <div id="info"></div>
+                </ul>
+            </div>
+        </nav>
+        <div id="firebaseui-auth-container" style="margin-top:50px"></div>
+        <div id="listOfMusic"></div>
 
-                <div class="mdl-textfield mdl-js-textfield">
-                    <input class="mdl-textfield__input" type="text" id="songName" name="song_name">
-                    <label class="mdl-textfield__label" for="sample1">歌曲名</label>
+        <dialog class="mdl-dialog" id="dialog-for-createProject"
+            style="width:90%">
+            <form action="/editing-page.html" method="GET">
+            <div id="song-info">
+                    
+                    <div class="mdl-dialog__content" style="font-family:微软雅黑">
+                        <p>
+                            请在输入你的项目信息
+                        </p>
+                        <div id="info"></div>
+
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input class="mdl-textfield__input" type="text"
+                                id="songName" name="song_name">
+                            <label class="mdl-textfield__label" for="sample1">歌曲名</label>
+                        </div>
+
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input class="mdl-textfield__input" type="text"
+                                id="artist" name="artist">
+                            <label class="mdl-textfield__label"
+                                for="sample1">作者</label>
+                        </div>
+                        
+                        <div class="mdc-text-field mdc-text-field--fullwidth
+                            mdc-text-field--textarea">
+
+                            <textarea class="mdc-text-field__input"
+                                rows="20" cols="100" id="lyrics"
+                                ></textarea>
+                            <label class="mdc-floating-label"
+                                for="text-field-fullwidth-textarea"
+                                style="font-family:微软雅黑;font-size:20px">歌词
+                            </label>
+                            <div class="mdc-line-ripple"></div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="mdl-textfield mdl-js-textfield">
-                    <input class="mdl-textfield__input" type="text" id="artist" name="artist">
-                    <label class="mdl-textfield__label" for="sample1">作者</label>
+                <div class="mdl-dialog__actions">
+                       
+                    <button type="submit" class="mdl-button" id="okBtn">
+                        <i class="material-icons" style="color:#e91e63">
+                            done
+                        </i>
+                    </button>
+
+                    <button type="button" class="mdl-button close" id="close">
+                        <i class="material-icons">
+                            clear
+                        </i>
+                    </button>
+                    <button type="button" class="mdl-button" id='uploadBtn' style="font-family:微软雅黑">
+                        上传歌词
+                    </button>
+                    <div id="loading-bar-for-upload"></div>
+                    
                 </div>
-
-            </div>
-
-            <div class="mdl-dialog__actions">
-                <button type="submit" class="mdl-button" id="okBtn">
-                    <i class="material-icons" style="color:#e91e63">
-                        done
-                    </i>
-                </button>
-                <button type="button" class="mdl-button close" id="close">
-                    <i class="material-icons">
-                        clear
-                    </i>
-                </button>
-            </div>
-        </form>
-    </dialog>
-    <script>
+            </form>
+        </dialog>
+        <script> 
+        var uploaded = false
+        function upload(lyrics,userID,title,artist){
+            console.log(lyrics)
+            lyrics = lyrics.split(/\r?\n/)
+            newLyrics = ""
+            for(l in lyrics){
+                newLyrics += lyrics[l] + "*newline*"
+            }
+            $.getJSON(`http://127.0.0.1:8000/start-project/${userID}/${title}/${artist}/${newLyrics}`).done(function(){
+                $('#loading-bar-for-upload').fadeOut(1000)
+            }).fail(function(){
+                alert("Failed to upload")
+            })
+            uploaded = true
+        }   
         var dialog = document.querySelector('dialog');
         if (!dialog.showModal) {
             dialogPolyfill.registerDialog(dialog);
@@ -159,26 +220,35 @@
         $('#create-new-project').click(function () {
             dialog.showModal();
         })
-
-        $('form').submit(function (event) {
+        
+        $('#uploadBtn').click(function(){
             var songName = $('#songName').val()
             var artist = $('#artist').val()
+            var lyrics = $('#lyrics').val() 
             if (songName == "" || artist == "") {
-                $('#info').html('<p style="color:red">请输入歌曲名或者歌手名</p>')
-                event.preventDefault()
+                $('#info').html('<p style="color:red">先输入歌曲名和歌手名</p>')
+            }else if(lyrics == ""){
+                $('#info').html('<p style="color:red">请输入歌词</p>')
+            }
+            $('#loading-bar-for-upload').html('<div class="mdl-spinner mdl-js-spinner is-active" id="loading-bar-for-uploading"></div>')
+            upload(lyrics=lyrics,userID="TestID",title=songName,artist=artist)
+        })
+        $('form').on('submit',function(event){
+            event.preventDefault()
+            var songName = $('#songName').val()
+            var artist = $('#artist').val()
+            var lyrics = $('#lyrics').val()
+            if (songName == null || artist == "" || !uploaded) {
+                $('#info').html('<p style="color:red">请输入歌曲名或者歌手名或上传歌词</p>')
             } else {
+                this.submit()
                 dialog.close()
             }
-
         })
         $('#close').click(function () {
             dialog.close()
         })
-
-
-
-
     </script>
-</body>
+    </body>
 
 </html>

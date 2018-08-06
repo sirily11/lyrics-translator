@@ -1,4 +1,6 @@
 {
     "python.pythonPath": "C:\\Users\\liqiw\\.virtualenvs\\lyrics-translator-pro0KYRV\\scripts\\python.exe",
-    "python.linting.pylintEnabled": false
+    "python.linting.pylintEnabled": false,
+    "git.ignoreLimitWarning": true,
+    "python.jediEnabled": false
 }

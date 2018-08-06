@@ -143,21 +143,23 @@ def login_as_user(account_id):
     return item['songs_list']
 
 
-def translate_the_lyrics(changes):
-    json_to_write = ""
-    with open('test.json', 'rb') as f:
-        jsonData = json.loads(f.read(), encoding='utf-8')
-        for change in changes:
-            which_lyric = change['id']
-            i = int(which_lyric[10])
-            j = int(which_lyric[12])
-            translation = change['value']
-            print(which_lyric, translation)
-            jsonData[0]['lines'][i]["splited-version"][j]["translated-text"] = translation
-        json_to_write = jsonData
-    with open('test.json', 'wb') as f:
-        data = json.dumps(jsonData, ensure_ascii=False)
-        f.write(data.encode('utf-8'))
+def translate_the_lyrics(changes,user_id,artist,title):
+    BUCKET_NAME = "lyrics-from-user"
+    FILE_NAME = "{}-{}-{}.json".format(artist,title,user_id)
+    s3 = boto3.resource('s3')
+    obj = s3.Object(BUCKET_NAME, FILE_NAME)
+    jsonData = json.loads(obj.get()['Body'].read().decode('utf-8'))
+    
+    for change in changes:
+        which_lyric = change['id'].split("-")
+        print("Content：{}".format(which_lyric))
+        i = int(which_lyric[1])
+        j = int(which_lyric[2])
+        translation = change['value']
+        print("Translated: {}".format(translation))
+        jsonData['lines'][i]["splited-version"][j]["translated-text"] = translation
+    
+    s3.Object(BUCKET_NAME,FILE_NAME).put(Body=json.dumps(jsonData))
 
 
 @app.route('/start-project/{user_id}/{title}/{artist}/{lyrics}',cors=True)
@@ -196,14 +198,23 @@ def login(user_id):
     return True
 
 
-@app.route('/saving/{userid}/{song_name}/{data}', cors=True)
-def saving(userid, song_name, data):
+@app.route('/auto_save/{userid}/{title}/{artist}/{data}', cors=True)
+def auto_save(userid, title,artist, data):
     # Because the clinet's http request is using utf-8
     # So we need to use urllib to decode it
     changes = json.loads(urllib.parse.unquote(data), encoding='utf-8')
-    # time.sleep(1)
-    translate_the_lyrics(changes)
+    translate_the_lyrics(changes=changes,user_id=userid,artist=artist,title=title)
     return {"successful": True}
+
+@app.route("/translate/{word}",cors=True)
+def translate(word):
+    # translate = boto3.client(service_name='translate',use_ssl=True)
+    # result = translate.translate_text(Text=word, 
+    #         SourceLanguageCode="en", TargetLanguageCode="zh")
+    # print(result.get('TranslatedText'))
+    #return {"translation" : result.get('TranslatedText')},
+    return [{"translation" : "Test"}]
+
 
 
 @app.route('/test', cors=True)
