@@ -134,7 +134,7 @@
                             $( document ).tooltip({
                                 content : function(callback){
                                     var originText = $(this).attr('value')
-                                    $.getJSON(`http://127.0.0.1:8000/translate/${originText}`).done(function(data){
+                                    $.getJSON(`https://sa0biepvrj.execute-api.us-east-1.amazonaws.com/api/translate/${originText}`).done(function(data){
                                         var output = "翻译：" + data[0]["translation"]
                                         callback(output)
                                     })
@@ -147,7 +147,7 @@
                 const numberChangeToSave = 6
                 const userID = "TestID"
                 var totalChanged = 0//Only save the changes when this number greater than 6
-                var url = `http://127.0.0.1:8000/load-project/${userID}/${title}/${artist}`
+                var url = `https://sa0biepvrj.execute-api.us-east-1.amazonaws.com/api/load-project/${userID}/${title}/${artist}`
                 var changesList = []
                 $("#loading-progressbar").hide()
                 $("#saving-status").html("--Saved")
@@ -202,7 +202,7 @@
                         //We need to use utf-8 to trans the data to the server
                         var json = encodeURI(JSON.stringify(changes),"utf-8")
                         console.log(json)
-                    $.getJSON(`http://127.0.0.1:8000/auto_save/${userID}/${songName}/${artist}/${json}`).done(function(json){
+                    $.getJSON(`https://sa0biepvrj.execute-api.us-east-1.amazonaws.com/api/auto_save/${userID}/${songName}/${artist}/${json}`).done(function(json){
                         totalChanged = 0
                         changesList = []
                         var d = new Date();

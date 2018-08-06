@@ -208,12 +208,12 @@ def auto_save(userid, title,artist, data):
 
 @app.route("/translate/{word}",cors=True)
 def translate(word):
-    # translate = boto3.client(service_name='translate',use_ssl=True)
-    # result = translate.translate_text(Text=word, 
-    #         SourceLanguageCode="en", TargetLanguageCode="zh")
-    # print(result.get('TranslatedText'))
-    #return {"translation" : result.get('TranslatedText')},
-    return [{"translation" : "Test"}]
+    translate = boto3.client(service_name='translate',use_ssl=True)
+    result = translate.translate_text(Text=word, 
+            SourceLanguageCode="en", TargetLanguageCode="zh")
+    print(result.get('TranslatedText'))
+    return {"translation" : result.get('TranslatedText')},
+    # return [{"translation" : "Test"}]
 
 
 

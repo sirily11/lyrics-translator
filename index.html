@@ -57,7 +57,7 @@
                         $('#welcome-text').html("Welcome back, " + displayName)
                         console.log(displayName)
                     });
-                    $.getJSON(`http://127.0.0.1:8000/login/123`)
+                    $.getJSON(`https://sa0biepvrj.execute-api.us-east-1.amazonaws.com/api/123`)
                     $('#login-btn').hide()
                     $('#logout-btn').show()
                 } else {
@@ -94,7 +94,7 @@
         }
 
         function showMusicList(userID) {
-            $.getJSON(`http://127.0.0.1:8000/login/${userID}`)
+            $.getJSON(`https://sa0biepvrj.execute-api.us-east-1.amazonaws.com/api/${userID}`)
             $('#listOfMusic').html()
         }
     </script>
@@ -206,7 +206,7 @@
             for(l in lyrics){
                 newLyrics += lyrics[l] + "*newline*"
             }
-            $.getJSON(`http://127.0.0.1:8000/start-project/${userID}/${title}/${artist}/${newLyrics}`).done(function(){
+            $.getJSON(`https://sa0biepvrj.execute-api.us-east-1.amazonaws.com/api//start-project/${userID}/${title}/${artist}/${newLyrics}`).done(function(){
                 $('#loading-bar-for-upload').fadeOut(1000)
             }).fail(function(){
                 alert("Failed to upload")
