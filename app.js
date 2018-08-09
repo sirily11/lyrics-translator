@@ -18,7 +18,7 @@ function upload(lyrics, userID, title, artist) {
 	for (var l = 0; l < lyrics.length;l++) {
 		newLyrics += lyrics[l] + "*newline*";
 	}
-	$.getJSON(`http://127.0.0.1:8000/start-project/${userID}/${username}/${emailAddress}/${title}/${artist}/${newLyrics}`).done(function () {
+	$.getJSON(`https://sa0biepvrj.execute-api.us-east-1.amazonaws.com/api/start-project/${userID}/${username}/${emailAddress}/${title}/${artist}/${newLyrics}`).done(function () {
 		$('#loading-bar-for-upload').fadeOut(1000)
 	}).fail(function () {
 		alert("Failed to upload")

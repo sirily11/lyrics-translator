@@ -99,7 +99,7 @@
         }
 
         function showMusicList(userID) {
-            $.getJSON(`http://127.0.0.1:8000/get_all_projects_list/${userID}`).done(function(data){
+            $.getJSON(`https://sa0biepvrj.execute-api.us-east-1.amazonaws.com/api/get_all_projects_list/${userID}`).done(function(data){
 				var row = "";
 				var col = "";
 				if(languageCode.includes('zh')){
