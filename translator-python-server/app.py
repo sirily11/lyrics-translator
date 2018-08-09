@@ -5,12 +5,13 @@ import boto3
 import uuid
 import time
 import datetime
+from boto3.dynamodb.conditions import Key, Attr
 
 app = Chalice(app_name='translator-python-server')
 app.debug = True
 
 dynamodb = boto3.resource('dynamodb')
-user_table = dynamodb.Table('UserData')
+user_table = dynamodb.Table('userTable')
 songs_table = dynamodb.Table('Songs')
 
 
@@ -97,6 +98,18 @@ def output_json(lyrics):
         output.append(lyric.to_json())
     return output
 
+def add_new_project(title,artist,user_id,name="",email_address=""):
+    now = datetime.datetime.now()
+    user_table.put_item(
+        Item={
+            "id" : user_id,
+            "time" : "{}-{}-{}-{}:{}:{}:{}".format(now.year,now.month,now.day,now.hour,now.minute,now.second,now.microsecond),
+            "name" : name,
+            "title" : title,
+            "artist" : artist
+        }
+    )
+    return True
 
 def upload_lyrics(title, artist, lyrics, id_for_user):
     s3 = boto3.resource('s3')
@@ -111,36 +124,6 @@ def upload_lyrics(title, artist, lyrics, id_for_user):
 
 def get_lyrics(songs_id):
     pass
-
-
-def get_songs_info(songs_id):
-    response = songs_table.get_item(
-        Key={
-            "ID": songs_id
-        }
-    )
-    item = response['Item']
-    return item
-
-
-def create_user(username, emailAddress, account_id):
-    user_table.put_item(Item={
-        "username": username,
-        "account id": account_id,
-        "email_address": emailAddress,
-        "songs_list": []
-    })
-
-
-def login_as_user(account_id):
-    response = user_table.get_item(
-        Key={
-            "account id": account_id
-        }
-    )
-    item = response['Item']
-    # print(type(item['songs_list']))
-    return item['songs_list']
 
 
 def translate_the_lyrics(changes,user_id,artist,title):
@@ -162,12 +145,14 @@ def translate_the_lyrics(changes,user_id,artist,title):
     s3.Object(BUCKET_NAME,FILE_NAME).put(Body=json.dumps(jsonData))
 
 
-@app.route('/start-project/{user_id}/{title}/{artist}/{lyrics}',cors=True)
-def start_project(user_id, title, artist, lyrics):
+@app.route('/start-project/{user_id}/{user_name}/{email_address}/{title}/{artist}/{lyrics}',cors=True)
+def start_project(user_id,user_name,email_address, title, artist, lyrics):
     lyrics = urllib.parse.unquote(lyrics)
     lyrics_obj = Lyrics(lyrics)
     upload_lyrics(title=title, artist=artist,
                   id_for_user=user_id, lyrics=lyrics_obj.to_json())
+
+    add_new_project(title=title,artist=artist,user_id=user_id,name=user_name,email_address=email_address)
     return {"successful" : True}
 
 @app.route('/load-project/{user_id}/{title}/{artist}',cors=True)
@@ -179,23 +164,12 @@ def get_project(user_id,title,artist):
     jsonFile = obj.get()['Body'].read().decode('utf-8')  
     return jsonFile
 
-
-@app.route('/sign_up/{user_id}/{email}/{user_name}')
-def sign_up(user_id, email, user_name):
-    create_user(account_id=user_id, emailAddress=email, username=user_name)
-    return "OK"
-
-
-@app.route('/login/{user_id}',cors=True)
-def login(user_id):
-    # song_list = login_as_user(user_id)
-    # l = []
-    # for s in song_list:
-    #     l.append({"Title": get_songs_info(s)['Title'],
-    #               "Artist": get_songs_info(s)['Artist']
-    #               })
-    # return l
-    return True
+@app.route('/get_all_projects_list/{user_id}',cors=True)
+def get_all_projects_list(user_id):
+    response = user_table.query( 
+        KeyConditionExpression=Key('id').eq(user_id)
+    )
+    return response['Items']
 
 
 @app.route('/auto_save/{userid}/{title}/{artist}/{data}', cors=True)
