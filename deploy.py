@@ -3,8 +3,6 @@ import time
 
 
 commit_msg = input("Enter your commit message here: ")
-github_username = input('Github username: ')
-github_password = input("Github password: ")
 start_time = time.time()
 print (*range(20))
 print("start upload the python serverless code")
