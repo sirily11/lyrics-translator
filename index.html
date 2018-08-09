@@ -115,8 +115,8 @@
 						col += `
 							<div class="col-sm">
 								<div class=" project-card mdc-card">
-								  <div class="mdl-card__title mdl-card--expand" style="  background: url('/assets/img/md-img${i%3+1}.jpg') center / cover;">
-									<h2 class="mdl-card__title-text">${data[i]['title']} - ${data[i]['artist']}</h2>
+								  <div class="mdl-card__title mdl-card--expand" style="  background: url('./assets/img/md-img${i%3+1}.jpg') center / cover;">
+									<h2 class="mdl-card__title-text">${decodeURI(data[i]['title'])} - ${decodeURI(data[i]['artist'])}</h2>
 								  </div>
 								<div class="mdl-card__actions mdl-card--border">
 									<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="editing-page.html?song_name=${data[i]['title']}&artist=${data[i]['artist']}&userID=${uid}">
@@ -220,7 +220,21 @@
 <script> 
             var content = {
                 "en" : {
-                    "start-project-btn" : "Start Project"
+                    "start-project-btn" : "Start Project",
+                    "artistText" : "Artist",
+                    "songText" :"Song's name",
+                    "welcomeText" : "Welcome to mytranshelper, please login first and then click the start project button so that you can start your lyrics translation project.",
+                    "welcomeTextHeader" : "开始使用",
+                    "welcomeTextDrawer" : "Welcome",
+                    "welcomeTextDrawerLogin" : "Welcome back," ,
+                    "dialogTitleText" : "Please enter your project info",
+					"uploadBtn" : "Upload lyrics",
+					"title" : "Home page",
+					"logout-btn" : "Log out",
+					"login-btn" : "Log in",
+					"loadProjectText" : "加载项目",
+					"projectTag" : "Project",
+					"loadProject" : "Load Project"
                 },
 
                 "zh" : {
@@ -231,7 +245,7 @@
                     "welcomeTextHeader" : "开始使用",
                     "welcomeTextDrawer" : "欢迎",
                     "welcomeTextDrawerLogin" : "欢迎回来," ,
-                    "dialogTitleText" : "请在输入你的项目信息",
+                    "dialogTitleText" : "请输入你的项目信息",
 					"uploadBtn" : "上传歌词",
 					"title" : "主页面",
 					"logout-btn" : "登出",
