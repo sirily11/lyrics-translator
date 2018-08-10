@@ -1,11 +1,17 @@
 import subprocess
 import time
 import boto3
+import os
 
+current_folder = os.getcwd()
+if(os.path.basename(current_folder) != "lyrics-translator"):
+    print("Please put this file in to the lyrcis-translator folder")
+    k=input("press close to exit") 
+    exit()
 
 s3 = boto3.resource('s3')
 BUCKET_NAME = "lyrics-translation-tool"
-NUM_OF_STAR = 30
+NUM_OF_STAR = 50
 
 commit_msg = input("Enter your commit message here: ")
 start_time = time.time()
@@ -22,34 +28,38 @@ def print_line(number):
         line += '*'
     print(line)
 
+try:
+    #Upload the severless code
+    print_line(NUM_OF_STAR)
+    print("start upload the python serverless code")
+    output_from_chalice = subprocess.check_output('cd translator-python-server && pipenv run chalice deploy',shell=True)
+    print("Finished upload the python serverless code")
 
-#Upload the severless code
-print_line(NUM_OF_STAR)
-print("start upload the python serverless code")
-output_from_chalice = subprocess.check_output('cd translator-python-server && pipenv run chalice deploy',shell=True)
-print("Finished upload the python serverless code")
+    #build the website
+    print_line(NUM_OF_STAR)
+    print("Start building the website")
+    output_from_compile = subprocess.check_output('npm run-script build',shell=True)
 
-#build the website
-print_line(NUM_OF_STAR)
-print("Start building the website")
-output_from_compile = subprocess.check_output('npm run-script build',shell=True)
+    #git
+    print_line(NUM_OF_STAR)
+    output_from_commit = subprocess.check_output('git add . && git commit -m "{}"'.format(commit_msg),shell=True)
+    output_from_push = subprocess.check_output("git push",shell=True)
 
-#git
-print_line(NUM_OF_STAR)
-output_from_commit = subprocess.check_output('git add . && git commit -m "{}"'.format(commit_msg),shell=True)
-output_from_push = subprocess.check_output("git push",shell=True)
+    #uoload the file to s3
+    print_line(NUM_OF_STAR)
+    uploadS3()
 
-#uoload the file to s3
-print_line(NUM_OF_STAR)
-uploadS3()
+    #print the output before
+    print_line(NUM_OF_STAR)
+    print("Output from chalice: {}".format(output_from_chalice))
 
-#print the output before
-print_line(NUM_OF_STAR)
-print("Output from chalice: {}".format(output_from_chalice))
+    print_line(NUM_OF_STAR)
+    print("Output from git:{}".format(output_from_commit))
+    print("Output from git:{}".format(output_from_push))
 
-print_line(NUM_OF_STAR)
-print("Output from git:{}".format(output_from_commit))
-print("Output from git:{}".format(output_from_push))
-
-print_line(NUM_OF_STAR)
-print("Total time:{}".format(time.time()- start_time))
+    print_line(NUM_OF_STAR)
+    print("Total time:{}".format(time.time()- start_time))
+    k=input("press close to exit")
+except Exception as e:
+    print(e)
+    input("press close to exit")

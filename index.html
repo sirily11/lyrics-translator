@@ -43,6 +43,7 @@
             storageBucket: "lyrics-translator-2f5c5.appspot.com",
             messagingSenderId: "367907701669"
         };
+		 var languageCode = navigator.language;
 		 var username;
 		 var emailAddressl;
 		 var uid;
@@ -103,7 +104,7 @@
 				var row = "";
 				var col = "";
 				if(languageCode.includes('zh')){
-					var text = content[languageCode]['loadProject']
+					var text = content['zh']['loadProject']
 				}else{
 					var text = content['en']['loadProject']
 				}
@@ -257,7 +258,7 @@
                 }
             };
 
-                var languageCode = navigator.language;
+
 
                 $( ".lang" ).each(function( index ) {
                     var id = this.id;
