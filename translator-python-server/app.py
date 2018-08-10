@@ -83,6 +83,8 @@ class Word:
                     self.length += 1
 
     def to_json(self):
+        if self.length == 0:
+            self.length = 1
         return {
             "origin": self.origin,
             "translated-text": self.translated,
