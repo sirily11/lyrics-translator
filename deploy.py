@@ -14,7 +14,7 @@ BUCKET_NAME = "lyrics-translation-tool"
 NUM_OF_STAR = 50
 
 commit_msg = input("Enter your commit message here: ")
-selection = input('Select the part you want to deploy seperatly [default is all][server,s3,github]')
+selection = input('Select the part you want to deploy seperatly [default is all][server,s3,github] ')
 
 start_time = time.time()
 
