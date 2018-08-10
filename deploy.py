@@ -17,7 +17,7 @@ commit_msg = input("Enter your commit message here: ")
 start_time = time.time()
 
 def uploadS3():
-    upload_list = ['index.html','editing-page.html','style-bundle.js','bundle.css','app.css','app.scss','bundle.js']
+    upload_list = ['index.html','editing-page.html','style-bundle.js','bundle.css','app.css','app.scss','bundle.js','translation.js']
     for item in upload_list:
         print("Start upload {} to s3".format(item))
         s3.Object(BUCKET_NAME,item).put(Body=open(item,'rb'))

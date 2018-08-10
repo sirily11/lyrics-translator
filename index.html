@@ -43,7 +43,7 @@
             storageBucket: "lyrics-translator-2f5c5.appspot.com",
             messagingSenderId: "367907701669"
         };
-		 var languageCode = navigator.language;
+		 var languageCode = navigator.language.substr(0,2);
 		 var username;
 		 var emailAddressl;
 		 var uid;
@@ -57,11 +57,9 @@
 					uid = user.uid;
                     user.getIdToken().then(function (accessToken) {
                         //Setting the multilanguage for the login text
-                        if(languageCode.includes("zh")){
-                            $('#welcomeTextDrawer').html(content["zh"]["welcomeTextDrawerLogin"] + username)
-                        }else{
-                            $('#welcomeTextDrawer').html(content["en"]["welcomeTextDrawerLogin"] + username)
-                        }
+
+                        $('#welcomeTextDrawer').html(content[languageCode]["welcomeTextDrawerLogin"] + username)
+
 						showMusicList(uid)
                     });
                     $('#login-btn').hide()
@@ -188,6 +186,7 @@
         <p class="lang" id="dialogTitleText" > </p>
         <div id="info"></div>
         <div class="mdl-textfield mdl-js-textfield">
+			  <input hidden id="userID" type="text" name="userID" value="123">
               <input class="mdl-textfield__input" type="text"
                                 id="songName" name="song_name">
               <label class="mdl-textfield__label lyrics lang" id="songText" for="songName"></label>
@@ -218,57 +217,6 @@
         </div>
   </form>
     </dialog>
-<script> 
-            var content = {
-                "en" : {
-                    "start-project-btn" : "Start Project",
-                    "artistText" : "Artist",
-                    "songText" :"Song's name",
-                    "welcomeText" : "Welcome to mytranshelper, please login first and then click the start project button so that you can start your lyrics translation project.",
-                    "welcomeTextHeader" : "开始使用",
-                    "welcomeTextDrawer" : "Welcome",
-                    "welcomeTextDrawerLogin" : "Welcome back," ,
-                    "dialogTitleText" : "Please enter your project info",
-					"uploadBtn" : "Upload lyrics",
-					"title" : "Home page",
-					"logout-btn" : "Log out",
-					"login-btn" : "Log in",
-					"loadProjectText" : "加载项目",
-					"projectTag" : "Project",
-					"loadProject" : "Load Project"
-                },
-
-                "zh" : {
-                    "start-project-btn" : "开始项目",
-                    "artistText" : "歌手",
-                    "songText" :"歌名",
-                    "welcomeText" : "欢迎来到歌词翻译网站，请先登录，之后轻点下方的开始项目按钮，便可以轻松创建属于你的歌词翻译项目。",
-                    "welcomeTextHeader" : "开始使用",
-                    "welcomeTextDrawer" : "欢迎",
-                    "welcomeTextDrawerLogin" : "欢迎回来," ,
-                    "dialogTitleText" : "请输入你的项目信息",
-					"uploadBtn" : "上传歌词",
-					"title" : "主页面",
-					"logout-btn" : "登出",
-					"login-btn" : "登入",
-					"loadProjectText" : "加载项目",
-					"projectTag" : "项目",
-					"loadProject" : "读取项目"
- 					
-                }
-            };
-
-
-
-                $( ".lang" ).each(function( index ) {
-                    var id = this.id;
-                    if(languageCode.includes("zh")){
-                        $(this).text(content["zh"][id])
-                    }else{
-                        $(this).text(content["en"][id])
-                    }
-                  });
-
-        </script>
+<script src="translation.js"></script>
 </body>
 </html>

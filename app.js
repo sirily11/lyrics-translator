@@ -59,6 +59,7 @@ $('form').on('submit', function (event) {
 	if (songName == null || artist == "" || !uploaded) {
 		$('#info').html('<p style="color:red">请输入歌曲名或者歌手名或上传歌词</p>')
 	} else {
+		$('#userID').val(uid)
 		this.submit()
 		dialog.close()
 	}

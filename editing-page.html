@@ -28,9 +28,16 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<title>歌词翻译</title>
+<script src="translation.js"></script>
+<title class="lang" id="editing-page-title" ></title>
 </head>
 <style>
+	
+.word-length{
+
+	background-color:#1565c0;
+	color: white
+}
 .card-wide.mdl-card {
 	width: 100%;
 }
@@ -55,7 +62,7 @@
 	background: #007ac1
 }
 .hint-number2 {
-	color: whi;
+	color: white;
 	background: #4bacb8
 }
 </style>
@@ -66,9 +73,10 @@
     <div class="mdl-layout__header-row"> <span class="mdl-layout-title" id="project-title"
                         style="font-family:微软雅黑">Title</span> 
       <script>
-                    const title = replaceAll(getUrlVars()['song_name'], "+", " ")
-                    $('#project-title').html("翻译工程 " + title)
-                </script> 
+		  			var languageCode = navigator.language.substr(0,2)
+                    const title = decodeURI(replaceAll(getUrlVars()['song_name'], "+", " "));
+                    $('#project-title').html(content[languageCode]['translationProject'] + " " +title);
+      </script> 
     </div>
   </header>
   <a href="index.html" aria-expanded="false" role="button"
@@ -77,7 +85,7 @@
     <div class="mdl-layout__header-row"> <span class="mdl-layout-title" id="artist-name"
                         style="color:black"></span> 
       <script>
-                        const artist = replaceAll(getUrlVars()['artist'], "+", " ")
+                        const artist = decodeURI(replaceAll(getUrlVars()['artist'], "+", " "))
                         $('#artist-name').html(function(){
                             return artist
                         })
@@ -91,32 +99,8 @@
     </div>
   </header>
   <div id="loading-bar" style="width:100%" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
-  <div class="container-fluid" style="margin-top:1rem"> </div>
-  <div class="row">
-    <div class="col">
-      <div class="card-wide mdl-card mdl-shadow--2dp">
-        <div class="mdl-card__title">
-          <h2 class="mdl-card__title-text">译文 Translation</h2>
-        </div>
-        <div class="mdl-card__supporting-text">
-          <form id="translate-text">
-          </form>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card-wide mdl-card mdl-shadow--2dp">
-        <div class="mdl-card__title"
-                                style="background-color:#039be5;">
-          <h2 class="mdl-card__title-text">原文 Original</h2>
-        </div>
-        <div class="mdl-card__supporting-text">
-          <form id="origin-text">
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div class="container-fluid" id="container" style="margin-top:1rem"> </div>
+
   <script>
                         $( function() {
                             $( document ).tooltip({
@@ -131,6 +115,7 @@
                         })
                 </script> 
   <script>
+	  			const deviceWidth = $( window ).width();
                 const fontSize = 6
                 const numberChangeToSave = 6
 				const userID = getUrlVars()['userID']
@@ -199,11 +184,36 @@
                         $("#saving-status").html(`--保存于${time}`)
                     })
                 }
-
-                $.getJSON(url).done(function(data){
-                    $('#loading-bar').fadeOut(1000)
-                    var lines = data['lines']
-                    var lineHtml = ""
+	  
+	  			function createHTMLCardXL(lines){
+					$('#container').html(`
+								<div class="row">
+									<div class="col">
+									  <div class="card-wide mdl-card mdl-shadow--2dp">
+										<div class="mdl-card__title">
+										  <h2 class="mdl-card__title-text lang" id="translation-text"></h2>
+										</div>
+										<div class="mdl-card__supporting-text">
+										  <form id="translate-text">
+										  </form>
+										</div>
+									  </div>
+									</div>
+									<div class="col">
+									  <div class="card-wide mdl-card mdl-shadow--2dp">
+										<div class="mdl-card__title"
+																style="background-color:#039be5;">
+										  <h2 class="mdl-card__title-text lang" id="original-text"></h2>
+										</div>
+										<div class="mdl-card__supporting-text">
+										  <form id="origin-text">
+										  </form>
+										</div>
+									  </div>
+									</div>
+								</div>
+								`)
+					var lineHtml = ""
                     var translateHtml = ""
                     for (i in lines) {
                         var line = lines[i]
@@ -252,7 +262,6 @@
                                 <input class="form-control lyrics" id="translate-${i}-${j}" maxlength="${word['length']}"  onblur="deselect(${i},${j})" onclick="highlightOrigin(${i},${j})" oninput="this.style.width = ((this.value.length + 1) * 20) + 'px';" style="width:${boxLength}px;" id="exampleInputEmail1" value="${translate}">
                             </div>
                             `
-                            console.log(typeof word['length'])
                             //$(`#selector-${i}-${j} option[value=${word['length']}]`).attr('selected',true)
                             
                         }
@@ -273,7 +282,62 @@
                         `)
                         lineHtml = ""
                         translateHtml = ""
-                    }
+					}
+				}
+	  				
+	  			function createHTMLCardSm(lines){
+					var lineHtml = ""
+                    var translateHtml = ""
+                    for (i in lines) {
+                        var line = lines[i]
+                        for (j in line['splited-version']) {
+                            var word = line['splited-version'][j]
+                            var wordsLength = word['origin'].length
+                            var boxLength = (wordsLength + 6) * fontSize
+                            var translate = ""
+                            if (word['origin'] == "") {
+                                continue
+                            }
+                            if (word['translated-text'] != null) {
+                                translate = word['translated-text']
+                            }
+						lineHtml += `
+							<div class="col" style="margin-top:10px;margin-left:3px">
+								 <div>
+								  <div class="input-group-prepend">
+									<span class="input-group-text word-length" style="width:${boxLength}px;" id="inputGroup-sizing-default">${word["length"]}</span>
+								  </div>
+									<input class="form-control lyrics" id="origin-${i}-${j}" onblur="deselect(${i},${j})" onclick="highlightTranslate(${i},${j})" style="width:${boxLength}px" aria-describedby="inputGroup-sizing-default"
+									value="${word['origin']}" title="" >
+								</div>
+									 <input class="form-control lyrics" id="translate-${i}-${j}" maxlength="${word['length']}"  onblur="deselect(${i},${j})" onclick="highlightOrigin(${i},${j})" oninput="this.style.width = ((this.value.length + 1) * 20) + 'px';" style="width:${boxLength}px;margin-top:0px" value="${translate}">
+                            </div>`
+							}
+						console.log(lineHtml)
+						$('#container').append(`
+
+								<div style="margin-top:10px">
+									  <div class="card-wide mdl-card mdl-shadow--4dp">
+
+										<div class="mdl-card__supporting-text">
+										  <div class="row"> ${lineHtml} </div>
+										</div>
+	  									</div>
+									</div>
+
+
+						`)
+						lineHtml = ""
+					}
+				}
+					$.getJSON(url).done(function(data){
+                    $('#loading-bar').fadeOut(1000)
+                    var lines = data['lines']
+					if(deviceWidth > 600){
+						createHTMLCardXL(lines);
+					}else{
+						createHTMLCardSm(lines)
+					}
                     //Auto saved function
                     $(":input").change(function(){
                         var inputId = $(this).attr('id')
@@ -286,8 +350,10 @@
                             $("#saving-status").html("--Not save")
                         }
                     })
-                })       
+				})
+                     
             </script> 
+  <script src="translation.js"></script> 
 </div>
 </body>
 </html>
