@@ -14,6 +14,8 @@ BUCKET_NAME = "lyrics-translation-tool"
 NUM_OF_STAR = 50
 
 commit_msg = input("Enter your commit message here: ")
+selection = input('Select the part you want to deploy seperatly [default is all][server,s3,github]')
+
 start_time = time.time()
 
 def uploadS3():
@@ -29,25 +31,28 @@ def print_line(number):
     print(line)
 
 try:
-    #Upload the severless code
-    print_line(NUM_OF_STAR)
-    print("start upload the python serverless code")
-    output_from_chalice = subprocess.check_output('cd translator-python-server && pipenv run chalice deploy',shell=True)
-    print("Finished upload the python serverless code")
+    if selection == "server" or "":
+        #Upload the severless code
+        print_line(NUM_OF_STAR)
+        print("start upload the python serverless code")
+        output_from_chalice = subprocess.check_output('cd translator-python-server && pipenv run chalice deploy',shell=True)
+        print("Finished upload the python serverless code")
 
     #build the website
     print_line(NUM_OF_STAR)
     print("Start building the website")
     output_from_compile = subprocess.check_output('npm run-script build',shell=True)
 
-    #git
-    print_line(NUM_OF_STAR)
-    output_from_commit = subprocess.check_output('git add . && git commit -m "{}"'.format(commit_msg),shell=True)
-    output_from_push = subprocess.check_output("git push",shell=True)
+    if selection == "github" or "":
+        #git
+        print_line(NUM_OF_STAR)
+        output_from_commit = subprocess.check_output('git add . && git commit -m "{}"'.format(commit_msg),shell=True)
+        output_from_push = subprocess.check_output("git push",shell=True)
 
-    #uoload the file to s3
-    print_line(NUM_OF_STAR)
-    uploadS3()
+    if selection == "s3" or "":
+        #uoload the file to s3
+        print_line(NUM_OF_STAR)
+        uploadS3()
 
     #print the output before
     print_line(NUM_OF_STAR)
