@@ -100,7 +100,7 @@ function autoSaved(userID, songName, artist, changes) {
 }
 
 function createHTMLCardXL(lines) {
-    $('#container').empty();
+
     $('#container').html(`
 								<div class="row">
 									<div class="col">
@@ -203,7 +203,6 @@ function createHTMLCardXL(lines) {
 function createHTMLCardSm(lines) {
     var lineHtml = "";
     var translateHtml = "";
-    $('#container').empty();
     for (let i in lines) {
         var line = lines[i];
         for (j in line['splited-version']) {
@@ -249,7 +248,6 @@ function createHTMLCardSm(lines) {
 function createHTMLWithNomalText(lines) {
     var lineHtml = "";
     var translateHtml = "";
-    $('#container').empty();
     for (let i in lines) {
         var line = lines[i];
         var originText = "";
@@ -319,18 +317,22 @@ $.getJSON(url).done(function (data) {
 });
 
 $("select").change(function () {
+
     let str = "";
+    $('#container').empty();
+    console.log("Here");
     $("select option:selected").each(function () {
             str += $(this).val();
         });
+    console.log(str);
     if(str === "words"){
-        createHTMLWithNomalText(lines);
-    }else{
         if (deviceWidth > 600) {
             createHTMLCardXL(lines);
         } else {
             createHTMLCardSm(lines)
         }
+    }else{
+        createHTMLWithNomalText(lines);
     }
 });
 
