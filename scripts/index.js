@@ -8,7 +8,7 @@ function upload(lyrics, userID, title, artist) {
     console.log(lyrics);
     lyrics = lyrics.split(/\r?\n/);
     var newLyrics = "";
-    for (var l = 0; l < lyrics.length;l++) {
+    for (var l = 0; l < lyrics.length; l++) {
         newLyrics += lyrics[l] + "*newline*";
     }
     $.getJSON(`https://sa0biepvrj.execute-api.us-east-1.amazonaws.com/api/start-project/${userID}/${username}/${emailAddress}/${title}/${artist}/${newLyrics}`).done(function () {
@@ -18,6 +18,7 @@ function upload(lyrics, userID, title, artist) {
     })
     uploaded = true
 }
+
 var dialog = document.querySelector('dialog');
 if (!dialog.showModal) {
     dialogPolyfill.registerDialog(dialog);
@@ -41,7 +42,7 @@ $('#uploadBtn').click(function () {
     } else {
         //If not, show the loading bar and upload the file
         $('#loading-bar-for-upload').html('<div class="mdl-spinner mdl-js-spinner is-active" id="loading-bar-for-uploading"></div>')
-        upload(lyrics, uid, songName,artist)
+        upload(lyrics, uid, songName, artist)
     }
 })
 $('form').on('submit', function (event) {
@@ -60,3 +61,44 @@ $('form').on('submit', function (event) {
 $('#close').click(function () {
     dialog.close()
 })
+
+function showMusicList(userID) {
+    $.getJSON(`https://api.mytranshelper.com/api/get_all_projects_list/${userID}`).done(function (data) {
+        var row = "";
+        var col = "";
+        if (languageCode.includes('zh')) {
+            var text = content['zh']['loadProject']
+        } else {
+            var text = content['en']['loadProject']
+        }
+
+        for (var i = 0; i < data.length; i++) {
+
+            if (i == 0 || i % 3 != 0) {
+
+                col += `
+							<div class="col-sm">
+								<div class=" project-card mdc-card">
+								  <div class="mdl-card__title mdl-card--expand" style="  background: url('./assets/img/md-img${i % 3 + 1}.jpg') center / cover;">
+									<h2 class="mdl-card__title-text">${decodeURI(data[i]['title'])} - ${decodeURI(data[i]['artist'])}</h2>
+								  </div>
+								<div class="mdl-card__actions mdl-card--border">
+									<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="editing-page.html?song_name=${data[i]['title']}&artist=${data[i]['artist']}&userID=${uid}">
+									  	${text}
+									</a>
+								  </div>
+								</div>
+							</div>
+					`;
+            }
+
+            if (i == data.length - 1) {
+                row = `<div class="row"> ${col}</div>`;
+                col = "";
+                $('#listOfMusic').append(row)
+            }
+
+        }
+        isloaded = true;
+    })
+}

@@ -44,7 +44,9 @@ var content = {
 		"saving-status" : "已保存",
         "words" : "按照单词方式编辑",
         "sentences" :"按照句子方式编辑",
-        "type-selector" : "选择文本显示方式"
+        "type-selector" : "选择文本显示方式",
+        "doc-header" : "阅读文档",
+        "doc-text" : "阅读有关开发的一些故事"
 	}
 };
 $(".lang").each(function (index) {

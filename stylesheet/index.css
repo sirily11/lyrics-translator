@@ -1,0 +1,50 @@
+.mdc-card {
+    background-color: #fff;
+    /* @alternate */
+    background-color: white;
+    border-radius: 2px;
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+a {
+    color: inherit;
+}
+
+.label-card {
+    border-radius: 25px;
+    height: 40px;
+    margin-top: 20px;
+}
+
+.my_card_image__filename {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.my-card-image > .mdl-card__actions {
+    height: 52px;
+    padding: 16px;
+}
+
+.project-card.mdc-card {
+    width: 100%;
+    height: 300px;
+    margin-top: 20px;
+}
+
+.project-card > .mdl-card__title {
+    color: white;
+    text-shadow: 1px 1px 1px black;
+    background-color: #40c4ff;
+}
+
+.my-img-card.mdl-card {
+    width: 300px;
+    height: 256px;
+    margin-top: 20px;
+}
+
