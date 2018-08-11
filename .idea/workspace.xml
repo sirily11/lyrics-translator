@@ -2,30 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c75b2d16-43d7-4699-bed7-d1ab95185c13" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/scripts/app_editing.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/firebase-app.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/jquery-1.12.4.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/material-components-web.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/requirejs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/lyrics-translator.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/lyrics-translator.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bundle.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bundle.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/editing-page.html" beforeDir="false" afterPath="$PROJECT_DIR$/editing-page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editing-page.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sampleOutput.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/style-bundle.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testupload.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/translation.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/editing-page.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/editing-page.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -66,14 +43,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="html" value="638" />
-          <entry key="js" value="1519" />
+          <entry key="js" value="1601" />
           <entry key="scss" value="14" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="646" />
-          <entry key="JavaScript" value="1511" />
+          <entry key="JavaScript" value="1593" />
           <entry key="SCSS" value="14" />
         </counts>
       </usages-collector>
@@ -150,8 +127,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/editing-page.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="324" column="19" selection-start-line="324" selection-start-column="19" selection-end-line="324" selection-end-column="19" />
+            <state relative-caret-position="173">
+              <caret line="304" column="41" lean-forward="true" selection-start-line="304" selection-start-column="41" selection-end-line="304" selection-end-column="41" />
               <folding>
                 <element signature="n#!!block;n#getUrlVars#0" />
                 <element signature="n#!!block;n#replaceAll#0" />
@@ -340,12 +317,12 @@
       <option name="presentableId" value="Default" />
       <updated>1533766069989</updated>
       <workItem from="1533766073998" duration="279000" />
-      <workItem from="1533950808553" duration="18534000" />
+      <workItem from="1533950808553" duration="19203000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18813000" />
+    <option name="totallyTimeSpent" value="19482000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1719" height="932" extended-state="6" />
@@ -517,8 +494,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/editing-page.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="324" column="19" selection-start-line="324" selection-start-column="19" selection-end-line="324" selection-end-column="19" />
+        <state relative-caret-position="173">
+          <caret line="304" column="41" lean-forward="true" selection-start-line="304" selection-start-column="41" selection-end-line="304" selection-end-column="41" />
           <folding>
             <element signature="n#!!block;n#getUrlVars#0" />
             <element signature="n#!!block;n#replaceAll#0" />

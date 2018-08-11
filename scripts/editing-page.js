@@ -301,8 +301,8 @@ $.getJSON(url).done(function (data) {
     if (deviceWidth > 600) {
         createHTMLCardXL(lines);
     } else {
-        //createHTMLCardSm(lines)
-        createHTMLWithNomalText(lines);
+        createHTMLCardSm(lines)
+        //createHTMLWithNomalText(lines);
     }
     //Auto saved function
     $(":input").change(function () {
