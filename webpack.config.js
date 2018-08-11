@@ -1,10 +1,10 @@
 module.exports = [
   {
-    entry: './app.scss',
+    entry: './stylesheet/app.scss',
     output: {
       // This is necessary for webpack to compile
       // But we never use style-bundle.js
-      filename: 'style-bundle.js',
+      filename: './stylesheet/style-bundle.js',
     },
     module: {
       rules: [{
@@ -13,7 +13,7 @@ module.exports = [
           {
             loader: 'file-loader',
             options: {
-              name: 'bundle.css',
+              name: './stylesheet/bundle.css',
             },
           },
           { loader: 'extract-loader' },
@@ -29,9 +29,9 @@ module.exports = [
     },
   },
   {
-    entry: "./app.js",
+    entry: "./scripts/app.js",
     output: {
-      filename: "bundle.js"
+      filename: "./scripts/bundle.js"
     },
     module: {
       loaders: [{

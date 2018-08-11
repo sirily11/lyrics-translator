@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html lang="zh-Hans">
-    <head>
+<head>
     <meta charset="UTF-8">
-    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' >
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'>
     <title>歌词翻译网站</title>
-    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-auth.js"></script>
+    <script src="scripts/firebase-app.js"></script>
+    <script src="scripts/firebase-auth.js"></script>
 
-    <script
+    <!-- <script
             src="https://www.gstatic.com/firebasejs/ui/3.2.0/firebase-ui-auth__zh_cn.js"></script>
     <link type="text/css" rel="stylesheet"
             href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css"
-            />
+            /> -->
+    <script src="bower_components/firebaseui/dist/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="bower_components/firebaseui/dist/firebaseui.css"/>
     <link rel="stylesheet"
-            href="https://fonts.googleapis.com/icon?family=Material+Icons">
+          href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet"
-            href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+          href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
     <script
-            src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+            src="scripts/jquery.js"></script>
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     <script
             src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
@@ -28,37 +30,39 @@
             integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
             crossorigin="anonymous"></script>
     <link rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
-            integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
-            crossorigin="anonymous">
-    <link rel="stylesheet" href="bundle.css">
-    <script src="bundle.js" async></script>
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="stylesheet/bundle.css">
+    <script src="scripts/bundle.js" async></script>
     <style>
         .mdc-card {
             background-color: #fff;
             /* @alternate */
-            background-color: var(--mdc-theme-surface, #fff);
+            background-color: white;
             border-radius: 2px;
             box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
             display: flex;
             flex-direction: column;
-            box-sizing: border-box; 
-            }
-            .project-card.mdc-card {
-                width: 100%;
-                height: 300px;
-              margin-top: 20px;
-          }
-          .project-card > .mdl-card__title {
-                color: white;
-              text-shadow: 1px 1px 1px black;
-                background-color: #40c4ff;
-          }
-          
-    </style>
+            box-sizing: border-box;
+        }
 
+        .project-card.mdc-card {
+            width: 100%;
+            height: 300px;
+            margin-top: 20px;
+        }
+
+        .project-card > .mdl-card__title {
+            color: white;
+            text-shadow: 1px 1px 1px black;
+            background-color: #40c4ff;
+        }
+
+    </style>
     </body>
     <script type="text/javascript">
+
         var config = {
             apiKey: "AIzaSyBKle39fkAU9jZqegvTpuyA_WYl2a4FwpE",
             authDomain: "lyrics-translator-2f5c5.firebaseapp.com",
@@ -67,10 +71,10 @@
             storageBucket: "lyrics-translator-2f5c5.appspot.com",
             messagingSenderId: "367907701669"
         };
-		 var languageCode = navigator.language.substr(0,2);
-		 var username;
-		 var emailAddressl;
-		 var uid;
+        var languageCode = navigator.language.substr(0, 2);
+        var username;
+        var emailAddressl;
+        var uid;
         firebase.initializeApp(config);
         initApp = function () {
             firebase.auth().onAuthStateChanged(function (user) {
@@ -78,13 +82,13 @@
                     // User is signed in.
                     username = user.displayName;
                     emailAddress = user.email;
-					uid = user.uid;
+                    uid = user.uid;
                     user.getIdToken().then(function (accessToken) {
                         //Setting the multilanguage for the login text
 
                         $('#welcomeTextDrawer').html(content["zh"]["welcomeTextDrawerLogin"] + username)
 
-						showMusicList(uid)
+                        showMusicList(uid)
                     });
                     $('#login-btn').hide()
                     $('#logout-btn').show()
@@ -122,23 +126,23 @@
         }
 
         function showMusicList(userID) {
-            $.getJSON(`https://sa0biepvrj.execute-api.us-east-1.amazonaws.com/api/get_all_projects_list/${userID}`).done(function(data){
-				var row = "";
-				var col = "";
-				if(languageCode.includes('zh')){
-					var text = content['zh']['loadProject']
-				}else{
-					var text = content['en']['loadProject']
-				}
-				
-                for(var i=0;i<data.length;i++){
+            $.getJSON(`https://sa0biepvrj.execute-api.us-east-1.amazonaws.com/api/get_all_projects_list/${userID}`).done(function (data) {
+                var row = "";
+                var col = "";
+                if (languageCode.includes('zh')) {
+                    var text = content['zh']['loadProject']
+                } else {
+                    var text = content['en']['loadProject']
+                }
 
-					if(i==0 || i%3!=0){
+                for (var i = 0; i < data.length; i++) {
 
-						col += `
+                    if (i == 0 || i % 3 != 0) {
+
+                        col += `
 							<div class="col-sm">
 								<div class=" project-card mdc-card">
-								  <div class="mdl-card__title mdl-card--expand" style="  background: url('./assets/img/md-img${i%3+1}.jpg') center / cover;">
+								  <div class="mdl-card__title mdl-card--expand" style="  background: url('./assets/img/md-img${i % 3 + 1}.jpg') center / cover;">
 									<h2 class="mdl-card__title-text">${decodeURI(data[i]['title'])} - ${decodeURI(data[i]['artist'])}</h2>
 								  </div>
 								<div class="mdl-card__actions mdl-card--border">
@@ -149,98 +153,104 @@
 								</div>
 							</div>
 					`;
-					}
-					
-					if(i==data.length-1){
-						row = `<div class="row"> ${col}</div>`;
-						col = "";
-						$('#listOfMusic').append(row)
-					}
-                    
+                    }
+
+                    if (i == data.length - 1) {
+                        row = `<div class="row"> ${col}</div>`;
+                        col = "";
+                        $('#listOfMusic').append(row)
+                    }
+
                 }
-				isloaded = true;               
+                isloaded = true;
             })
         }
     </script>
-    </head>
+</head>
 
-    <body>
+<body>
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header" style="margin-top:0px">
-      <header class="mdl-layout__header">
-    <div class="mdl-layout__header-row"> 
-          <!-- Title --> 
-          <span class="mdl-layout-title lang" id="title"></span> 
-          <!-- Add spacer, to align navigation to the right -->
-          <div class="mdl-layout-spacer"></div>
-          <!-- Navigation. We hide it in small screens. --> 
+    <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-title lang" id="title"></span>
+            <!-- Add spacer, to align navigation to the right -->
+            <div class="mdl-layout-spacer"></div>
+            <!-- Navigation. We hide it in small screens. -->
         </div>
-  </header>
-      <div class="mdl-layout__drawer"> <span class="mdl-layout-title">
+    </header>
+    <div class="mdl-layout__drawer"> <span class="mdl-layout-title">
         <label class="navbar-brand lang" href="#" id="welcomeTextDrawer"></label>
         </span>
-    <nav class="mdl-navigation"> <a class="mdl-navigation__link lang" id='login-btn'onclick="login()"></a> <a class="mdl-navigation__link lang" id='logout-btn'onclick="logOut()"></a> </nav>
-  </div>
-      <main class="mdl-layout__content">
-    <div class="page-content main-content">
-          <div class="container-fluid">
-        <div class="mdc-card">
-              <div class="mdl-card__title">
-            <h2 class="mdl-card__title-text lang" id="welcomeTextHeader"></h2>
-          </div>
-              <div class="mdl-card__supporting-text lang" id="welcomeText"> </div>
-              <div class="mdl-card__actions mdl-card--border"> <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" id="create-new-project">
-                <div class="lang" id="start-project-btn"></div>
-                </a> </div>
-            </div>
-        <span class="mdl-chip" style="margin-top: 20px"> 
+        <nav class="mdl-navigation"><a class="mdl-navigation__link lang" id='login-btn' onclick="login()"></a> <a
+                class="mdl-navigation__link lang" id='logout-btn' onclick="logOut()"></a></nav>
+    </div>
+    <main class="mdl-layout__content">
+        <div class="page-content main-content">
+            <div class="container-fluid">
+                <div class="mdc-card">
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text lang" id="welcomeTextHeader"></h2>
+                    </div>
+                    <div class="mdl-card__supporting-text lang" id="welcomeText"></div>
+                    <div class="mdl-card__actions mdl-card--border"><a
+                            class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                            id="create-new-project">
+                        <div class="lang" id="start-project-btn"></div>
+                    </a></div>
+                </div>
+                <span class="mdl-chip" style="margin-top: 20px">
 			<i class="material-icons mdl-chip__contact">list</i>
 			<span class="mdl-chip__text lang" id="projectTag"></span> 
 		  </span>
-        <div class="project-container" id="listOfMusic"></div>
-        <div id="firebaseui-auth-container" style="margin-top:50px"></div>
-      </div>
+                <div class="project-container" id="listOfMusic"></div>
+                <div id="firebaseui-auth-container" style="margin-top:50px"></div>
+            </div>
         </div>
-  </main>
-    </div>
+    </main>
+</div>
 <dialog class="mdl-dialog" id="dialog-for-createProject"
-            style="width:90%">
-      <form action="/editing-page.html" method="GET">
-    <div id="song-info">
-          <div class="mdl-dialog__content" style="font-family:微软雅黑">
-        <p class="lang" id="dialogTitleText" > </p>
-        <div id="info"></div>
-        <div class="mdl-textfield mdl-js-textfield">
-			  <input hidden id="userID" type="text" name="userID" value="123">
-              <input class="mdl-textfield__input" type="text"
-                                id="songName" name="song_name">
-              <label class="mdl-textfield__label lyrics lang" id="songText" for="songName"></label>
-            </div>
-        <div class="mdl-textfield mdl-js-textfield">
-              <input class="mdl-textfield__input" type="text"
-                                id="artist" name="artist">
-              <label class="mdl-textfield__label lang" id="artistText"
-                                for="artist"></label>
-            </div>
-        <div class="mdc-text-field mdc-text-field--fullwidth
-                            mdc-text-field--textarea">
+        style="width:90%">
+    <form action="/editing-page.html" method="GET">
+        <div id="song-info">
+            <div class="mdl-dialog__content" style="font-family:微软雅黑">
+                <p class="lang" id="dialogTitleText"></p>
+                <div id="info"></div>
+                <div class="mdl-textfield mdl-js-textfield">
+                    <input hidden id="userID" type="text" name="userID" value="123">
+                    <input class="mdl-textfield__input" type="text"
+                           id="songName" name="song_name">
+                    <label class="mdl-textfield__label lyrics lang" id="songText" for="songName"></label>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield">
+                    <input class="mdl-textfield__input" type="text"
+                           id="artist" name="artist">
+                    <label class="mdl-textfield__label lang" id="artistText"
+                           for="artist"></label>
+                </div>
+                <div class="mdc-text-field mdc-text-field--fullwidth
+                            mdc-text-field--textarea" data-mdc-auto-init="MDCTextField">
               <textarea class="mdc-text-field__input"
-                                rows="15" cols="100" id="lyrics"></textarea>
-              <label class="mdc-floating-label"
-                                for="text-field-fullwidth-textarea"
-                                style="font-family:微软雅黑;font-size:20px">歌词 </label>
-              <div class="mdc-line-ripple"></div>
+                        rows="15" cols="100" id="lyrics"></textarea>
+                    <label class="mdc-floating-label"
+                           for="text-field-fullwidth-textarea"
+                           style="font-family:微软雅黑;font-size:20px">歌词 </label>
+                    <div class="mdc-line-ripple"></div>
+                </div>
             </div>
-      </div>
         </div>
-    <div class="mdl-dialog__actions">
-          <button type="submit" class="mdl-button" id="okBtn"> <i class="material-icons" style="color:#e91e63"> done </i> </button>
-          <button type="button" class="mdl-button close" id="close"> <i class="material-icons"> clear </i> </button>
-          <button type="button" class="mdl-button lang" id='uploadBtn'
-                        style="font-family:微软雅黑"></button>
-          <div id="loading-bar-for-upload"></div>
+        <div class="mdl-dialog__actions">
+            <button type="submit" class="mdl-button" id="okBtn"><i class="material-icons" style="color:#e91e63">
+                done </i></button>
+            <button type="button" class="mdl-button close" id="close"><i class="material-icons"> clear </i></button>
+            <button type="button" class="mdl-button lang" id='uploadBtn'
+                    style="font-family:微软雅黑"></button>
+            <div id="loading-bar-for-upload"></div>
         </div>
-  </form>
-    </dialog>
-<script src="translation.js"></script>
+    </form>
+</dialog>
+<script src="scripts/translation.js"></script>
+<script src="scripts/index.js"></script>
+
 </body>
 </html>

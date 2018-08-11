@@ -1,0 +1,32 @@
+@import "@material/textfield/mdc-text-field";
+@import "@material/select/mdc-select";
+@import "@material/card/mdc-card";
+
+body {
+    color: blue;
+  }
+
+
+.demo-card-wide.mdl-card {
+  	width: 512px;
+}
+.demo-card-wide > .mdl-card__title {
+  	color: #fff;
+  	height: 176px;
+}
+.demo-card-wide > .mdl-card__menu {
+  	color: #fff;
+}
+
+.main-content{
+  	margin-top: 20px
+}
+
+>.col{
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.project-container{
+	margin-top: 20px;
+}

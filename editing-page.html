@@ -1,359 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' >
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<link rel="stylesheet"
-            href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-<script
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script
             src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
-<script
+    <script
             src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
             integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
             crossorigin="anonymous"></script>
-<script
+    <script
             src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
             integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
             crossorigin="anonymous"></script>
-<link rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
-            integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
-            crossorigin="anonymous">
-<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-auth.js"></script>
-<script src="editing-page.js"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="translation.js"></script>
-<title class="lang" id="editing-page-title" ></title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+          crossorigin="anonymous">
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-auth.js"></script>
+    <script src="scripts/jquery-1.12.4.js"></script>
+    <script src="scripts/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="stylesheet/jquery-ui.min.css">
+    <script src="scripts/translation.js"></script>
+    <link rel="stylesheet" href="stylesheet/bundle.css">
+    <script src="scripts/material-components-web.js"></script>
+
+    <title class="lang" id="editing-page-title"></title>
 </head>
 <style>
-	
-.word-length{
 
-	background-color:#1565c0;
-	color: white
-}
-.card-wide.mdl-card {
-	width: 100%;
-}
-.card-wide>.mdl-card__title {
-	color: #fff;
-	height: 4rem;
-	font-family: Helvetica, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', Arial, sans-serif;
-	background-color: #0095a8;
-}
-.card-wide>.mdl-card__menu {
-	color: #bdbdbd
-}
-.lyrics {
-	font-family: Helvetica, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', Arial, sans-serif;
-	font-size: 12px
-}
-.mdl-card__title-text {
-	font-size: 14pt
-}
-.hint-number {
-	color: white;
-	background: #007ac1
-}
-.hint-number2 {
-	color: white;
-	background: #4bacb8
-}
+    .word-length {
+
+        background-color: #1565c0;
+        color: white
+    }
+
+    .card-wide.mdl-card {
+        width: 100%;
+    }
+
+    .card-wide > .mdl-card__title {
+        color: #fff;
+        height: 4rem;
+        font-family: Helvetica, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', Arial, sans-serif;
+        background-color: #0095a8;
+    }
+
+    .card-wide > .mdl-card__menu {
+        color: #bdbdbd
+    }
+
+    .lyrics {
+        font-family: Helvetica, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', Arial, sans-serif;
+        font-size: 12px
+    }
+
+    .mdl-card__title-text {
+        font-size: 14pt
+    }
+
+    .hint-number {
+        color: white;
+        background: #007ac1
+    }
+
+    .hint-number2 {
+        color: white;
+        background: #4bacb8
+    }
 </style>
 
 <body>
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-  <header class="mdl-layout__header" style="background-color:#00b8d4">
-    <div class="mdl-layout__header-row"> <span class="mdl-layout-title" id="project-title"
-                        style="font-family:微软雅黑">Title</span> 
-      <script>
-		  			var languageCode = navigator.language.substr(0,2)
-                    const title = decodeURI(replaceAll(getUrlVars()['song_name'], "+", " "));
-                    $('#project-title').html(content[languageCode]['translationProject'] + " " +title);
-      </script> 
+    <header class="mdl-layout__header" style="background-color:#00b8d4">
+        <div class="mdl-layout__header-row"> <span class="mdl-layout-title" id="project-title"
+                                                   style="font-family:微软雅黑"></span>
+
+        </div>
+    </header>
+    <a href="index.html" aria-expanded="false" role="button"
+       tabindex="0" class="mdl-layout__drawer-button"> <i class="material-icons" style="color:white">arrow_back</i> </a>
+    <header class="mdl-layout__header" style="background-color:white">
+        <div class="mdl-layout__header-row"> <span class="mdl-layout-title" id="artist-name"
+                                                   style="color:black"></span>
+
+            <span class="mdl-layout-title lang" id="saving-status"
+                  style="color:black;margin-left:20px"></span>
+            <div>
+                <div class="mdl-spinner mdl-js-spinner is-active"
+                     id="loading-progressbar"></div>
+            </div>
+        </div>
+    </header>
+    <div id="loading-bar" style="width:100%" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
+
+    <div class="container-fluid" style="margin-top:1rem">
+        <div class="mdc-select" id="selector" style="margin-bottom: 10px">
+            <select class="mdc-select__native-control">
+                <option value="" disabled selected></option>
+                <option class="lang" id="sentences" value="sentences">
+                </option>
+                <option class="lang" id="words" value="words">
+                </option>
+            </select>
+            <label class="mdc-floating-label lang" id="type-selector"></label>
+            <div class="mdc-line-ripple"></div>
+        </div>
+        <div id="container"></div>
     </div>
-  </header>
-  <a href="index.html" aria-expanded="false" role="button"
-                tabindex="0" class="mdl-layout__drawer-button"> <i class="material-icons" style="color:white">arrow_back</i> </a>
-  <header class="mdl-layout__header" style="background-color:white">
-    <div class="mdl-layout__header-row"> <span class="mdl-layout-title" id="artist-name"
-                        style="color:black"></span> 
-      <script>
-                        const artist = decodeURI(replaceAll(getUrlVars()['artist'], "+", " "))
-                        $('#artist-name').html(function(){
-                            return artist
-                        })
-                    </script> 
-      <span class="mdl-layout-title" id="saving-status"
-                        style="color:black;margin-left:20px">--Saving</span>
-      <div id="saving-status">
-        <div class="mdl-spinner mdl-js-spinner is-active"
-                            id="loading-progressbar"></div>
-      </div>
-    </div>
-  </header>
-  <div id="loading-bar" style="width:100%" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
-  <div class="container-fluid" id="container" style="margin-top:1rem"> </div>
-
-  <script>
-                        $( function() {
-                            $( document ).tooltip({
-                                content : function(callback){
-                                    var originText = $(this).attr('value')
-                                    $.getJSON(`https://sa0biepvrj.execute-api.us-east-1.amazonaws.com/api/translate/${originText}`).done(function(data){
-                                        var output = "翻译：" + data[0]["translation"]
-                                        callback(output)
-                                    })
-                                },
-                            })
-                        })
-                </script> 
-  <script>
-	  			const deviceWidth = $( window ).width();
-                const fontSize = 6
-                const numberChangeToSave = 6
-				const userID = getUrlVars()['userID']
-                var totalChanged = 0//Only save the changes when this number greater than 6
-                var url = `https://sa0biepvrj.execute-api.us-east-1.amazonaws.com/api/load-project/${userID}/${title}/${artist}`
-                var changesList = []
-                $("#loading-progressbar").hide()
-                $("#saving-status").html("--Saved")
-                //Fill the text for origin text box
-                //Click on the origin text and highlight the translation
-                function highlightTranslate(i, j) {
-                    $(`#translate-${i}-${j}`).animate({
-                        backgroundColor: "#ffeb3b",
-                        color: "black"
-                    }, 500)
-                    $(`#origin-${i}-${j}`).animate({
-                        backgroundColor: "#ffeb3b",
-                        color: "black"
-                    }, 500)
-                }
-
-                function deselect(i, j) {
-                    $(`#translate-${i}-${j}`).animate({
-                        backgroundColor: "white",
-                        color: "black"
-                    }, 500)
-
-                    $(`#origin-${i}-${j}`).animate({
-                        backgroundColor: "white",
-                        color: "black"
-
-                    }, 500)
-                }
-
-                function highlightOrigin(i, j) {
-                    $(`#origin-${i}-${j}`).animate({
-                        backgroundColor: "#ffeb3b",
-                        color: "black",
-                    }, 500)
-                    $(`#translate-${i}-${j}`).animate({
-                        backgroundColor: "#ffeb3b",
-                        color: "black",
-                    }, 500)
-                }
-
-                function isSelect(target,current){
-                    if(target == current){
-                        return "selected"
-                    }else{
-                        return ""
-                    }
-                }
-
-                function autoSaved(userID,songName,artist,changes){
-                        $("#loading-progressbar").show()
-                        $("#saving-status").html("--保存中")
-                        //We need to use utf-8 to trans the data to the server
-                        var json = encodeURI(JSON.stringify(changes),"utf-8")
-                        console.log(json)
-                    $.getJSON(`https://sa0biepvrj.execute-api.us-east-1.amazonaws.com/api/auto_save/${userID}/${songName}/${artist}/${json}`).done(function(json){
-                        totalChanged = 0
-                        changesList = []
-                        var d = new Date();
-                        var time = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
-                        $("#loading-progressbar").fadeOut(1000)
-                        $("#saving-status").html(`--保存于${time}`)
+    <script>
+        $(function () {
+            $(document).tooltip({
+                content: function (callback) {
+                    var originText = $(this).attr('value')
+                    $.getJSON(`https://sa0biepvrj.execute-api.us-east-1.amazonaws.com/api/translate/${originText}`).done(function (data) {
+                        var output = "翻译：" + data[0]["translation"]
+                        callback(output)
                     })
-                }
-	  
-	  			function createHTMLCardXL(lines){
-					$('#container').html(`
-								<div class="row">
-									<div class="col">
-									  <div class="card-wide mdl-card mdl-shadow--2dp">
-										<div class="mdl-card__title">
-										  <h2 class="mdl-card__title-text lang" id="translation-text"></h2>
-										</div>
-										<div class="mdl-card__supporting-text">
-										  <form id="translate-text">
-										  </form>
-										</div>
-									  </div>
-									</div>
-									<div class="col">
-									  <div class="card-wide mdl-card mdl-shadow--2dp">
-										<div class="mdl-card__title"
-																style="background-color:#039be5;">
-										  <h2 class="mdl-card__title-text lang" id="original-text"></h2>
-										</div>
-										<div class="mdl-card__supporting-text">
-										  <form id="origin-text">
-										  </form>
-										</div>
-									  </div>
-									</div>
-								</div>
-								`)
-					var lineHtml = ""
-                    var translateHtml = ""
-                    for (i in lines) {
-                        var line = lines[i]
-                        for (j in line['splited-version']) {
-                            var word = line['splited-version'][j]
-                            var wordsLength = word['origin'].length
-                            var boxLength = (wordsLength + 6) * fontSize
-                            var translate = ""
-                            if (word['origin'] == "") {
-                                continue
-                            }
-                            if (word['translated-text'] != null) {
-                                translate = word['translated-text']
-                            }
-                            lineHtml += `
-                            <div style="margin:0px">
-                                <select id="selector-${i}-${j}" class="hint-number form-control " style="margin:0px;width:100%">
-                                        <option ${isSelect(word['length'],1)}>1</option>
-                                        <option ${isSelect(word['length'],2)}>2</option>
-                                        <option ${isSelect(word['length'],3)}>3</option>
-                                        <option ${isSelect(word['length'],4)}>4</option>
-                                        <option ${isSelect(word['length'],5)}>5</option>
-                                        <option ${isSelect(word['length'],6)}>6</option>
-                                        <option ${isSelect(word['length'],7)}>7</option>
-                                        <option ${isSelect(word['length'],8)}>8</option>
-                                        <option ${isSelect(word['length'],9)}>9</option>
-                                        <option ${isSelect(word['length'],10)}>10</option>
-                                </select>
-                                <input class="form-control lyrics" id="origin-${i}-${j}" onblur="deselect(${i},${j})" onclick="highlightTranslate(${i},${j})" style="width:${boxLength}px" id="exampleInputEmail1" value="${word['origin']}" title="">
-                            </div>
-                            `
-                            translateHtml += `
-                            <div style="margin:0px">
-                            <select id="selector-${i}-${j}" class="hint-number2 form-control" style="margin:0px">
-                                    <option ${isSelect(word['length'],1)}>1</option>
-                                    <option ${isSelect(word['length'],2)}>2</option>
-                                    <option ${isSelect(word['length'],3)}>3</option>
-                                    <option ${isSelect(word['length'],4)}>4</option>
-                                    <option ${isSelect(word['length'],5)}>5</option>
-                                    <option ${isSelect(word['length'],6)}>6</option>
-                                    <option ${isSelect(word['length'],7)}>7</option>
-                                    <option ${isSelect(word['length'],8)}>8</option>
-                                    <option ${isSelect(word['length'],9)}>9</option>
-                                    <option ${isSelect(word['length'],10)}>10</option>
-                            </select>
-                                <input class="form-control lyrics" id="translate-${i}-${j}" maxlength="${word['length']}"  onblur="deselect(${i},${j})" onclick="highlightOrigin(${i},${j})" oninput="this.style.width = ((this.value.length + 1) * 20) + 'px';" style="width:${boxLength}px;" id="exampleInputEmail1" value="${translate}">
-                            </div>
-                            `
-                            //$(`#selector-${i}-${j} option[value=${word['length']}]`).attr('selected',true)
-                            
-                        }
-                        $('#origin-text').append(`
-                        <div class="row" style="margin-top:20px">
-                                ${lineHtml}
-                                <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck${i}">
-                                        <label class="custom-control-label" for="customCheck${i}">押韵</label>
-                                </div>
-                        
-                        </div>
-                        `)
-                        $('#translate-text').append(`
-                        <div class="row" style="margin-top:20px">
-                                ${translateHtml}
-                            </div>
-                        `)
-                        lineHtml = ""
-                        translateHtml = ""
-					}
-				}
-	  				
-	  			function createHTMLCardSm(lines){
-					var lineHtml = ""
-                    var translateHtml = ""
-                    for (i in lines) {
-                        var line = lines[i]
-                        for (j in line['splited-version']) {
-                            var word = line['splited-version'][j]
-                            var wordsLength = word['origin'].length
-                            var boxLength = (wordsLength + 6) * fontSize
-                            var translate = ""
-                            if (word['origin'] == "") {
-                                continue
-                            }
-                            if (word['translated-text'] != null) {
-                                translate = word['translated-text']
-                            }
-						lineHtml += `
-							<div class="col" style="margin-top:10px;margin-left:3px">
-								 <div>
-								  <div class="input-group-prepend">
-									<span class="input-group-text word-length" style="width:${boxLength}px;" id="inputGroup-sizing-default">${word["length"]}</span>
-								  </div>
-									<input class="form-control lyrics" id="origin-${i}-${j}" onblur="deselect(${i},${j})" onclick="highlightTranslate(${i},${j})" style="width:${boxLength}px" aria-describedby="inputGroup-sizing-default"
-									value="${word['origin']}" title="" >
-								</div>
-									 <input class="form-control lyrics" id="translate-${i}-${j}" maxlength="${word['length']}"  onblur="deselect(${i},${j})" onclick="highlightOrigin(${i},${j})" oninput="this.style.width = ((this.value.length + 1) * 20) + 'px';" style="width:${boxLength}px;margin-top:0px" value="${translate}">
-                            </div>`
-							}
-						console.log(lineHtml)
-						$('#container').append(`
+                },
+            })
+        });
 
-								<div style="margin-top:10px">
-									  <div class="card-wide mdl-card mdl-shadow--4dp">
-
-										<div class="mdl-card__supporting-text">
-										  <div class="row"> ${lineHtml} </div>
-										</div>
-	  									</div>
-									</div>
-
-
-						`)
-						lineHtml = ""
-					}
-				}
-					$.getJSON(url).done(function(data){
-                    $('#loading-bar').fadeOut(1000)
-                    var lines = data['lines']
-					if(deviceWidth > 600){
-						createHTMLCardXL(lines);
-					}else{
-						createHTMLCardSm(lines)
-					}
-                    //Auto saved function
-                    $(":input").change(function(){
-                        var inputId = $(this).attr('id')
-                        var newValue = $(this).val()
-                        changesList.push({id:inputId,value:newValue})
-                        totalChanged += 1
-                        if(totalChanged > numberChangeToSave){
-                            autoSaved(userID,title,artist,changesList)
-                        }else{
-                            $("#saving-status").html("--Not save")
-                        }
-                    })
-				})
-                     
-            </script> 
-  <script src="translation.js"></script> 
+    </script>
+    <script src="scripts/editing-page.js"></script>
+    <script src="scripts/translation.js"></script>
 </div>
 </body>
+<script type="text/javascript">
+
+</script>
+<!--<script src="scripts/bundle.js" async></script>-->
 </html>
