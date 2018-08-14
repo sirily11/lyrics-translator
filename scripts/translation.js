@@ -1,3 +1,5 @@
+var current_version = 0.2;
+var languageCode = navigator.language.substr(0, 2);
 var content = {
 	"en": {
 		"start-project-btn": "Start Project",
@@ -10,6 +12,7 @@ var content = {
 		"dialogTitleText": "Please enter your project info",
 		"uploadBtn": "Upload lyrics",
 		"title": "Home page",
+        'logpage' : "Update logs",
 		"logout-btn": "Log out",
 		"login-btn": "Log in",
 		"loadProjectText": "加载项目",
@@ -18,7 +21,27 @@ var content = {
 		"editing-page-title" : "Lyrics Translation",
 		"translationProject" : "Translation Project",
 		"original-text" : "Original",
-		"translation-text" : "Translation"
+		"translation-text" : "Translation",
+        "saving-status" : "Saved",
+        "words" : "Editing in words",
+        "sentences" :"Editing in sentences",
+        "type-selector" : "Choose the way to display the text",
+        "doc-header" : "Read the docs",
+        "doc-text" : "Read some story about developing(Chinese only)",
+        "version" : `Current version ${current_version}`,
+        "header-0.05" : "Version0.05",
+        "time-0.05" : "2018/8/05",
+        "content-0.05" : "Set up the basic UI looking and added the lyrics editing function",
+        "header-0.1" : "Version0.1",
+        "time-0.1" : "2018/8/09",
+        "content-0.1" : "Added the list of the songs which user uploaded",
+        "header-0.2" : "Version0.2",
+        "time-0.2" : "2018/8/11",
+        "content-0.2" : "Improved the way to display the lyrics. Redesign the mobile version and added the docs",
+        "home" : "Home",
+        "logs" :"Develop logs",
+        "createTimedLyrics" : "Create timed lyrics",
+        "usingApplemusic" : "Play music from Apple Music"
 	},
 
 	"zh": {
@@ -32,6 +55,7 @@ var content = {
 		"dialogTitleText": "请输入你的项目信息",
 		"uploadBtn": "上传歌词",
 		"title": "主页面",
+		'logpage' : "更新记录",
 		"logout-btn": "登出",
 		"login-btn": "登入",
 		"loadProjectText": "加载项目",
@@ -46,10 +70,25 @@ var content = {
         "sentences" :"按照句子方式编辑",
         "type-selector" : "选择文本显示方式",
         "doc-header" : "阅读文档",
-        "doc-text" : "阅读有关开发的一些故事"
+        "doc-text" : "阅读有关开发的一些故事",
+		"version" : `当前版本 v${current_version}`,
+        "header-0.05" : "版本0.05",
+        "time-0.05" : "2018/8/05",
+        "content-0.05" : "初步设计了整体UI以及加入了歌词翻译功能，增加了歌曲编辑功能",
+		"header-0.1" : "版本0.1",
+		"time-0.1" : "2018/8/09",
+		"content-0.1" : "增加了歌曲列表，增加了多语种翻译",
+		"header-0.2" : "版本0.2",
+		"time-0.2" : "2018/8/11",
+		"content-0.2" : "增加了改进了用户编排歌词的方式，专门对手机版本进行了优化，改进了UI设计并且增加了文档",
+		"home" : "主界面",
+		"logs" :"开发日志",
+		"createTimedLyrics" : "创建同步歌词",
+		"usingApplemusic" : "播放苹果音乐歌曲"
 	}
 };
 $(".lang").each(function (index) {
 	var id = this.id;
-	$(this).text(content[languageCode][id])
+	console.log(id);
+	$(this).text(content[languageCode][id]);
 });

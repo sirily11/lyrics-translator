@@ -37,7 +37,7 @@
     <link rel="stylesheet" href="stylesheet/index.css">
     </body>
     <script type="text/javascript">
-
+        var languageCode = navigator.language.substr(0, 2);
         var config = {
             apiKey: "AIzaSyBKle39fkAU9jZqegvTpuyA_WYl2a4FwpE",
             authDomain: "lyrics-translator-2f5c5.firebaseapp.com",
@@ -46,7 +46,7 @@
             storageBucket: "lyrics-translator-2f5c5.appspot.com",
             messagingSenderId: "367907701669"
         };
-        var languageCode = navigator.language.substr(0, 2);
+
         var username;
         var emailAddressl;
         var uid;
@@ -116,8 +116,11 @@
     <div class="mdl-layout__drawer"> <span class="mdl-layout-title">
         <label class="navbar-brand lang" href="#" id="welcomeTextDrawer"></label>
         </span>
-        <nav class="mdl-navigation"><a class="mdl-navigation__link lang" id='login-btn' onclick="login()"></a> <a
-                class="mdl-navigation__link lang" id='logout-btn' onclick="logOut()"></a></nav>
+        <nav class="mdl-navigation">
+            <a class="mdl-navigation__link lang" id='login-btn' onclick="login()"></a>
+            <a class="mdl-navigation__link lang" id='logout-btn' onclick="logOut()"></a>
+            <a class="mdl-navigation__link lang" href="logs.html" id='logs'></a>
+        </nav>
     </div>
     <main class="mdl-layout__content">
         <div class="page-content main-content">
@@ -132,14 +135,15 @@
                     </div>
                     <div class="mdl-card__supporting-text lang" id="welcomeText"></div>
                     <div class="mdl-card__actions mdl-card--border"><a
-                            class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                            class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" id="create-project-btn"
                     >
                         <div class="lang" id="start-project-btn"></div>
                     </a></div>
                 </div>
                 <div style="margin-top: 20px;color: black">
-			        <i class="material-icons mdl-chip__contact">list</i>
+                    <i class="material-icons mdl-chip__contact">list</i>
                     <span class="mdl-chip__text lang" id="projectTag"></span>
+                    <div  class="mdl-spinner mdl-js-spinner is-active" id="musiclist-loadingbar"></div>
                 </div>
                 <div class="project-container" id="listOfMusic"></div>
                 <div id="firebaseui-auth-container" style="margin-top:50px"></div>
@@ -149,7 +153,7 @@
 </div>
 <dialog class="mdl-dialog" id="dialog-for-createProject"
         style="width:90%">
-    <form action="/editing-page.html" method="GET">
+    <form action="editing-page.html" method="GET">
         <div id="song-info">
             <div class="mdl-dialog__content" style="font-family:微软雅黑">
                 <p class="lang" id="dialogTitleText"></p>
@@ -188,9 +192,8 @@
     </form>
 </dialog>
 <script src="scripts/translation.js"></script>
-<script src="scripts/index.js"></script>
-
 <link rel="stylesheet" href="stylesheet/bundle.css">
+<script src="scripts/index.js"></script>
 <script src="scripts/bundle.js" async></script>
 </body>
 </html>

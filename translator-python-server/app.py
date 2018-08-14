@@ -59,6 +59,8 @@ class Line:
         for s in self.splited_version:
             splited_version.append(s.to_json())
         return {
+            "starttime" : "",
+            "endtime" : "",
             "line-content": self.line_contents,
             "splited-version": splited_version
         }
@@ -86,6 +88,8 @@ class Word:
         if self.length == 0:
             self.length = 1
         return {
+            "starttime" : "",
+            "endtime" : "",
             "origin": self.origin,
             "translated-text": self.translated,
             "rhyme": self.rhyme,
