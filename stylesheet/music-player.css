@@ -2,8 +2,8 @@
     position:fixed;
     width:60px;
     height:60px;
-    bottom:200px;
-    right:40px;
+    bottom:140px;
+    right:5px;
     background-color:#0C9;
     color:#FFF;
     border-radius:50px;
@@ -12,4 +12,7 @@
 }
 .my-float{
     margin-top:22px;
+}
+.highlight-card {
+    border: 4px solid #fbc02d;
 }

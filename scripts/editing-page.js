@@ -17,6 +17,68 @@ $('#project-title').html(content[languageCode]['translationProject'] + " " + tit
 $("#loading-progressbar").hide();
 $("#saving-status").html("--Saved");
 $('#artist-name').html(artist);
+$(document).on("mousedown touchstart", '#progressbar-for-player',function () {
+    player.stop();
+});
+$(document).on('change','#progressbar-for-player',function () {
+    var sliderValue = $(this).val();
+    var newTime = (sliderValue / 100) * player.getPlayer().duration;
+    player.setTime(newTime);
+    lyricsDisplay.setTime(newTime);
+    player.play();
+    console.log($(this).val())
+});
+$(document).on('click', '#editBtn', function () {
+    editor.addTimeToLine();
+});
+$(document).on('change','#file',function (e) {
+    musicName = $(this).val();
+    var music = URL.createObjectURL(this.files[0]);
+    var type = musicName.slice(musicName.length - 3, musicName.length);
+    console.log(type);
+    if (allowType.includes(type)) {
+        player.startPlaying();
+        player.getPlayer().src = music;
+    } else {
+        alert("Not supports");
+    }
+});
+$(document).on('click','#play-btn',function () {
+    if (player.currentStatus === "playing") {
+        player.stop();
+    } else {
+        player.play();
+    }
+});
+$("select").on('change',function () {
+    let str = "";
+    $('#lyricsDisplay').empty();
+    $("select option:selected").each(function () {
+        str += $(this).val();
+    });
+    if(str === "words"){
+        if (deviceWidth > 600) {
+            createHTMLCardXL(lines);
+        } else {
+            createHTMLCardSm(lines)
+        }
+    }else{
+        createHTMLWithNomalText(lines);
+    }
+});
+//Auto saved function
+$(document).on('change','input',function () {
+    var inputId = $(this).attr('id');
+    var newValue = $(this).val();
+    changesList.push({id: inputId, value: newValue});
+    totalChanged += 1;
+    if (totalChanged > numberChangeToSave) {
+        autoSaved(userID, title, artist, changesList);
+    } else {
+        $("#saving-status").html("--Not save");
+    }
+});
+
 
 function getUrlVars() {
     var vars = {};
@@ -37,7 +99,6 @@ function replaceAll(originString, replaceFrom, replaceTo) {
     }
     return returnStr
 }
-
 //Fill the text for origin text box
 //Click on the origin text and highlight the translation
 function highlightTranslate(i, j) {
@@ -88,8 +149,7 @@ function autoSaved(userID, songName, artist, changes) {
     $("#saving-status").html("--保存中");
     //We need to use utf-8 to trans the data to the server
     var json = encodeURI(JSON.stringify(changes), "utf-8");
-    console.log(json);
-    $.getJSON(`https://sa0biepvrj.execute-api.us-east-1.amazonaws.com/api/auto_save/${userID}/${songName}/${artist}/${json}`).done(function (json) {
+    $.getJSON(`https://api.mytranshelper.com/api/auto_save/${userID}/${songName}/${artist}/${json}`).done(function (json) {
         totalChanged = 0;
         changesList = [];
         var d = new Date();
@@ -101,7 +161,7 @@ function autoSaved(userID, songName, artist, changes) {
 
 function createHTMLCardXL(lines) {
 
-    $('#container').html(`
+    $('#lyricsDisplay').html(`
 								<div class="row">
 									<div class="col">
 									  <div class="card-wide mdl-card mdl-shadow--2dp">
@@ -217,7 +277,7 @@ function createHTMLCardSm(lines) {
                 translate = word['translated-text']
             }
             lineHtml += `
-							<div class="col" style="margin-top:10px;margin-left:3px">
+							<div class="col" style="margin-top:10px;margin-left:3px;">
 								 <div>
 								  <div class="input-group-prepend">
 									<span class="input-group-text word-length" style="width:${boxLength}px;" id="inputGroup-sizing-default">${word["length"]}</span>
@@ -228,10 +288,10 @@ function createHTMLCardSm(lines) {
 									 <input class="form-control lyrics" id="translate-${i}-${j}" maxlength="${word['length']}"  onblur="deselect(${i},${j})" onclick="highlightOrigin(${i},${j})" oninput="this.style.width = ((this.value.length + 1) * 20) + 'px';" style="width:${boxLength}px;margin-top:0px" value="${translate}">
                             </div>`
         }
-        $('#container').append(`
+        $('#lyricsDisplay').append(`
 
-								<div style="margin-top:10px">
-									  <div class="card-wide mdl-card mdl-shadow--4dp">
+								<div style="margin-top:10px;">
+									  <div class="card-wide mdl-card mdl-shadow--4dp" id="row-${i}">
 
 										<div class="mdl-card__supporting-text">
 										  <div class="row"> ${lineHtml} </div>
@@ -284,55 +344,13 @@ function createHTMLWithNomalText(lines) {
             </div>
         </div>
         `;
-        $('#container').append(lineHtml);
-        //console.log(translationText);
+        $('#lyricsDisplay').append(lineHtml);
+        //console.log(lineHtml);
         originText = "";
         translationText = "";
     }
-    window.mdc.autoInit();
 
 }
 
-$.getJSON(url).done(function (data) {
-    $('#loading-bar').fadeOut(1000);
-    lines = data['lines'];
-    if (deviceWidth > 600) {
-        createHTMLCardXL(lines);
-    } else {
-        createHTMLCardSm(lines)
-        //createHTMLWithNomalText(lines);
-    }
-    //Auto saved function
-    $(":input").change(function () {
-        var inputId = $(this).attr('id');
-        var newValue = $(this).val();
-        changesList.push({id: inputId, value: newValue});
-        totalChanged += 1;
-        if (totalChanged > numberChangeToSave) {
-            autoSaved(userID, title, artist, changesList);
-        } else {
-            $("#saving-status").html("--Not save");
-        }
-    })
-});
 
-$("select").change(function () {
-
-    let str = "";
-    $('#container').empty();
-    console.log("Here");
-    $("select option:selected").each(function () {
-            str += $(this).val();
-        });
-    console.log(str);
-    if(str === "words"){
-        if (deviceWidth > 600) {
-            createHTMLCardXL(lines);
-        } else {
-            createHTMLCardSm(lines)
-        }
-    }else{
-        createHTMLWithNomalText(lines);
-    }
-});
 

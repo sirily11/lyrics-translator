@@ -10,7 +10,6 @@ class MusicPlayer {
         this.createFloatBtn();
         this.player = document.getElementById('player');
     }
-
     createPlayer() {
         console.log("Creating the player");
         $('#music-player').html(`
@@ -23,13 +22,13 @@ class MusicPlayer {
                     </label>
                 </div>
                 <div class="row" style="margin-left: 5%">
-                    <h6 id="song-info">Taylor swift</h6>
+                    <h6 id="song-info"></h6>
                 </div>
                 <div id="someclass">
                 <input class="mdl-slider mdl-js-slider" type="range"
                        min="0" max="100" value="0" tabindex="0" step="0.01" id="progressbar-for-player">
                  </div>
-                <audio hidden controls id="player">
+                <audio hidden controls loop id="player">
                 </audio>
                 <div class="row justify-content-md-center">
                 
@@ -52,20 +51,21 @@ class MusicPlayer {
         `)
     }
 
-    createFloatBtn(){
+    createFloatBtn() {
         $('#floatBtn').html(`  
               <div class="btn-group dropup">
-                    <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored float" id="editButton">
-                        <i class="material-icons" id="editButtonIcon">edit</i>
+                    <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored float" style="background-color:#d50000 " id="menuBtn">
+                        <i class="material-icons" id="editBtnIcon">edit</i>
                     </button>
                     <ul class="mdl-menu mdl-menu--top-right mdl-js-menu mdl-js-ripple-effect"
-                        data-mdl-for="editButton">
+                        data-mdl-for="menuBtn">
                         <a onclick="MusicPlayer.switchToAddedTimeMode()" class="mdl-menu__item lang" id="createTimedLyrics"></a>
                         <a class="mdl-menu__item lang" id="usingApplemusic"></a>
                     </ul>
                 </div>`
         )
     }
+
     startPlaying() {
         $('#play-btn').addClass('mdl-button--colored').attr('disabled', false).css("background-color", "#3f51b5").css("color", 'white');
         $('#next-btn').addClass('mdl-button--colored');
@@ -73,10 +73,18 @@ class MusicPlayer {
         $('#song-info').html();
     }
 
-    static switchToAddedTimeMode(){
-        $('#editButtonIcon').html('add').fadeIn(1000).attr('onclick',"");
-        $('.mdl-menu').hide();
+    static switchToAddedTimeMode() {
+        $('#floatBtn').html(
+            `
+            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored float" id="editBtn">
+                        <i class="material-icons" id="editBtnIcon">add</i>
+            </button>
+            `
+        )
+
+
     }
+
     getCurrentPlayInfo() {
         var currentTime = this.player.currentTime;
 
@@ -116,133 +124,170 @@ class MusicPlayer {
 }
 
 class ScrollLyrics {
-    constructor() {
-        this.lyrics = "";
+    constructor(lyrics) {
+        this.lyrics = lyrics;
         this.currentLine = 0;
-        this.createLyricsDisplay()
+        //this.createLyricsDisplay();
+        this.currentLine = 0;
+        this.currentword = 0;
     }
 
     createLyricsDisplay() {
-        for (var i = 0; i < 100; i++) {
-            $('#lyricsDisplay').append(`<div id="${i}" style="font-size: 40px;margin-bottom: 80px"> 第${i}句 </div>`)
+        for (var i = 0; i < this.lyrics['lines'].length; i++) {
+            var html = ""
+            for (var j = 0; j < this.lyrics['lines'][i]['splited-version'].length; j++) {
+                html += `<div class="col-2" id="row-${i}-col-${j}">${this.lyrics['lines'][i]['splited-version'][j]['origin']}</div>`
+            }
+            $('#lyricsDisplay').append(`<div class="row" id="row-${i}" style="font-size: 20px;margin-bottom: 80px">${html}</div>`);
+            html = "";
         }
     }
 
+    addLyrics(lyrics){
+        this.lyrics = lyrics;
+    }
+
     animate(time) {
-        if (time >= this.currentLine * 2 && time < (this.currentLine + 1) * 2) {
-            this.highlight(this.currentLine);
+        var line = this.lyrics['lines'][this.currentLine];
+        //console.log(time)
+        if (time >= line["starttime"] && time <= line['endtime']) {
+            var words = line['splited-version'];
             this.scrollTo(this.currentLine);
-            if (this.currentLine > 0) {
-                this.dehighlight(this.currentLine - 1);
+            try {
+                if (time >= words[this.currentword]['starttime']) {
+                    this.highlight(this.currentLine, this.currentword);
+                    this.currentword += 1;
+                }
+            } catch (e) {
+
             }
+            //this.highlight(this.currentLine,this.currentword);
+        } else if (time > line['endtime'] && time < this.lyrics['lines'][this.currentLine + 1]['endtime']) {
+            //this.highlight(this.currentLine,this.currentword);
             this.currentLine += 1;
+            this.currentword = 0;
+            console.log("Dehighlight");
+            this.dehighlightAll()
+            //need to fix
+        }
+    }
+
+    setTime(newtime) {
+        this.dehighlightAll();
+        for (var i = 0; i < this.lyrics['lines'].length; i++) {
+            var starttime = this.lyrics['lines'][i]['starttime'];
+            var endtime = this.lyrics['lines'][i]['endtime'];
+            if (newtime > endtime) {
+                continue;
+            } else {
+                this.currentLine = i;
+                for (var j = 0; j < this.lyrics['lines'][i]['splited-version'].length; j++) {
+                    var starttime_word = this.lyrics['lines'][i]['splited-version'][j]['starttime'];
+                    var endtime_word = this.lyrics['lines'][i]['splited-version'][j]['endtime'];
+                    if (newtime > endtime_word) {
+                        continue;
+                    } else {
+                        this.currentword = j;
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+        //console.log(this.lyrics['lines'][this.currentLine]['line-content']);
+        this.highlightTo(this.currentLine, this.currentword);
+    }
+
+    dehighlightAll(linenum = "") {
+        if (linenum === "") {
+            for (var i = 0; i < this.lyrics['lines'].length; i++) {
+                for (var j = 0; j < this.lyrics['lines'][i]['splited-version'].length; j++) {
+                    this.dehighlight(i, j);
+                }
+            }
+        }
+    }
+
+    highlightTo(currentline,toword){
+        for(var i = 0; i < toword;i++){
+            this.highlight(currentline,i);
         }
     }
 
     scrollTo(position) {
-        // var container = $('#lyricsDisplay'),
-        //     // scrollTo = $(`#${position}`);
-        $('#' + position).scrollintoview({
-            duration: "slow", direction: "y", complete: function () {
+        $('#row-' + position).scrollintoview({
+            duration: 300, direction: "y", complete: function () {
             }
         })
-        // console.log(scrollTo.offset().top);
-        // container.animate({
-        //     scrollTop: scrollTo.offset().top - container.offset().top + container.scrollTop()
-        // });
     }
 
-    highlight(positionofline,positionofword) {
-        $(`#${positionofline}`).css('color', "red");
+    highlight(positionofline, positionofword) {
+        //console.log($('#col-'+positionofword).html());
+        console.log("Changing")
+        $(`#row-${positionofline}`).addClass('highlight-card');
+        //$(`#row-${positionofline}-col-${positionofword}`).css('color', "red");
+        highlightOrigin(positionofline,positionofword);
+        highlightTranslate(positionofline,positionofword);
+
     }
 
-    dehighlight(positionofline,positionofword) {
-        $(`#${positionofline}`).css('color', "black");
+    dehighlight(positionofline, positionofword) {
+        $(`#row-${positionofline}`).css('background-color', "white");
+        $(`#row-${positionofline}-col-${positionofword}`).css('color', "black");
     }
 }
 
 class TimedLyrics {
-    constructor(lyricsJson,player,lyricsDisplay){
-        //Lyrics object from server
-        this.lyrics = this.getLyrics(lyricsJson);
-        //total time list for each individual line
-        this.times = [];
-        //total line for each individual words in each line
-        this.timeForLine = [];
+    constructor(player, lyricsDisplay) {
         //music player
         this.player = player;
         //Lyrics display
         this.lyricsDisplay = lyricsDisplay;
+        //Lyrics object from server
+        this.lyrics = this.getLyrics();
+        //total time list for each individual line
+        this.times = [];
+        //total line for each individual words in each line
+        this.timeForLine = [];
         //the current line
         this.currentLineNum = 0;
         //if player not playing any music, then alert the user
-        if(player.getPlayer().src == null){
+        if (player.getPlayer().src == null) {
             alert("Not playing music")
         }
     }
-    startCreating(){
-        $('#editButtonIcon').html('add')
+
+    updatelyricsDisplay(newDisplay){
+        this.lyricsDisplay = newDisplay;
+        this.lyrics = newDisplay.lyrics;
     }
 
-    getLyrics(lyricsJson){
-
+    getLyrics() {
+        //console.log(this.lyricsDisplay.lyrics);
+        return this.lyricsDisplay.lyrics;
     }
 
-    addTimeToLine(){
+    addTimeToLine() {
         var currentTime = player.getCurrentPlayInfo().currentTime;
         var lengthOftheLine = this.lyrics['lines'][this.currentLineNum]['splited-version'].length;
-        if(this.timeForLine.length <= lengthOftheLine){
-            this.timeForLine.push(currentTime)
-            lyricsDisplay.highlight(this.currentLineNum,this.timeForLine.length)
-        }else{
+        lyricsDisplay.scrollTo(this.currentLineNum);
+        lyricsDisplay.highlight(this.currentLineNum, this.timeForLine.length)
+        this.timeForLine.push(currentTime);
+        if (this.timeForLine.length === lengthOftheLine) {
             this.addTimeToLyrics();
             this.currentLineNum += 1;
         }
     }
 
-    addTimeToLyrics(){
+    addTimeToLyrics() {
         this.times.push(this.timeForLine);
         this.timeForLine = [];
+        if (this.currentLineNum + 1 === this.lyrics['lines'].length) {
+            var jsonData = JSON.stringify({"time_data": this.times});
+            $.getJSON(`http://127.0.0.1:8000/add_timed_lyrics/asoijdiasojd/Call it what you want/Taylor Swift/${jsonData}`).done(
+
+            )
+        }
     }
 }
 
-const player = new MusicPlayer();
-const lyricsDisplay = new ScrollLyrics();
-
-$('#file').change(function (e) {
-    musicName = $(this).val();
-    var music = URL.createObjectURL(this.files[0]);
-    var type = musicName.slice(musicName.length - 3, musicName.length);
-    console.log(type);
-    if (allowType.includes(type)) {
-        player.startPlaying();
-        player.getPlayer().src = music;
-    } else {
-        alert("Not supports");
-    }
-});
-
-$('#play-btn').click(function () {
-    if (player.currentStatus === "playing") {
-        player.stop();
-    } else {
-        player.play();
-    }
-});
-
-player.getPlayer().ontimeupdate = function () {
-    //console.log(getCurrentPlayInfo())
-    lyricsDisplay.animate(player.getCurrentPlayInfo().currentTime);
-    player.updateProgressbar();
-};
-
-
-$('#progressbar-for-player').on("mousedown touchstart",function () {
-    player.stop();
-}).change(function () {
-    var sliderValue = $(this).val();
-    var newTime = (sliderValue / 100) * player.getPlayer().duration;
-    player.setTime(newTime);
-    player.play();
-    console.log($(this).val())
-});

@@ -115,11 +115,11 @@
                 {
                     if (rel.top < 0)
                     {
-                        animOptions.scrollTop = dim.s.scroll.top + rel.top;
+                        animOptions.scrollTop = dim.s.scroll.top;
                     }
                     else if (rel.top > 0 && rel.bottom <  windowsHeight/2)
                     {
-                        animOptions.scrollTop = dim.s.scroll.top + Math.min(rel.top, -rel.bottom) + windowsHeight/2 + 200;
+                        animOptions.scrollTop = dim.s.scroll.top + Math.min(rel.top, -rel.bottom) + 150 ;
                     }
                 }
 

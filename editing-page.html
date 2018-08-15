@@ -7,6 +7,7 @@
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <link rel="stylesheet" href="stylesheet/music-player.css">
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     <script
             src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
@@ -27,7 +28,6 @@
     <script src="scripts/jquery-1.12.4.js"></script>
     <script src="scripts/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="stylesheet/jquery-ui.min.css">
-    <script src="scripts/translation.js"></script>
     <link rel="stylesheet" href="stylesheet/bundle.css">
     <script src="scripts/material-components-web.js"></script>
 
@@ -112,7 +112,11 @@
             <label class="mdc-floating-label lang" id="type-selector"></label>
             <div class="mdc-line-ripple"></div>
         </div>
-        <div id="container"></div>
+
+        <div id="lyricsDisplay" style="margin-bottom: 300px;margin-top: 0px"></div>
+        <div id="floatBtn" class="fixed-bottom"></div>
+        <div id="music-player"></div>
+
     </div>
     <script>
         $(function () {
@@ -128,9 +132,14 @@
         });
 
     </script>
-    <script src="scripts/editing-page.js"></script>
-    <script src="scripts/translation.js"></script>
+
 </div>
 </body>
 <!--<script src="scripts/bundle.js" async></script>-->
+<script src="scripts/translation.js"></script>
+<script src="scripts/jqueryPlugin.js"></script>
+<script src="scripts/editing-page.js"></script>
+<script src="scripts/musicPlayer.js"></script>
+<script src="scripts/edit-page-music-player.js"></script>
+<script src="scripts/translation.js"></script>
 </html>

@@ -97,6 +97,32 @@ class Word:
             "symbol": []
         }
 
+def get_lyrics(artist,title,user_id):
+    BUCKET_NAME = "lyrics-from-user"
+    FILE_NAME = "{}-{}-{}.json".format(artist,title,user_id)
+    s3 = boto3.resource('s3')
+    obj = s3.Object(BUCKET_NAME, FILE_NAME)
+    jsonFile = obj.get()['Body'].read().decode('utf-8')
+    return jsonFile
+
+
+def add_time(lyrics_obj,time_arr):
+    for i,line_time in enumerate(time_arr):
+        for j,word_time in enumerate(line_time):
+            lyrics_obj['lines'][i]['splited-version'][j]['starttime'] = word_time
+            try:
+                lyrics_obj['lines'][i]['splited-version'][j]['endtime'] = line_time[j + 1]
+            except Exception as e:
+                try:
+                    lyrics_obj['lines'][i]['splited-version'][j]['endtime'] = time_arr[i+1][0]
+                except Exception as e:
+                    lyrics_obj['lines'][i]['splited-version'][j]['endtime'] = word_time + 1
+        lyrics_obj['lines'][i]['starttime'] = line_time[0]
+        lyrics_obj['lines'][i]['endtime'] = lyrics_obj['lines'][i]['splited-version'][j]['endtime']
+    return lyrics_obj
+
+
+
 
 def output_json(lyrics):
     output = []
@@ -127,10 +153,6 @@ def upload_lyrics(title, artist, lyrics, id_for_user):
         return True
     except Exception as e:
         return False
-
-def get_lyrics(songs_id):
-    pass
-
 
 def translate_the_lyrics(changes,user_id,artist,title):
     BUCKET_NAME = "lyrics-from-user"
@@ -163,12 +185,8 @@ def start_project(user_id,user_name,email_address, title, artist, lyrics):
 
 @app.route('/load-project/{user_id}/{title}/{artist}',cors=True)
 def get_project(user_id,title,artist):
-    BUCKET_NAME = "lyrics-from-user"
-    FILE_NAME = "{}-{}-{}.json".format(artist,title,user_id)
-    s3 = boto3.resource('s3')
-    obj = s3.Object(BUCKET_NAME, FILE_NAME)
-    jsonFile = obj.get()['Body'].read().decode('utf-8')  
-    return jsonFile
+    lyrics = get_lyrics(artist=artist,title=title,user_id=user_id) 
+    return lyrics
 
 @app.route('/get_all_projects_list/{user_id}',cors=True)
 def get_all_projects_list(user_id):
@@ -196,9 +214,21 @@ def translate(word):
     # return [{"translation" : "Test"}]
 
 
+@app.route("/add_timed_lyrics/{user_id}/{title}/{artist}/{time_data}",cors=True)
+def add_timed_lyrics(user_id,title,artist,time_data):
+    #lyrics = get_lyrics(artist=artist,title=title,user_id=user_id)
+    time_data = urllib.parse.unquote(time_data)
+    time_data = json.loads(time_data)['time_data']
+    print(time_data)
+    lyrics = get_lyrics(artist,title,user_id)
+    lyrics = add_time(lyrics_obj=lyrics,time_arr=time_data)
+    upload_lyrics(title,artist,lyrics,user_id)
+    return {"successful" : True}
+
+
 
 @app.route('/test', cors=True)
 def test():
-    with open('test.json', 'rb') as f:
+    with open('output.json', 'rb') as f:
         lyric = f.read()
         return lyric
