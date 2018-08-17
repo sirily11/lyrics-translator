@@ -60,7 +60,7 @@ $('form').on('submit', function (event) {
 
 $('#close').click(function () {
     dialog.close()
-})
+});
 
 function showMusicList(userID) {
     $.getJSON(`https://api.mytranshelper.com/api/get_all_projects_list/${userID}`).done(function (data) {

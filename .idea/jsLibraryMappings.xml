@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="PROJECT" libraries="{bootstrap, firebase-app, firebase-auth, jquery-1.12.4, material, material-components-web, popper}" />
+    <file url="PROJECT" libraries="{bootstrap, firebase-app, firebase-auth, jquery-1.12.4, material, material-components-web, musickit, popper}" />
   </component>
 </project>

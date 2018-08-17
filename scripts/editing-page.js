@@ -6,17 +6,21 @@ const title = decodeURI(replaceAll(getUrlVars()['song_name'], "+", " "));
 const artist = decodeURI(replaceAll(getUrlVars()['artist'], "+", " "));
 
 var totalChanged = 0;//Only save the changes when this number greater than 6
-var url = `https://sa0biepvrj.execute-api.us-east-1.amazonaws.com/api/load-project/${userID}/${title}/${artist}`;
+var url = `https://api.mytranshelper.com/api/load-project/${userID}/${title}/${artist}`;
 var changesList = [];
 var languageCode = navigator.language.substr(0, 2);
 var lines = "";
-mdc.select.MDCSelect.attachTo(document.querySelector('.mdc-select'));
 
+mdc.select.MDCSelect.attachTo(document.querySelector('.mdc-select'));
 
 $('#project-title').html(content[languageCode]['translationProject'] + " " + title);
 $("#loading-progressbar").hide();
 $("#saving-status").html("--Saved");
 $('#artist-name').html(artist);
+
+$(document).on("click",'#createTimedLyrics',function () {
+    player.switchToAddedTimeMode()
+});
 $(document).on("mousedown touchstart", '#progressbar-for-player',function () {
     player.stop();
 });
@@ -28,9 +32,11 @@ $(document).on('change','#progressbar-for-player',function () {
     player.play();
     console.log($(this).val())
 });
+//Added the time to lyrics
 $(document).on('click', '#editBtn', function () {
     editor.addTimeToLine();
 });
+//select music from local computer
 $(document).on('change','#file',function (e) {
     musicName = $(this).val();
     var music = URL.createObjectURL(this.files[0]);
@@ -43,6 +49,7 @@ $(document).on('change','#file',function (e) {
         alert("Not supports");
     }
 });
+//play music
 $(document).on('click','#play-btn',function () {
     if (player.currentStatus === "playing") {
         player.stop();
@@ -50,6 +57,7 @@ $(document).on('click','#play-btn',function () {
         player.play();
     }
 });
+//selector
 $("select").on('change',function () {
     let str = "";
     $('#lyricsDisplay').empty();
@@ -59,11 +67,14 @@ $("select").on('change',function () {
     if(str === "words"){
         if (deviceWidth > 600) {
             createHTMLCardXL(lines);
+            lyricsDisplay.updateMode("xl");
         } else {
-            createHTMLCardSm(lines)
+            createHTMLCardSm(lines);
+            lyricsDisplay.updateMode("sm");
         }
     }else{
-        createHTMLWithNomalText(lines);
+        createHTMLWithNormalText(lines);
+        lyricsDisplay.updateMode("normal");
     }
 });
 //Auto saved function
@@ -79,7 +90,15 @@ $(document).on('change','input',function () {
     }
 });
 
-
+function showToast(message){
+    var snackbarContainer = document.querySelector('#snackbar');
+    var data = {
+        message: message,
+        timeout: 2000,
+        actionText: 'Undo'
+    };
+    snackbarContainer.MaterialSnackbar.showSnackbar(data);
+}
 function getUrlVars() {
     var vars = {};
     var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
@@ -87,7 +106,6 @@ function getUrlVars() {
     });
     return vars;
 }
-
 function replaceAll(originString, replaceFrom, replaceTo) {
     var returnStr = ""
     for (c in originString) {
@@ -101,15 +119,15 @@ function replaceAll(originString, replaceFrom, replaceTo) {
 }
 //Fill the text for origin text box
 //Click on the origin text and highlight the translation
-function highlightTranslate(i, j) {
+function highlightTranslate(i, j,speed) {
     $(`#translate-${i}-${j}`).animate({
         backgroundColor: "#ffeb3b",
         color: "black"
-    }, 500)
+    }, speed);
     $(`#origin-${i}-${j}`).animate({
         backgroundColor: "#ffeb3b",
         color: "black"
-    }, 500)
+    }, speed);
 }
 
 function deselect(i, j) {
@@ -125,15 +143,15 @@ function deselect(i, j) {
     }, 500)
 }
 
-function highlightOrigin(i, j) {
+function highlightOrigin(i, j,speed) {
     $(`#origin-${i}-${j}`).animate({
         backgroundColor: "#ffeb3b",
         color: "black",
-    }, 500)
+    }, speed);
     $(`#translate-${i}-${j}`).animate({
         backgroundColor: "#ffeb3b",
         color: "black",
-    }, 500)
+    }, speed);
 }
 
 function isSelect(target, current) {
@@ -187,16 +205,16 @@ function createHTMLCardXL(lines) {
 									  </div>
 									</div>
 								</div>
-								`)
+								`);
     var lineHtml = "";
     var translateHtml = "";
     for (i in lines) {
         var line = lines[i];
         for (j in line['splited-version']) {
-            var word = line['splited-version'][j]
-            var wordsLength = word['origin'].length
-            var boxLength = (wordsLength + 6) * fontSize
-            var translate = ""
+            var word = line['splited-version'][j];
+            var wordsLength = word['origin'].length;
+            var boxLength = (wordsLength + 6) * fontSize;
+            var translate = "";
             if (word['origin'] == "") {
                 continue
             }
@@ -241,9 +259,9 @@ function createHTMLCardXL(lines) {
 
         }
         $('#origin-text').append(`
-                        <div class="row" style="margin-top:20px">
+                        <div class="row" style="margin-top:20px" id="row-${i}">
                                 ${lineHtml}
-                                <div class="custom-control custom-checkbox">
+                                <div hidden class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="customCheck${i}">
                                         <label class="custom-control-label" for="customCheck${i}">押韵</label>
                                 </div>
@@ -251,7 +269,7 @@ function createHTMLCardXL(lines) {
                         </div>
                         `)
         $('#translate-text').append(`
-                        <div class="row" style="margin-top:20px">
+                        <div class="row" style="margin-top:20px" id="rowxl-${i}">
                                 ${translateHtml}
                             </div>
                         `)
@@ -305,7 +323,7 @@ function createHTMLCardSm(lines) {
     }
 }
 
-function createHTMLWithNomalText(lines) {
+function createHTMLWithNormalText(lines) {
     var lineHtml = "";
     var translateHtml = "";
     for (let i in lines) {
@@ -330,8 +348,8 @@ function createHTMLWithNomalText(lines) {
         }
 
         lineHtml = `
-         <div">
-            <div class="mdc-text-field  text-field mdc-text-field--outlined mdc-text-field--upgraded" data-mdc-auto-init="MDCTextField" style="width: 100%;">
+         <div>
+            <div id="rown-${i}" class="mdc-text-field  text-field mdc-text-field--outlined mdc-text-field--upgraded" data-mdc-auto-init="MDCTextField" style="width: 100%;">
             <input type="text" id="text-field--outlined" class="mdc-text-field__input" value="${translationText}"
             style="font-size: 10px;margin-bottom: 10px">
             <label class="mdc-floating-label" for="text-field--outlined">${originText}</label>
@@ -349,7 +367,7 @@ function createHTMLWithNomalText(lines) {
         originText = "";
         translationText = "";
     }
-
+    window.mdc.autoInit();
 }
 
 

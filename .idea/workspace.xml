@@ -2,17 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c75b2d16-43d7-4699-bed7-d1ab95185c13" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/scripts/edit-page-music-player.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/applemusic.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/lyrics-translator.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/lyrics-translator.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/editing-page.html" beforeDir="false" afterPath="$PROJECT_DIR$/editing-page.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/music-player.html" beforeDir="false" afterPath="$PROJECT_DIR$/music-player.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/edit-page-music-player.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/edit-page-music-player.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/editing-page.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/editing-page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/jqueryPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/jqueryPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/musicPlayer.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/musicPlayer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/translation.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/translation.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stylesheet/music-player.css" beforeDir="false" afterPath="$PROJECT_DIR$/stylesheet/music-player.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testLyrics.js" beforeDir="false" afterPath="$PROJECT_DIR$/testLyrics.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/translator-python-server/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/translator-python-server/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/translator-python-server/test2.json" beforeDir="false" afterPath="$PROJECT_DIR$/translator-python-server/test2.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -31,49 +38,52 @@
     <session id="-1512782776">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="4" />
           <entry key="project.open.time.12" value="1" />
-          <entry key="project.open.time.13" value="1" />
+          <entry key="project.open.time.13" value="2" />
           <entry key="project.open.time.41" value="2" />
           <entry key="project.open.time.5" value="1" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="7" />
-          <entry key="html" value="11" />
-          <entry key="js" value="40" />
+          <entry key="html" value="16" />
+          <entry key="js" value="48" />
           <entry key="json" value="2" />
+          <entry key="p8" value="1" />
           <entry key="py" value="1" />
+          <entry key="rnc" value="1" />
           <entry key="scss" value="1" />
-          <entry key="ts" value="1" />
+          <entry key="ts" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="7" />
-          <entry key="HTML" value="11" />
+          <entry key="HTML" value="16" />
           <entry key="JSON" value="2" />
-          <entry key="JavaScript" value="40" />
-          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="JavaScript" value="48" />
+          <entry key="PLAIN_TEXT" value="2" />
+          <entry key="RNG Compact" value="1" />
           <entry key="SCSS" value="1" />
-          <entry key="TypeScript" value="1" />
+          <entry key="TypeScript" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="css" value="235" />
-          <entry key="html" value="2854" />
-          <entry key="js" value="11973" />
+          <entry key="css" value="362" />
+          <entry key="html" value="4893" />
+          <entry key="js" value="16257" />
           <entry key="scss" value="14" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CSS" value="235" />
-          <entry key="HTML" value="2873" />
-          <entry key="JavaScript" value="11954" />
+          <entry key="CSS" value="362" />
+          <entry key="HTML" value="4968" />
+          <entry key="JavaScript" value="16182" />
           <entry key="SCSS" value="14" />
         </counts>
       </usages-collector>
@@ -82,63 +92,21 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/music-player.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="26" column="37" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/musicPlayer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
-              <caret line="218" column="25" selection-start-line="218" selection-start-column="25" selection-end-line="218" selection-end-column="25" />
+            <state relative-caret-position="920">
+              <caret line="113" column="5" lean-forward="true" selection-start-line="113" selection-start-column="5" selection-end-line="113" selection-end-column="5" />
               <folding>
-                <element signature="n#style#0;n#button#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#!!block;n#createPlayer#0;n#MusicPlayer#0" />
+                <element signature="n#!!block;n#createFloatBtn#0;n#MusicPlayer#0" />
                 <element signature="n#!!block;n#startPlaying#0;n#MusicPlayer#0" />
                 <element signature="n#!!block;n#switchToAddedTimeMode#0;n#MusicPlayer#0" />
-                <element signature="n#!!block;n#getCurrentPlayInfo#0;n#MusicPlayer#0" />
                 <element signature="n#!!block;n#play#0;n#MusicPlayer#0" />
                 <element signature="n#!!block;n#stop#0;n#MusicPlayer#0" />
                 <element signature="n#!!block;n#setTime#0;n#MusicPlayer#0" />
-                <element signature="n#!!block;n#updateProgressbar#0;n#MusicPlayer#0" />
                 <element signature="n#!!block;n#createLyricsDisplay#0;n#ScrollLyrics#0" />
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#!!block;n#dehighlight#0;n#ScrollLyrics#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/scripts/jqueryPlugin.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="539">
-              <caret line="121" column="103" selection-start-line="121" selection-start-column="103" selection-end-line="121" selection-end-column="103" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/editing-page.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="710">
-              <caret line="133" column="13" selection-start-line="133" selection-start-column="13" selection-end-line="133" selection-end-column="13" />
-              <folding>
-                <element signature="n#head#0;n#html#0;n#!!top" />
-                <element signature="n#style#0;n#html#0;n#!!top" />
-                <element signature="n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#a#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#script#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+                <element signature="n#!!block;n#setTime#0;n#ScrollLyrics#0" />
               </folding>
             </state>
           </provider>
@@ -147,23 +115,43 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/editing-page.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="31" column="16" lean-forward="true" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
+            <state relative-caret-position="401">
+              <caret line="51" column="12" lean-forward="true" selection-start-line="51" selection-start-column="12" selection-end-line="51" selection-end-column="12" />
               <folding>
-                <element signature="e#884#906#0" />
-                <element signature="n#!!block;n#function#0" />
-                <element signature="e#1273#1611#0" />
-                <element signature="e#1653#1767#0" />
-                <element signature="e#1804#2187#0" />
-                <element signature="n#!!block;n#function#0" />
+                <element signature="e#846#884#0" />
+                <element signature="e#964#986#0" />
+                <element signature="e#1051#1275#0" />
+                <element signature="e#1326#1357#0" />
+                <element signature="e#1440#1778#0" />
+                <element signature="e#1841#1955#0" />
+                <element signature="e#2005#2497#0" />
+                <element signature="e#2566#2885#0" />
+                <element signature="n#!!block;n#showToast#0" />
                 <element signature="n#!!block;n#getUrlVars#0" />
                 <element signature="n#!!block;n#replaceAll#0" />
-                <element signature="n#!!block;n#highlightTranslate#0" />
                 <element signature="n#!!block;n#deselect#0" />
-                <element signature="n#!!block;n#highlightOrigin#0" />
                 <element signature="n#!!block;n#isSelect#0" />
-                <element signature="n#!!block;n#createHTMLCardXL#0" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/editing-page.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="894">
+              <caret line="156" column="11" selection-start-line="156" selection-start-column="11" selection-end-line="156" selection-end-column="11" />
+              <folding>
+                <element signature="n#style#0;n#html#0;n#!!top" />
+                <element signature="n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+                <element signature="n#a#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+                <element signature="n#style#0;n#span#0;n#div#0;n#header#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#header#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#div#4;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
               </folding>
             </state>
           </provider>
@@ -172,8 +160,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/stylesheet/music-player.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="15" column="15" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="15" />
+            <state relative-caret-position="319">
+              <caret line="14" column="1" lean-forward="true" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -181,8 +169,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/edit-page-music-player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+            <state relative-caret-position="299">
+              <caret line="22" column="46" lean-forward="true" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/scripts/applemusic.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="328">
+              <caret line="63" column="77" selection-start-line="63" selection-start-column="77" selection-end-line="63" selection-end-column="77" />
             </state>
           </provider>
         </entry>
@@ -208,6 +205,9 @@
       <find>version</find>
       <find>j</find>
       <find>duration</find>
+      <find>createNormal</find>
+      <find>changing</find>
+      <find>dialog</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -230,17 +230,20 @@
         <option value="$PROJECT_DIR$/logs.html" />
         <option value="$PROJECT_DIR$/translator-python-server/music-player.html" />
         <option value="$PROJECT_DIR$/stylesheet/popup.js" />
-        <option value="$PROJECT_DIR$/scripts/index.js" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/scripts/translation.js" />
         <option value="$PROJECT_DIR$/testLyrics.js" />
+        <option value="$PROJECT_DIR$/scripts/jqueryPlugin.js" />
+        <option value="$PROJECT_DIR$/scripts/translation.js" />
+        <option value="$PROJECT_DIR$/appleMusic.js" />
+        <option value="$PROJECT_DIR$/scripts/Applemusic.js" />
         <option value="$PROJECT_DIR$/music-player.html" />
-        <option value="$PROJECT_DIR$/editing-page.html" />
-        <option value="$PROJECT_DIR$/scripts/edit-page-music-player.js" />
+        <option value="$PROJECT_DIR$/scripts/index.js" />
         <option value="$PROJECT_DIR$/stylesheet/music-player.css" />
         <option value="$PROJECT_DIR$/scripts/editing-page.js" />
         <option value="$PROJECT_DIR$/scripts/musicPlayer.js" />
-        <option value="$PROJECT_DIR$/scripts/jqueryPlugin.js" />
+        <option value="$PROJECT_DIR$/editing-page.html" />
+        <option value="$PROJECT_DIR$/scripts/edit-page-music-player.js" />
+        <option value="$PROJECT_DIR$/scripts/applemusic.js" />
       </list>
     </option>
   </component>
@@ -263,11 +266,11 @@
       <path value="$PROJECT_DIR$/scripts/bower_components/jquery-ui/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-18" />
-    <option name="y" value="-18" />
-    <option name="width" value="3870" />
-    <option name="height" value="2097" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="533" />
+    <option name="y" value="-14" />
+    <option name="width" value="1935" />
+    <option name="height" value="1053" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -296,7 +299,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/liqiw/OneDrive/桌面/lyrics-translator/scripts/editing-page.js" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/liqiw/OneDrive/桌面/lyrics-translator/scripts/musicPlayer.js" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
@@ -323,12 +326,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Node.js.appleMusic.js">
     <configuration name="app_editing.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="app_editing.js" working-dir="$PROJECT_DIR$/scripts">
       <method v="2" />
     </configuration>
+    <configuration name="appleMusic.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="appleMusic.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Node.js.app_editing.js" />
+      <item itemvalue="Node.js.appleMusic.js" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Node.js.appleMusic.js" />
         <item itemvalue="Node.js.app_editing.js" />
       </list>
     </recent_temporary>
@@ -347,12 +358,13 @@
       <workItem from="1533950808553" duration="26501000" />
       <workItem from="1534123777329" duration="57870000" />
       <workItem from="1534304910010" duration="2690000" />
-      <workItem from="1534365817750" duration="4245000" />
+      <workItem from="1534365817750" duration="28401000" />
+      <workItem from="1534534512602" duration="14535000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="91585000" />
+    <option name="totallyTimeSpent" value="130276000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1719" height="932" extended-state="6" />
@@ -364,7 +376,7 @@
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.0" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32125" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -506,24 +518,10 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/popup.js" />
-    <entry file="file://$PROJECT_DIR$/scripts/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="76" lean-forward="true" selection-start-line="76" selection-end-line="76" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/stylesheet/app.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
           <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/translation.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="8" column="47" lean-forward="true" selection-start-line="8" selection-start-column="47" selection-end-line="9" selection-end-column="39" />
         </state>
       </provider>
     </entry>
@@ -548,20 +546,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="190" column="14" lean-forward="true" selection-start-line="190" selection-start-column="14" selection-end-line="190" selection-end-column="14" />
-          <folding>
-            <element signature="n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#0;n#div#0;n#div#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/testLyrics.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
@@ -576,95 +560,172 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/music-player.html">
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/webstorm.jar!/resources/html5-schema/html5/common.rnc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="26" column="37" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="37" />
+        <state relative-caret-position="252">
+          <caret line="195" column="18" selection-start-line="195" selection-start-column="18" selection-end-line="195" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/editing-page.html">
+    <entry file="file://$PROJECT_DIR$/scripts/jqueryPlugin.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="710">
-          <caret line="133" column="13" selection-start-line="133" selection-start-column="13" selection-end-line="133" selection-end-column="13" />
+        <state relative-caret-position="1656">
+          <caret line="111" lean-forward="true" selection-start-line="111" selection-end-line="111" />
           <folding>
-            <element signature="n#head#0;n#html#0;n#!!top" />
-            <element signature="n#style#0;n#html#0;n#!!top" />
-            <element signature="n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#a#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#script#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/editing-page.js">
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es6.d.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="31" column="16" lean-forward="true" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
+        <state relative-caret-position="244">
+          <caret line="15536" column="4" selection-start-line="15536" selection-start-column="4" selection-end-line="15536" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/javascript/extLibs/http_code.getmdl.io_1.3.0_material.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="2165" column="3" lean-forward="true" selection-start-line="2165" selection-start-column="3" selection-end-line="2165" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AuthKey.p8">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="5" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="60" selection-start-line="60" selection-end-line="62" selection-end-column="3" />
           <folding>
-            <element signature="e#884#906#0" />
-            <element signature="n#!!block;n#function#0" />
-            <element signature="e#1273#1611#0" />
-            <element signature="e#1653#1767#0" />
-            <element signature="e#1804#2187#0" />
-            <element signature="n#!!block;n#function#0" />
-            <element signature="n#!!block;n#getUrlVars#0" />
-            <element signature="n#!!block;n#replaceAll#0" />
-            <element signature="n#!!block;n#highlightTranslate#0" />
-            <element signature="n#!!block;n#deselect#0" />
-            <element signature="n#!!block;n#highlightOrigin#0" />
-            <element signature="n#!!block;n#isSelect#0" />
-            <element signature="n#!!block;n#createHTMLCardXL#0" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#852#879#0" />
+            <element signature="e#959#1651#0" />
+            <element signature="e#1694#2059#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/translation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="45" column="93" selection-start-line="45" selection-start-column="93" selection-end-line="45" selection-end-column="93" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appleMusic.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/music-player.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="572">
+          <caret line="47" column="32" lean-forward="true" selection-start-line="47" selection-start-column="32" selection-end-line="47" selection-end-column="32" />
+          <folding>
+            <element signature="n#style#0;n#dialog#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="192" column="9" lean-forward="true" selection-start-line="192" selection-start-column="9" selection-end-line="192" selection-end-column="9" />
+          <folding>
+            <element signature="n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#0;n#div#0;n#div#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/stylesheet/music-player.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="15" column="15" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="15" />
+        <state relative-caret-position="319">
+          <caret line="14" column="1" lean-forward="true" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/edit-page-music-player.js">
+    <entry file="file://$PROJECT_DIR$/scripts/editing-page.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        <state relative-caret-position="401">
+          <caret line="51" column="12" lean-forward="true" selection-start-line="51" selection-start-column="12" selection-end-line="51" selection-end-column="12" />
+          <folding>
+            <element signature="e#846#884#0" />
+            <element signature="e#964#986#0" />
+            <element signature="e#1051#1275#0" />
+            <element signature="e#1326#1357#0" />
+            <element signature="e#1440#1778#0" />
+            <element signature="e#1841#1955#0" />
+            <element signature="e#2005#2497#0" />
+            <element signature="e#2566#2885#0" />
+            <element signature="n#!!block;n#showToast#0" />
+            <element signature="n#!!block;n#getUrlVars#0" />
+            <element signature="n#!!block;n#replaceAll#0" />
+            <element signature="n#!!block;n#deselect#0" />
+            <element signature="n#!!block;n#isSelect#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/musicPlayer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="218" column="25" selection-start-line="218" selection-start-column="25" selection-end-line="218" selection-end-column="25" />
+        <state relative-caret-position="920">
+          <caret line="113" column="5" lean-forward="true" selection-start-line="113" selection-start-column="5" selection-end-line="113" selection-end-column="5" />
           <folding>
-            <element signature="n#style#0;n#button#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#!!block;n#createPlayer#0;n#MusicPlayer#0" />
+            <element signature="n#!!block;n#createFloatBtn#0;n#MusicPlayer#0" />
             <element signature="n#!!block;n#startPlaying#0;n#MusicPlayer#0" />
             <element signature="n#!!block;n#switchToAddedTimeMode#0;n#MusicPlayer#0" />
-            <element signature="n#!!block;n#getCurrentPlayInfo#0;n#MusicPlayer#0" />
             <element signature="n#!!block;n#play#0;n#MusicPlayer#0" />
             <element signature="n#!!block;n#stop#0;n#MusicPlayer#0" />
             <element signature="n#!!block;n#setTime#0;n#MusicPlayer#0" />
-            <element signature="n#!!block;n#updateProgressbar#0;n#MusicPlayer#0" />
             <element signature="n#!!block;n#createLyricsDisplay#0;n#ScrollLyrics#0" />
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#!!block;n#dehighlight#0;n#ScrollLyrics#0" />
+            <element signature="n#!!block;n#setTime#0;n#ScrollLyrics#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/jqueryPlugin.js">
+    <entry file="file://$PROJECT_DIR$/editing-page.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="539">
-          <caret line="121" column="103" selection-start-line="121" selection-start-column="103" selection-end-line="121" selection-end-column="103" />
+        <state relative-caret-position="894">
+          <caret line="156" column="11" selection-start-line="156" selection-start-column="11" selection-end-line="156" selection-end-column="11" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#style#0;n#html#0;n#!!top" />
+            <element signature="n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#a#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#header#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#header#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#4;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/edit-page-music-player.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="22" column="46" lean-forward="true" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/applemusic.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="63" column="77" selection-start-line="63" selection-start-column="77" selection-end-line="63" selection-end-column="77" />
         </state>
       </provider>
     </entry>

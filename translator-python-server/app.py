@@ -219,8 +219,7 @@ def add_timed_lyrics(user_id,title,artist,time_data):
     #lyrics = get_lyrics(artist=artist,title=title,user_id=user_id)
     time_data = urllib.parse.unquote(time_data)
     time_data = json.loads(time_data)['time_data']
-    print(time_data)
-    lyrics = get_lyrics(artist,title,user_id)
+    lyrics = json.loads(get_lyrics(artist,title,user_id))
     lyrics = add_time(lyrics_obj=lyrics,time_arr=time_data)
     upload_lyrics(title,artist,lyrics,user_id)
     return {"successful" : True}

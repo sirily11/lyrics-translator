@@ -8,29 +8,23 @@
           href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
     <link rel="stylesheet" href="stylesheet/music-player.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="stylesheet/bootstrap.min.css">
+    <script src="scripts/jquery.js"></script>
+    <script src="scripts/bootstrap.min.js"></script>
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-    <script
-            src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
-    <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
-            integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
-            crossorigin="anonymous"></script>
-    <script
-            src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
-            integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
-            crossorigin="anonymous"></script>
     <link rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
-          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
-          crossorigin="anonymous">
-    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-auth.js"></script>
+          href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet"
+          href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
     <script src="scripts/jquery-1.12.4.js"></script>
     <script src="scripts/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="stylesheet/jquery-ui.min.css">
     <link rel="stylesheet" href="stylesheet/bundle.css">
     <script src="scripts/material-components-web.js"></script>
-
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="stylesheet" href="stylesheet/music-player.css">
+    <script src="scripts/applemusic.js"></script>
     <title class="lang" id="editing-page-title"></title>
 </head>
 <style>
@@ -92,6 +86,8 @@
 
             <span class="mdl-layout-title lang" id="saving-status"
                   style="color:black;margin-left:20px"></span>
+            <div id="tooltip" class="icon material-icons" style="color: black">info</div>
+            <div class="mdl-tooltip mdl-tooltip--large lang" id="currentInfo" for="tooltip"></div>
             <div>
                 <div class="mdl-spinner mdl-js-spinner is-active"
                      id="loading-progressbar"></div>
@@ -99,7 +95,6 @@
         </div>
     </header>
     <div id="loading-bar" style="width:100%" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
-
     <div class="container-fluid" style="margin-top:1rem">
         <div class="mdc-select" id="selector" style="margin-bottom: 10px">
             <select class="mdc-select__native-control">
@@ -112,34 +107,66 @@
             <label class="mdc-floating-label lang" id="type-selector"></label>
             <div class="mdc-line-ripple"></div>
         </div>
-
-        <div id="lyricsDisplay" style="margin-bottom: 300px;margin-top: 0px"></div>
+        <div id="lyricsDisplay" style="margin-bottom: 300px;margin-top: 0px;"></div>
         <div id="floatBtn" class="fixed-bottom"></div>
         <div id="music-player"></div>
+        <div id="snackbar" class="mdl-js-snackbar mdl-snackbar">
+            <div class="mdl-snackbar__text"></div>
+            <button class="mdl-snackbar__action" type="button"></button>
+        </div>
+        <dialog class="mdl-dialog fixed-top applemusicDialog">
+            <h4 class="mdl-dialog__title">Apple Music</h4>
+            <div class="mdl-dialog__content" >
+                <div class="row">
+                    <div class="mdl-textfield mdl-js-textfield">
+                        <input class="mdl-textfield__input" type="text" id="songName">
+                        <label class="mdl-textfield__label" for="songName">Text...</label>
+                    </div>
+                    <button id="searchBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                        Search
+                    </button>
+                </div>
+                <div class="applemusic" id="applemusic"></div>
+            </div>
+            <div class="mdl-dialog__actions">
+                <button type="button" class="mdl-button close">Cancel</button>
+            </div>
+        </dialog>
+        <script>
+            var dialog = document.querySelector('dialog');
+            const applemusic = new Applemusic();
+            applemusic.createHTML();
+            $(document).on('click','#usingApplemusic',function () {
+                dialog.show();
+            });
 
+        </script>
     </div>
+
     <script>
         $(function () {
             $(document).tooltip({
                 content: function (callback) {
-                    var originText = $(this).attr('value')
+                    var originText = $(this).attr('value');
                     $.getJSON(`https://sa0biepvrj.execute-api.us-east-1.amazonaws.com/api/translate/${originText}`).done(function (data) {
-                        var output = "翻译：" + data[0]["translation"]
+                        var output = "翻译：" + data[0]["translation"];
                         callback(output)
                     })
                 },
             })
         });
-
     </script>
-
 </div>
+
 </body>
+<script src="https://js-cdn.music.apple.com/musickit/v1/musickit.js"></script>
+
 <!--<script src="scripts/bundle.js" async></script>-->
 <script src="scripts/translation.js"></script>
 <script src="scripts/jqueryPlugin.js"></script>
 <script src="scripts/editing-page.js"></script>
 <script src="scripts/musicPlayer.js"></script>
 <script src="scripts/edit-page-music-player.js"></script>
+
 <script src="scripts/translation.js"></script>
 </html>

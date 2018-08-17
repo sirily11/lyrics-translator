@@ -16,17 +16,49 @@
     <link rel="stylesheet" href="stylesheet/music-player.css">
     <title>Music Player</title>
 </head>
-<style>
-</style>
 <body>
+<script src="https://js-cdn.music.apple.com/musickit/v1/musickit.js"></script>
+<script src="scripts/applemusic.js"></script>
+<button id="show-dialog" type="button" class="mdl-button">Show Dialog</button>
+<dialog class="mdl-dialog" style="width: 90%;position: absolute;top:10%">
+    <h4 class="mdl-dialog__title">Apple Music</h4>
+    <div class="mdl-dialog__content" >
+        <div class="row">
+            <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" id="songName">
+                <label class="mdl-textfield__label" for="songName">Text...</label>
+            </div>
+            <button id="searchBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                Search
+            </button>
+        </div>
+        <div class="applemusic" id="applemusic"></div>
 
+    </div>
+    <div class="mdl-dialog__actions">
+        <button type="button" class="mdl-button close">Cancel</button>
+    </div>
+</dialog>
+<script>
+    var dialog = document.querySelector('dialog');
+    var showDialogButton = document.querySelector('#show-dialog');
+    showDialogButton.addEventListener('click', function() {
+        dialog.showModal();
+    });
+    dialog.querySelector('.close').addEventListener('click', function() {
+        dialog.close();
+    });
+</script>
+<script>
+    const applemusic = new Applemusic(dialog);
+    applemusic.createHTML();
+    $("#searchBtn").click(function () {
+        var songName = $('#songName').val();
+        applemusic.search("shake it off");
+        console.log("here")
+    });
 
-<div id="lyricsDisplay" style="margin-bottom: 300px;margin-top: 0px"></div>
-<div id="floatBtn" ></div>
-<div id="music-player"></div>
-<script src="testLyrics.js"></script>
-<script src="scripts/jqueryPlugin.js"></script>
-<script src="scripts/musicPlayer.js"></script>
-<script src="scripts/translation.js"></script>
+</script>
 </body>
+
 </html>

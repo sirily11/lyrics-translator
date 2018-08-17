@@ -7,6 +7,8 @@ name = "pypi"
 chalice = "*"
 "boto3" = "*"
 pyinstaller = "*"
+pyjwt = "*"
+cryptography = "*"
 
 [dev-packages]
 "autopep8" = "*"

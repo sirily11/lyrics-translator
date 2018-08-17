@@ -41,7 +41,9 @@ var content = {
         "home" : "Home",
         "logs" :"Develop logs",
         "createTimedLyrics" : "Create timed lyrics",
-        "usingApplemusic" : "Play music from Apple Music"
+        "usingApplemusic" : "Play music from Apple Music",
+        "uploadthetimedlyrics" : "Timed lyrics data has been uploaded",
+        "currentInfo" : "Problem: Won't be able to highlight the word which has short period."
 	},
 
 	"zh": {
@@ -84,7 +86,9 @@ var content = {
 		"home" : "主界面",
 		"logs" :"开发日志",
 		"createTimedLyrics" : "创建同步歌词",
-		"usingApplemusic" : "播放苹果音乐歌曲"
+		"usingApplemusic" : "播放苹果音乐歌曲",
+		"uploadthetimedlyrics" : "同步歌词数据已经上传，请刷新页面",
+        "currentInfo" : "问题：在歌词显示的时候会出现间隔过短导致无法高亮单词的问题。"
 	}
 };
 $(".lang").each(function (index) {

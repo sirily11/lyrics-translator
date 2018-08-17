@@ -16,3 +16,15 @@
 .highlight-card {
     border: 4px solid #fbc02d;
 }
+.highlight-normalText{
+    background-color: #fbc02d;
+}
+
+.applemusic {
+    margin-top: 10px;
+}
+
+.applemusicDialog{
+    margin-top: 30px;
+    width: 90%;
+}

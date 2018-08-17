@@ -1,23 +1,41 @@
 const player = new MusicPlayer();
 const lyricsDisplay = new ScrollLyrics("");
 const editor = new TimedLyrics(player, lyricsDisplay);
+
+$("#searchBtn").click(function () {
+    var songName = $('#songName').val();
+    applemusic.search("shake it off");
+    console.log("here")
+});
+
 $.getJSON(url).done(function (data) {
     $('#loading-bar').fadeOut(1000);
     lyrics = data;
     lines = data['lines'];
     if (deviceWidth > 600) {
         createHTMLCardXL(lines);
+        lyricsDisplay.updateMode("xl")
     } else {
-        createHTMLCardSm(lines)
-        //createHTMLWithNomalText(lines);
+        createHTMLCardSm(lines);
+        lyricsDisplay.updateMode('sm');
     }
     lyricsDisplay.addLyrics(data);
-
     editor.updatelyricsDisplay(lyricsDisplay);
 });
 
 player.getPlayer().ontimeupdate = function () {
     player.updateProgressbar();
-    //lyricsDisplay.animate(player.getCurrentPlayInfo().currentTime);
+    if(lyricsDisplay.hasTimingInfo() && player.isPlaying()){
+        try{
+            lyricsDisplay.animate(player.getCurrentPlayInfo().currentTime);
+        }catch (e) {
+        }
+    }
 };
-
+$(document).on('click','img',function (e) {
+    var id = $(this).attr('id');
+    applemusic.bindPlayer(player);
+    applemusic.play(id);
+    dialog.close();
+    player.appleMusic = true;
+});

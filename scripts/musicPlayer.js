@@ -8,11 +8,13 @@ class MusicPlayer {
         this.currentStatus = "stop";
         this.createPlayer();
         this.createFloatBtn();
+        this.appleMusic = false;
         this.player = document.getElementById('player');
+        this.mode = "playing";
     }
     createPlayer() {
         console.log("Creating the player");
-        $('#music-player').html(`
+        $('#music-player').append(`
         <nav class="fixed-bottom navbar-light bg-light">
             <div class="container" width="100%" style="margin-bottom: 10px">
                 <div class="row">
@@ -21,15 +23,14 @@ class MusicPlayer {
                         <i class="material-icons">arrow_upward</i>
                     </label>
                 </div>
-                <div class="row" style="margin-left: 5%">
-                    <h6 id="song-info"></h6>
-                </div>
+                <!--<div class="row" style="margin-left: 5%">-->
+                    <!--<h6 id="song-info"></h6>-->
+                <!--</div>-->
                 <div id="someclass">
                 <input class="mdl-slider mdl-js-slider" type="range"
                        min="0" max="100" value="0" tabindex="0" step="0.01" id="progressbar-for-player">
                  </div>
-                <audio hidden controls loop id="player">
-                </audio>
+                <audio hidden controls loop id="player" preload="metadata"></audio>
                 <div class="row justify-content-md-center">
                 
                         <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect " id="prev-btn">
@@ -59,7 +60,7 @@ class MusicPlayer {
                     </button>
                     <ul class="mdl-menu mdl-menu--top-right mdl-js-menu mdl-js-ripple-effect"
                         data-mdl-for="menuBtn">
-                        <a onclick="MusicPlayer.switchToAddedTimeMode()" class="mdl-menu__item lang" id="createTimedLyrics"></a>
+                        <a class="mdl-menu__item lang" id="createTimedLyrics"></a>
                         <a class="mdl-menu__item lang" id="usingApplemusic"></a>
                     </ul>
                 </div>`
@@ -73,7 +74,12 @@ class MusicPlayer {
         $('#song-info').html();
     }
 
-    static switchToAddedTimeMode() {
+    isPlaying(){
+        return this.mode === "playing";
+    }
+
+     switchToAddedTimeMode() {
+        this.mode = "editing";
         $('#floatBtn').html(
             `
             <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored float" id="editBtn">
@@ -81,8 +87,6 @@ class MusicPlayer {
             </button>
             `
         )
-
-
     }
 
     getCurrentPlayInfo() {
@@ -114,13 +118,17 @@ class MusicPlayer {
         this.player.currentTime = newTime;
     }
 
-    updateProgressbar() {
-        var totalLength = this.player.duration;
-        var value = (this.getCurrentPlayInfo().currentTime / totalLength) * 100;
-        document.getElementById('progressbar-for-player').MaterialSlider.change(value)
+    updateProgressbar(duration="",currentTime="") {
+        if(!this.appleMusic){
+            var totalLength = this.player.duration;
+            var value = (this.getCurrentPlayInfo().currentTime / totalLength) * 100;
+            document.getElementById('progressbar-for-player').MaterialSlider.change(value)
+        }else{
+            var totalLength = duration;
+            var value = (currentTime / totalLength) * 100;
+            document.getElementById('progressbar-for-player').MaterialSlider.change(value)
+        }
     }
-
-
 }
 
 class ScrollLyrics {
@@ -130,6 +138,7 @@ class ScrollLyrics {
         //this.createLyricsDisplay();
         this.currentLine = 0;
         this.currentword = 0;
+        this.currentDisplayMode = "";//normal,sm,xl
     }
 
     createLyricsDisplay() {
@@ -147,14 +156,20 @@ class ScrollLyrics {
         this.lyrics = lyrics;
     }
 
+    updateMode(newMode){
+        this.currentDisplayMode = newMode;
+    }
+
     animate(time) {
         var line = this.lyrics['lines'][this.currentLine];
         //console.log(time)
         if (time >= line["starttime"] && time <= line['endtime']) {
             var words = line['splited-version'];
-            this.scrollTo(this.currentLine);
+
             try {
+                this.scrollTo(this.currentLine,500);
                 if (time >= words[this.currentword]['starttime']) {
+                    this.scrollTo(this.currentLine,500);
                     this.highlight(this.currentLine, this.currentword);
                     this.currentword += 1;
                 }
@@ -166,10 +181,14 @@ class ScrollLyrics {
             //this.highlight(this.currentLine,this.currentword);
             this.currentLine += 1;
             this.currentword = 0;
-            console.log("Dehighlight");
-            this.dehighlightAll()
+            //console.log("Dehighlight");
+            this.dehighlightAll();
             //need to fix
         }
+    }
+
+    hasTimingInfo(){
+        return this.lyrics['lines'][0]['starttime'] !== "";
     }
 
     setTime(newtime) {
@@ -214,20 +233,42 @@ class ScrollLyrics {
         }
     }
 
-    scrollTo(position) {
-        $('#row-' + position).scrollintoview({
-            duration: 300, direction: "y", complete: function () {
-            }
-        })
+    scrollTo(position,time=100) {
+
+        switch (this.currentDisplayMode) {
+            case "sm":
+                document.getElementById(('row-'+position)).scrollIntoView();
+                break;
+
+            case "xl":
+                // $('#rowxl-' + position).scrollintoview({
+                //     duration: time, direction: "y", complete: function () {
+                //     }
+                // });
+                document.getElementById(('rowxl-'+position)).scrollIntoView();
+                break;
+
+            case "normal":
+                document.getElementById(('rown-'+position)).scrollIntoView();
+                break;
+        }
     }
 
     highlight(positionofline, positionofword) {
-        //console.log($('#col-'+positionofword).html());
-        console.log("Changing")
-        $(`#row-${positionofline}`).addClass('highlight-card');
-        //$(`#row-${positionofline}-col-${positionofword}`).css('color', "red");
-        highlightOrigin(positionofline,positionofword);
-        highlightTranslate(positionofline,positionofword);
+        switch (this.currentDisplayMode) {
+            case "sm":
+                $(`#row-${positionofline}`).addClass("highlight-card");
+                break;
+            case "xl":
+                $(`#rowxl-${positionofline}`).addClass('highlight-card');
+                break;
+            case "normal":
+                $(`#rown-${positionofline}`).addClass("highlight-normalText");
+                break;
+
+        }
+        highlightOrigin(positionofline,positionofword,100);
+        highlightTranslate(positionofline,positionofword,100);
 
     }
 
@@ -270,8 +311,8 @@ class TimedLyrics {
     addTimeToLine() {
         var currentTime = player.getCurrentPlayInfo().currentTime;
         var lengthOftheLine = this.lyrics['lines'][this.currentLineNum]['splited-version'].length;
-        lyricsDisplay.scrollTo(this.currentLineNum);
-        lyricsDisplay.highlight(this.currentLineNum, this.timeForLine.length)
+        this.lyricsDisplay.scrollTo(this.currentLineNum);
+        this.lyricsDisplay.highlight(this.currentLineNum, this.timeForLine.length);
         this.timeForLine.push(currentTime);
         if (this.timeForLine.length === lengthOftheLine) {
             this.addTimeToLyrics();
@@ -283,9 +324,20 @@ class TimedLyrics {
         this.times.push(this.timeForLine);
         this.timeForLine = [];
         if (this.currentLineNum + 1 === this.lyrics['lines'].length) {
-            var jsonData = JSON.stringify({"time_data": this.times});
-            $.getJSON(`http://127.0.0.1:8000/add_timed_lyrics/asoijdiasojd/Call it what you want/Taylor Swift/${jsonData}`).done(
+            var jsonData = encodeURI(JSON.stringify({"time_data": this.times}));
+            $.getJSON(`https://api.mytranshelper.com/api/add_timed_lyrics/${userID}/${title}/${artist}/${jsonData}`).done(function () {
+                $(document).ready(
+                    function () {
+                        var playerHeight = $('nav').height();
+                        //console.log(playerHeight);
+                        setTimeout(function () {
+                            $('#snackbar').css('margin-bottom',playerHeight-1)
+                            $('#music-player').delay(showToast(content[languageCode]['uploadthetimedlyrics']));
+                            $('#editBtn').attr('disabled',true);
+                        });
+                    });
 
+                }
             )
         }
     }
