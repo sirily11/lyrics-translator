@@ -10,11 +10,15 @@ class Applemusic {
             });
         });
         this.player = "";
-
+        this.songID = "";
+        this.currentTime = 0;
+        this.music = "";
+        this.lyricsDisplay = "";
     }
 
     search(songName){
             var music = MusicKit.getInstance();
+            this.music = music;
             music.authorize().then(async function () {
                 let result = await music.api.search(songName, {limit: 10, types: 'songs'});
                 console.log(result);
@@ -52,23 +56,48 @@ class Applemusic {
         `)
     }
 
+    getMusic(){
+        return this.music;
+    }
+
     bindPlayer(newplayer){
         this.player = newplayer;
     }
 
-     play(songID){
+    addID(id){
+        this.songID = id;
+    }
+
+    bindLyrics(lyricsDisplay){
+        this.lyricsDisplay =lyricsDisplay;
+    }
+
+     play(){
         let music = MusicKit.getInstance();
-         var p = this.player;
-        music.setQueue({ song: songID }).then(function(queue) {
+        var p = this.player;
+        var l = this.lyricsDisplay;
+        var time = this.currentTime;
+        console.log("play");
+
+        music.setQueue({ song: this.songID }).then(function(queue) {
             music.play();
-            music.addEventListener('playbackTimeDidChange',function (event) {
-                p.updateProgressbar(event.currentPlaybackDuration,event.currentPlaybackTime)
-            })
+            applemusic.getMusic().addEventListener('playbackTimeDidChange',function (event) {
+                p.updateProgressbar(event.currentPlaybackDuration,event.currentPlaybackTime);
+                time = event.currentPlaybackTime;
+                if(l.hasTimingInfo() && p.isPlaying()){
+                    try{
+                        l.animate(time);
+                    }catch (e) {
+                    }
+                }
+            });
+            console.log(music);
         });
     }
 
-    static stop(){
-        let music = MusicKit.getInstance();
-        music.stop();
+     pause(){
+        // let music = MusicKit.getInstance();
+        // music.pause();
+        //  this.currentTime =  music.player.currentPlaybackTime
     }
 }

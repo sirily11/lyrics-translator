@@ -114,13 +114,35 @@
             <div class="mdl-snackbar__text"></div>
             <button class="mdl-snackbar__action" type="button"></button>
         </div>
-        <dialog class="mdl-dialog fixed-top applemusicDialog">
+        <!--<dialog class="mdl-dialog fixed-top applemusicDialog">-->
+        <!--<h4 class="mdl-dialog__title">Apple Music</h4>-->
+        <!--<div class="mdl-dialog__content" >-->
+        <!--<div class="row">-->
+        <!--<div class="mdl-textfield mdl-js-textfield">-->
+        <!--<input class="mdl-textfield__input" type="text" id="songName">-->
+        <!--<label class="mdl-textfield__label" for="songName">Text...</label>-->
+        <!--</div>-->
+        <!--<button id="searchBtn" class="mdl-button mdl-js-button mdl-button&#45;&#45;raised mdl-button&#45;&#45;colored">-->
+        <!--Search-->
+        <!--</button>-->
+        <!--</div>-->
+        <!--<div class="applemusic" id="applemusic"></div>-->
+        <!--</div>-->
+        <!--<div class="mdl-dialog__actions">-->
+        <!--<button type="button" class="mdl-button close">Cancel</button>-->
+        <!--</div>-->
+        <!--</dialog>-->
+        <div id="dialog">
             <h4 class="mdl-dialog__title">Apple Music</h4>
-            <div class="mdl-dialog__content" >
+            <div class="mdl-dialog__content">
                 <div class="row">
-                    <div class="mdl-textfield mdl-js-textfield">
+                    <!--<div class="mdl-textfield mdl-js-textfield mdl-textfield&#45;&#45;floating-labe">-->
+                        <!--<input class="mdl-textfield__input" type="text" id="songName">-->
+                        <!--<label class="mdl-textfield__label" for="songName">Text...</label>-->
+                    <!--</div>-->
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                         <input class="mdl-textfield__input" type="text" id="songName">
-                        <label class="mdl-textfield__label" for="songName">Text...</label>
+                        <label class="mdl-textfield__label" for="songName">Song name</label>
                     </div>
                     <button id="searchBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
                         Search
@@ -131,14 +153,28 @@
             <div class="mdl-dialog__actions">
                 <button type="button" class="mdl-button close">Cancel</button>
             </div>
-        </dialog>
+        </div>
         <script>
-            var dialog = document.querySelector('dialog');
+            var dialog = $("#dialog").dialog({
+                autoOpen: false,
+                dialogClass: "mdl-dialog",
+                position: {
+                    my: "top",
+                    at: "top",
+                    of: ".container-fluid"
+
+                }
+            });
+            $('.ui-dialog-titlebar').hide();
+            // var dialog = document.querySelector('dialog');
             const applemusic = new Applemusic();
             applemusic.createHTML();
-            $(document).on('click','#usingApplemusic',function () {
-                dialog.show();
+            $(document).on('click', '#usingApplemusic', function () {
+                dialog.dialog("open")
             });
+            $(document).on("click", ".close", function () {
+                dialog.dialog("close")
+            })
 
         </script>
     </div>

@@ -4,8 +4,7 @@ const editor = new TimedLyrics(player, lyricsDisplay);
 
 $("#searchBtn").click(function () {
     var songName = $('#songName').val();
-    applemusic.search("shake it off");
-    console.log("here")
+    applemusic.search(songName);
 });
 
 $.getJSON(url).done(function (data) {
@@ -32,10 +31,17 @@ player.getPlayer().ontimeupdate = function () {
         }
     }
 };
+
+
 $(document).on('click','img',function (e) {
     var id = $(this).attr('id');
+    player.updatePlayer(document.getElementById('apple-music-player'));
     applemusic.bindPlayer(player);
-    applemusic.play(id);
+    applemusic.bindLyrics(lyricsDisplay);
+    applemusic.addID(id);
+    applemusic.play();
+    player.startPlaying();
+    player.play();
     dialog.close();
     player.appleMusic = true;
 });

@@ -93,8 +93,13 @@ class MusicPlayer {
         var currentTime = this.player.currentTime;
 
         return {
-            currentTime: currentTime
+            currentTime: currentTime,
+            duration : this.player.duration
         }
+    }
+
+    updatePlayer(newplayer){
+        this.player = newplayer;
     }
 
     play() {
