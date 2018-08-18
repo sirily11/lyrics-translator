@@ -42,6 +42,6 @@ $(document).on('click','img',function (e) {
     applemusic.play();
     player.startPlaying();
     player.play();
-    dialog.close();
+    dialog.dialog("close");
     player.appleMusic = true;
 });
