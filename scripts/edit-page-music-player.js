@@ -4,6 +4,8 @@ const editor = new TimedLyrics(player, lyricsDisplay);
 
 $("#searchBtn").click(function () {
     var songName = $('#songName').val();
+    $('#results').empty();
+    $("#tags").empty();
     applemusic.search(songName);
 });
 

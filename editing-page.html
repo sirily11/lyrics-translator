@@ -69,17 +69,18 @@
         background: #4bacb8
     }
 </style>
-
 <body>
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <header class="mdl-layout__header position-fixed" style="background-color:#00b8d4">
         <div class="mdl-layout__header-row "> <span class="mdl-layout-title" id="project-title"
-                                                   style="font-family:微软雅黑;color: white"></span>
+                                                    style="font-family:微软雅黑;color: white"></span>
         </div>
         <a href="index.html" aria-expanded="false" role="button"
-           tabindex="0" class="mdl-layout__drawer-button"> <i class="material-icons" style="color:white">arrow_back</i> </a>
-        <div class="mdl-layout__header-row" style="background-color: white"> <span class="mdl-layout-title" id="artist-name"
-                                                   style="color:black"></span>
+           tabindex="0" class="mdl-layout__drawer-button"> <i class="material-icons" style="color:white">arrow_back</i>
+        </a>
+        <div class="mdl-layout__header-row" style="background-color: white"> <span class="mdl-layout-title"
+                                                                                   id="artist-name"
+                                                                                   style="color:black"></span>
 
             <span class="mdl-layout-title lang" id="saving-status"
                   style="color:black;margin-left:20px"></span>
@@ -93,73 +94,69 @@
         <div id="loading-bar" style="width:100%" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
     </header>
     <main class="mdl-layout__content" style="margin-top: 110px">
-    <div class="container-fluid">
-        <div class="mdc-select" id="selector" style="margin-bottom: 10px">
-            <select class="mdc-select__native-control">
-                <option value="" disabled selected></option>
-                <option class="lang" id="sentences" value="sentences">
-                </option>
-                <option class="lang" id="words" value="words">
-                </option>
-            </select>
-            <label class="mdc-floating-label lang" id="type-selector"></label>
-            <div class="mdc-line-ripple"></div>
-        </div>
-        <div id="lyricsDisplay" style="margin-bottom: 300px;margin-top: 0px;"></div>
-        <div id="floatBtn" class="fixed-bottom"></div>
-        <div id="music-player"></div>
-        <div id="snackbar" class="mdl-js-snackbar mdl-snackbar">
-            <div class="mdl-snackbar__text"></div>
-            <button class="mdl-snackbar__action" type="button"></button>
-        </div>
-        <div id="dialog">
-            <h4 class="mdl-dialog__title">Apple Music</h4>
-            <div class="mdl-dialog__content">
-                <div class="row">
-                    <!--<div class="mdl-textfield mdl-js-textfield mdl-textfield&#45;&#45;floating-labe">-->
-                        <!--<input class="mdl-textfield__input" type="text" id="songName">-->
-                        <!--<label class="mdl-textfield__label" for="songName">Text...</label>-->
-                    <!--</div>-->
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input class="mdl-textfield__input" type="text" id="songName">
-                        <label class="mdl-textfield__label" for="songName">Song name</label>
+        <div class="container-fluid">
+            <div class="mdc-select" id="selector" style="margin-bottom: 10px">
+                <select class="mdc-select__native-control">
+                    <option value="" disabled selected></option>
+                    <option class="lang" id="sentences" value="sentences">
+                    </option>
+                    <option class="lang" id="words" value="words">
+                    </option>
+                </select>
+                <label class="mdc-floating-label lang" id="type-selector"></label>
+                <div class="mdc-line-ripple"></div>
+            </div>
+            <div id="lyricsDisplay" style="margin-bottom: 300px;margin-top: 0px;"></div>
+            <div id="floatBtn" class="fixed-bottom"></div>
+            <div id="music-player"></div>
+            <div id="snackbar" class="mdl-js-snackbar mdl-snackbar">
+                <div class="mdl-snackbar__text"></div>
+                <button class="mdl-snackbar__action" type="button"></button>
+            </div>
+            <div id="dialog">
+                <h4 class="mdl-dialog__title">Apple Music</h4>
+                <div class="mdl-dialog__content">
+                    <div class="row">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" id="songName">
+                            <label class="mdl-textfield__label" for="songName">Song name</label>
+                        </div>
+                        <button id="searchBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                            Search
+                        </button>
                     </div>
-                    <button id="searchBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-                        Search
-                    </button>
+                    <div class="applemusic" id="applemusic"></div>
                 </div>
-                <div class="applemusic" id="applemusic"></div>
+                <div class="mdl-dialog__actions">
+                    <button type="button" class="mdl-button close">Cancel</button>
+                </div>
             </div>
-            <div class="mdl-dialog__actions">
-                <button type="button" class="mdl-button close">Cancel</button>
-            </div>
+            <script>
+                var dialog = $("#dialog").dialog({
+                    autoOpen: false,
+                    dialogClass: "mdl-dialog",
+                    position: {
+                        my: "top",
+                        at: "top",
+                        of: ".mdl-layout__header",
+
+                    },
+                    width: "auto",
+                    height: "auto",
+                });
+                $('.ui-dialog-titlebar').hide();
+                // var dialog = document.querySelector('dialog');
+                const applemusic = new Applemusic();
+                applemusic.createHTML();
+                $(document).on('click', '#usingApplemusic', function () {
+                    dialog.dialog("open")
+                });
+                $(document).on("click", ".close", function () {
+                    dialog.dialog("close")
+                })
+
+            </script>
         </div>
-        <script>
-            var dialog = $("#dialog").dialog({
-                autoOpen: false,
-                dialogClass: "mdl-dialog",
-                position: {
-                    my: "top",
-                    at: "top",
-                    of: ".mdl-layout__header",
-
-                },
-                width: "auto",
-                height: "auto",
-            });
-            $('.ui-dialog-titlebar').hide();
-            // var dialog = document.querySelector('dialog');
-            const applemusic = new Applemusic();
-            applemusic.createHTML();
-            $(document).on('click', '#usingApplemusic', function () {
-                dialog.dialog("open")
-            });
-            $(document).on("click", ".close", function () {
-                dialog.dialog("close")
-            })
-
-        </script>
-    </div>
     </main>
     <script>
         $(function () {
