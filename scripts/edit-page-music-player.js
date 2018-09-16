@@ -11,13 +11,7 @@ $.getJSON(url).done(function (data) {
     $('#loading-bar').fadeOut(1000);
     lyrics = data;
     lines = data['lines'];
-    if (deviceWidth > 600) {
-        createHTMLCardXL(lines);
-        lyricsDisplay.updateMode("xl")
-    } else {
-        createHTMLCardSm(lines);
-        lyricsDisplay.updateMode('sm');
-    }
+    createHTMLWithNormalText(lines);
     lyricsDisplay.addLyrics(data);
     editor.updatelyricsDisplay(lyricsDisplay);
 });

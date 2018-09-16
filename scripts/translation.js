@@ -1,4 +1,4 @@
-var current_version = 0.2;
+var current_version = 0.3;
 var languageCode = navigator.language.substr(0, 2);
 var content = {
 	"en": {

@@ -72,12 +72,8 @@ function showMusicList(userID) {
         } else {
             var text = content['en']['loadProject']
         }
-
         for (var i = 0; i < data.length; i++) {
-
-            if (i == 0 || i % 3 != 0) {
-
-                col += `
+            col += `
 							<div class="col-sm">
 								<div class=" project-card mdc-card">
 								  <div class="mdl-card__title mdl-card--expand" style="  background: url('./assets/img/md-img${i % 3 + 1}.jpg') center / cover;">
@@ -91,15 +87,12 @@ function showMusicList(userID) {
 								</div>
 							</div>
 					`;
+            if ((i + 1) % 3 === 0) {
+                col += "<div class=\"w-100\"></div>"
             }
-
-            if (i == data.length - 1) {
-                row = `<div class="row"> ${col}</div>`;
-                col = "";
-                $('#listOfMusic').append(row)
-            }
-
         }
+        row = `<div class="row"> ${col}</div>`;
+        $('#listOfMusic').append(row);
         isloaded = true;
     })
 }

@@ -1,6 +1,6 @@
 const deviceWidth = $(window).width();
 const fontSize = 6;
-const numberChangeToSave = 6;
+const numberChangeToSave = 3;
 const userID = getUrlVars()['userID'];
 const title = decodeURI(replaceAll(getUrlVars()['song_name'], "+", " "));
 const artist = decodeURI(replaceAll(getUrlVars()['artist'], "+", " "));
@@ -18,13 +18,13 @@ $("#loading-progressbar").hide();
 $("#saving-status").html("--Saved");
 $('#artist-name').html(artist);
 
-$(document).on("click",'#createTimedLyrics',function () {
+$(document).on("click", '#createTimedLyrics', function () {
     player.switchToAddedTimeMode()
 });
-$(document).on("mousedown touchstart", '#progressbar-for-player',function () {
+$(document).on("mousedown touchstart", '#progressbar-for-player', function () {
     player.stop();
 });
-$(document).on('change','#progressbar-for-player',function () {
+$(document).on('change', '#progressbar-for-player', function () {
     var sliderValue = $(this).val();
     var newTime = (sliderValue / 100) * player.getPlayer().duration;
     player.setTime(newTime);
@@ -37,7 +37,7 @@ $(document).on('click', '#editBtn', function () {
     editor.addTimeToLine();
 });
 //select music from local computer
-$(document).on('change','#file',function (e) {
+$(document).on('change', '#file', function (e) {
     musicName = $(this).val();
     var music = URL.createObjectURL(this.files[0]);
     var type = musicName.slice(musicName.length - 3, musicName.length);
@@ -50,7 +50,7 @@ $(document).on('change','#file',function (e) {
     }
 });
 //play music
-$(document).on('click','#play-btn',function () {
+$(document).on('click', '#play-btn', function () {
     if (player.currentStatus === "playing") {
         player.stop();
     } else {
@@ -58,13 +58,13 @@ $(document).on('click','#play-btn',function () {
     }
 });
 //selector
-$("select").on('change',function () {
+$("select").on('change', function () {
     let str = "";
     $('#lyricsDisplay').empty();
     $("select option:selected").each(function () {
         str += $(this).val();
     });
-    if(str === "words"){
+    if (str === "words") {
         if (deviceWidth > 600) {
             createHTMLCardXL(lines);
             lyricsDisplay.updateMode("xl");
@@ -72,13 +72,17 @@ $("select").on('change',function () {
             createHTMLCardSm(lines);
             lyricsDisplay.updateMode("sm");
         }
-    }else{
+    } else {
         createHTMLWithNormalText(lines);
         lyricsDisplay.updateMode("normal");
     }
 });
+//detect the changes
+$(document).on("change", "input", function () {
+    $("saving-status").text("Not saved");
+});
 //Auto saved function
-$(document).on('change','input',function () {
+$(document).on('change', '.lyrics', function () {
     var inputId = $(this).attr('id');
     var newValue = $(this).val();
     changesList.push({id: inputId, value: newValue});
@@ -89,8 +93,26 @@ $(document).on('change','input',function () {
         $("#saving-status").html("--Not save");
     }
 });
+//Auto save function for normal text
+$(document).on("focusout", ".normal-text", function () {
+    $("#loading-progressbar").show();
+    $("#saving-status").html("--保存中");
+    let changeddata = $(this).val();
+    let line = $(this).attr("id");
+    let data = {
+        content: changeddata,
+        line_at: line
+    };
+    data = JSON.stringify(data);
+    $.getJSON(`https://api.mytranshelper.com/api/auto_save/line/${userID}/${title}/${artist}/${data}`).done(function (data) {
+        var d = new Date();
+        var time = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+        $("#loading-progressbar").fadeOut(1000);
+        $("#saving-status").html(`--保存于${time}`);
+    });
+});
 
-function showToast(message){
+function showToast(message) {
     var snackbarContainer = document.querySelector('#snackbar');
     var data = {
         message: message,
@@ -99,6 +121,7 @@ function showToast(message){
     };
     snackbarContainer.MaterialSnackbar.showSnackbar(data);
 }
+
 function getUrlVars() {
     var vars = {};
     var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
@@ -106,6 +129,7 @@ function getUrlVars() {
     });
     return vars;
 }
+
 function replaceAll(originString, replaceFrom, replaceTo) {
     var returnStr = ""
     for (c in originString) {
@@ -117,9 +141,10 @@ function replaceAll(originString, replaceFrom, replaceTo) {
     }
     return returnStr
 }
+
 //Fill the text for origin text box
 //Click on the origin text and highlight the translation
-function highlightTranslate(i, j,speed) {
+function highlightTranslate(i, j, speed) {
     $(`#translate-${i}-${j}`).animate({
         backgroundColor: "#ffeb3b",
         color: "black"
@@ -143,7 +168,7 @@ function deselect(i, j) {
     }, 500)
 }
 
-function highlightOrigin(i, j,speed) {
+function highlightOrigin(i, j, speed) {
     $(`#origin-${i}-${j}`).animate({
         backgroundColor: "#ffeb3b",
         color: "black",
@@ -252,13 +277,16 @@ function createHTMLCardXL(lines) {
                                     <option ${isSelect(word['length'], 9)}>9</option>
                                     <option ${isSelect(word['length'], 10)}>10</option>
                             </select>
-                                <input class="form-control lyrics" id="translate-${i}-${j}" maxlength="${word['length']}"  onblur="deselect(${i},${j})" onclick="highlightOrigin(${i},${j})" oninput="this.style.width = ((this.value.length + 1) * 20) + 'px';" style="width:${boxLength}px;" id="exampleInputEmail1" value="${translate}">
+                                <input class="form-control lyrics" id="translate-${i}-${j}" onblur="deselect(${i},${j})" onclick="highlightOrigin(${i},${j})" oninput="this.style.width = ((this.value.length + 1) * 20) + 'px';" style="width:${boxLength}px;" id="exampleInputEmail1" value="${translate}">
                             </div>
                             `
             //$(`#selector-${i}-${j} option[value=${word['length']}]`).attr('selected',true)
 
         }
         $('#origin-text').append(`
+                        <div class="row" style="margin-top:20px" id="rowxl-${i}">
+                               ${line["line-translation"]}
+                            </div>
                         <div class="row" style="margin-top:20px" id="row-${i}">
                                 ${lineHtml}
                                 <div hidden class="custom-control custom-checkbox">
@@ -268,10 +296,14 @@ function createHTMLCardXL(lines) {
                         
                         </div>
                         `)
+
         $('#translate-text').append(`
                         <div class="row" style="margin-top:20px" id="rowxl-${i}">
-                                ${translateHtml}
+                               ${line["line-translation"]}
                             </div>
+                        <div class="row" style="margin-top:20px" id="rowxl-${i}">
+                            ${translateHtml}
+                        </div>
                         `)
         lineHtml = ""
         translateHtml = ""
@@ -303,22 +335,22 @@ function createHTMLCardSm(lines) {
 									<input class="form-control lyrics" id="origin-${i}-${j}" onblur="deselect(${i},${j})" onclick="highlightTranslate(${i},${j})" style="width:${boxLength}px" aria-describedby="inputGroup-sizing-default"
 									value="${word['origin']}" title="" >
 								</div>
-									 <input class="form-control lyrics" id="translate-${i}-${j}" maxlength="${word['length']}"  onblur="deselect(${i},${j})" onclick="highlightOrigin(${i},${j})" oninput="this.style.width = ((this.value.length + 1) * 20) + 'px';" style="width:${boxLength}px;margin-top:0px" value="${translate}">
+									 <input class="form-control lyrics" id="translate-${i}-${j}"  onblur="deselect(${i},${j})" onclick="highlightOrigin(${i},${j})" oninput="this.style.width = ((this.value.length + 1) * 20) + 'px';" style="width:${boxLength}px;margin-top:0px" value="${translate}">
                             </div>`
         }
         $('#lyricsDisplay').append(`
 
 								<div style="margin-top:10px;">
 									  <div class="card-wide mdl-card mdl-shadow--4dp" id="row-${i}">
-
 										<div class="mdl-card__supporting-text">
+										${line["line-translation"]}
 										  <div class="row"> ${lineHtml} </div>
 										</div>
 	  									</div>
 									</div>
 
 
-						`)
+						`);
         lineHtml = ""
     }
 }
@@ -334,25 +366,22 @@ function createHTMLWithNormalText(lines) {
             var word = line['splited-version'][j];
             var wordsLength = word['origin'].length;
             var boxLength = (wordsLength + 6) * fontSize;
-            var translate = "";
             if (word['origin'] == "") {
                 continue;
             }
+            //Let the word translation be the part of text
             if (word['translated-text'] != null) {
-                translate = word['translated-text']
-            }
-            originText += " " + word['origin'];
-            if (word['translated-text'] != null) {
-                translationText += " " + word['translated-text'];
+                translationText += "" + word['translated-text'];
             }
         }
 
         lineHtml = `
          <div>
+              <div style="color:gray"></div>
             <div id="rown-${i}" class="mdc-text-field  text-field mdc-text-field--outlined mdc-text-field--upgraded" data-mdc-auto-init="MDCTextField" style="width: 100%;">
-            <input type="text" id="text-field--outlined" class="mdc-text-field__input" value="${translationText}"
-            style="font-size: 10px;margin-bottom: 10px">
-            <label class="mdc-floating-label" for="text-field--outlined">${originText}</label>
+            <input type="text" id="${i}" class="mdc-text-field__input normal-text" value="${line["line-translation"]}"
+            style="font-size: 15px;margin-bottom: 10px">
+            <label class="mdc-floating-label" for="text-field--outlined" style="font-size: 13px">${line["line-content"]} ${translationText}</label>
                 <div class="mdc-notched-outline">
                     <svg>
                         <path class="mdc-notched-outline__path"></path>
@@ -363,7 +392,6 @@ function createHTMLWithNormalText(lines) {
         </div>
         `;
         $('#lyricsDisplay').append(lineHtml);
-        //console.log(lineHtml);
         originText = "";
         translationText = "";
     }

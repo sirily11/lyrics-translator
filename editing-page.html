@@ -72,16 +72,13 @@
 
 <body>
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <header class="mdl-layout__header" style="background-color:#00b8d4">
-        <div class="mdl-layout__header-row"> <span class="mdl-layout-title" id="project-title"
-                                                   style="font-family:微软雅黑"></span>
-
+    <header class="mdl-layout__header position-fixed" style="background-color:#00b8d4">
+        <div class="mdl-layout__header-row "> <span class="mdl-layout-title" id="project-title"
+                                                   style="font-family:微软雅黑;color: white"></span>
         </div>
-    </header>
-    <a href="index.html" aria-expanded="false" role="button"
-       tabindex="0" class="mdl-layout__drawer-button"> <i class="material-icons" style="color:white">arrow_back</i> </a>
-    <header class="mdl-layout__header" style="background-color:white">
-        <div class="mdl-layout__header-row"> <span class="mdl-layout-title" id="artist-name"
+        <a href="index.html" aria-expanded="false" role="button"
+           tabindex="0" class="mdl-layout__drawer-button"> <i class="material-icons" style="color:white">arrow_back</i> </a>
+        <div class="mdl-layout__header-row" style="background-color: white"> <span class="mdl-layout-title" id="artist-name"
                                                    style="color:black"></span>
 
             <span class="mdl-layout-title lang" id="saving-status"
@@ -93,9 +90,10 @@
                      id="loading-progressbar"></div>
             </div>
         </div>
+        <div id="loading-bar" style="width:100%" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
     </header>
-    <div id="loading-bar" style="width:100%" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
-    <div class="container-fluid" style="margin-top:1rem">
+    <main class="mdl-layout__content" style="margin-top: 110px">
+    <div class="container-fluid">
         <div class="mdc-select" id="selector" style="margin-bottom: 10px">
             <select class="mdc-select__native-control">
                 <option value="" disabled selected></option>
@@ -114,24 +112,6 @@
             <div class="mdl-snackbar__text"></div>
             <button class="mdl-snackbar__action" type="button"></button>
         </div>
-        <!--<dialog class="mdl-dialog fixed-top applemusicDialog">-->
-        <!--<h4 class="mdl-dialog__title">Apple Music</h4>-->
-        <!--<div class="mdl-dialog__content" >-->
-        <!--<div class="row">-->
-        <!--<div class="mdl-textfield mdl-js-textfield">-->
-        <!--<input class="mdl-textfield__input" type="text" id="songName">-->
-        <!--<label class="mdl-textfield__label" for="songName">Text...</label>-->
-        <!--</div>-->
-        <!--<button id="searchBtn" class="mdl-button mdl-js-button mdl-button&#45;&#45;raised mdl-button&#45;&#45;colored">-->
-        <!--Search-->
-        <!--</button>-->
-        <!--</div>-->
-        <!--<div class="applemusic" id="applemusic"></div>-->
-        <!--</div>-->
-        <!--<div class="mdl-dialog__actions">-->
-        <!--<button type="button" class="mdl-button close">Cancel</button>-->
-        <!--</div>-->
-        <!--</dialog>-->
         <div id="dialog">
             <h4 class="mdl-dialog__title">Apple Music</h4>
             <div class="mdl-dialog__content">
@@ -161,9 +141,11 @@
                 position: {
                     my: "top",
                     at: "top",
-                    of: ".container-fluid"
+                    of: ".mdl-layout__header",
 
-                }
+                },
+                width: "auto",
+                height: "auto",
             });
             $('.ui-dialog-titlebar').hide();
             // var dialog = document.querySelector('dialog');
@@ -178,7 +160,7 @@
 
         </script>
     </div>
-
+    </main>
     <script>
         $(function () {
             $(document).tooltip({
