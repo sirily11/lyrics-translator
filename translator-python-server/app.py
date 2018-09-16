@@ -45,6 +45,7 @@ class Lyrics:
 class Line:
     def __init__(self, text):
         self.line_contents = text
+        self.line_translation = ""
         self.splited_version = self.__split_word__(text)
 
     def __split_word__(self, word: str):
@@ -62,6 +63,7 @@ class Line:
             "starttime" : "",
             "endtime" : "",
             "line-content": self.line_contents,
+            "line-translation": "",
             "splited-version": splited_version
         }
 
@@ -155,6 +157,7 @@ def upload_lyrics(title, artist, lyrics, id_for_user):
         return False
 
 def translate_the_lyrics(changes,user_id,artist,title):
+    #update the changes
     BUCKET_NAME = "lyrics-from-user"
     FILE_NAME = "{}-{}-{}.json".format(artist,title,user_id)
     s3 = boto3.resource('s3')
@@ -171,6 +174,21 @@ def translate_the_lyrics(changes,user_id,artist,title):
         jsonData['lines'][i]["splited-version"][j]["translated-text"] = translation
     
     s3.Object(BUCKET_NAME,FILE_NAME).put(Body=json.dumps(jsonData))
+
+def translate_line(changes, user_id, artist,title):
+    BUCKET_NAME = "lyrics-from-user"
+    FILE_NAME = "{}-{}-{}.json".format(artist,title,user_id)
+    s3 = boto3.resource('s3')
+    obj = s3.Object(BUCKET_NAME, FILE_NAME)
+    jsonData = json.loads(obj.get()['Body'].read().decode('utf-8'))
+    #Get the changes
+    line_at = int(changes["line_at"])
+    content = changes["content"]
+    #Write the changes
+    jsonData["lines"][line_at]["line-translation"] = content
+    #Upload the file
+    s3.Object(BUCKET_NAME,FILE_NAME).put(Body=json.dumps(jsonData))
+
 
 
 @app.route('/start-project/{user_id}/{user_name}/{email_address}/{title}/{artist}/{lyrics}',cors=True)
@@ -206,12 +224,17 @@ def auto_save(userid, title,artist, data):
 
 @app.route("/translate/{word}",cors=True)
 def translate(word):
+    #Get the translation for word
     translate = boto3.client(service_name='translate',use_ssl=True)
     result = translate.translate_text(Text=word, 
             SourceLanguageCode="en", TargetLanguageCode="zh")
-    print(result.get('TranslatedText'))
     return {"translation" : result.get('TranslatedText')},
-    # return [{"translation" : "Test"}]
+
+@app.route("/auto_save/line/{userid}/{title}/{artist}/{data}",cors=True)
+def auto_save_line(userid,title,artist,data):
+    data = json.loads(urllib.parse.unquote(data), encoding='utf-8')
+    translate_line(changes=data,user_id=userid,artist=artist,title=title)
+    return {"Success": True}
 
 
 @app.route("/add_timed_lyrics/{user_id}/{title}/{artist}/{time_data}",cors=True)
