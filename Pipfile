@@ -10,6 +10,9 @@ pyinstaller = "*"
 pyjwt = "*"
 cryptography = "*"
 staticjinja = "*"
+requests = "*"
+rapidconnect = "*"
+requests-html = "*"
 
 [dev-packages]
 "autopep8" = "*"

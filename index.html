@@ -92,7 +92,7 @@
             </main>
         </div>
         <dialog class="mdl-dialog" id="dialog-for-createProject"
-    style="width:90%">
+        style="width:90%">
     <form action="editing-page.html" method="GET">
         <div id="song-info">
             <div class="mdl-dialog__content" style="font-family:微软雅黑">
@@ -100,25 +100,30 @@
                 <div id="info"></div>
                 <div class="mdl-textfield mdl-js-textfield">
                     <input hidden id="userID" type="text" name="userID"
-                        value="123">
+                           value="123">
                     <input class="mdl-textfield__input" type="text"
-                        id="songName" name="song_name">
+                           id="songName" name="song_name">
                     <label class="mdl-textfield__label lyrics lang"
-                        id="songText" for="songName"></label>
+                           id="songText" for="songName"></label>
                 </div>
                 <div class="mdl-textfield mdl-js-textfield">
                     <input class="mdl-textfield__input" type="text"
-                        id="artist" name="artist">
+                           id="artist" name="artist">
                     <label class="mdl-textfield__label lang" id="artistText"
-                        for="artist"></label>
+                           for="artist"></label>
                 </div>
+                <i id="search" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+                    <i class="material-icons">
+                        search
+                    </i>
+                </i>
                 <div class="mdc-text-field mdc-text-field--fullwidth
                     mdc-text-field--textarea">
                     <textarea class="mdc-text-field__input"
-                        rows="15" cols="100" id="lyrics"></textarea>
+                              rows="15" cols="100" id="lyrics"></textarea>
                     <label class="mdc-floating-label"
-                        for="text-field-fullwidth-textarea"
-                        style="font-family:微软雅黑;font-size:20px">歌词 </label>
+                           for="text-field-fullwidth-textarea"
+                           style="font-family:微软雅黑;font-size:20px">歌词 </label>
                     <div class="mdc-line-ripple"></div>
                 </div>
             </div>
@@ -126,15 +131,30 @@
         <div class="mdl-dialog__actions">
             <button type="submit" class="mdl-button" id="okBtn"><i
                     class="material-icons" style="color:#e91e63">
-                    done </i></button>
+                done </i></button>
             <button type="button" class="mdl-button close" id="close"><i
                     class="material-icons"> clear </i></button>
             <button type="button" class="mdl-button lang" id='uploadBtn'
-                style="font-family:微软雅黑"></button>
+                    style="font-family:微软雅黑"></button>
             <div id="loading-bar-for-upload"></div>
         </div>
     </form>
 </dialog>
+<script>
+    $(document).on("click touchstart", "#search", function () {
+        let title = $("#songName").val();
+        let artist = $("#artist").val();
+        $.getJSON(`https://api.mytranshelper.com/api/search_lyrics/${artist}/${title}`).done(function (data) {
+            let lines = "";
+            for(let i = 0; i < data.length; i++){
+                lines += data[i]+"\n";
+            }
+            $("#lyrics").val(lines);
+
+        })
+        
+    })
+</script>
         <script src="static/scripts/translation.js"></script>
         <link rel="stylesheet" href="static/stylesheet/bundle.css">
         <script src="static/scripts/index.js"></script>
