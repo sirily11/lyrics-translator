@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "parts/header.html" %}
+  
+    <meta charset="UTF-8">
+    <title>Logs</title>
+</head>
+<body>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header" style="margin-top:0px">
+    {% include "parts/mdl-head.html" %}
+   
+    <div class="mdl-layout__drawer">
+        <nav class="mdl-navigation"><a class="mdl-navigation__link lang" href="index.html" id='home'></a> </nav>
+    </div>
+    <main class="mdl-layout__content">
+
+        <div class="page-content main-content">
+            <div class="container-fluid">
+                <h3 class="lang" id="version"></h3>
+                <div id="logs-display"></div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+<script src="static/scripts/translation.js"></script>
+<script src="static/scripts/logs.js"></script>
+</html>

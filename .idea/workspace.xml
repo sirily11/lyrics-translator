@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="c75b2d16-43d7-4699-bed7-d1ab95185c13" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editing-page.html" beforeDir="false" afterPath="$PROJECT_DIR$/editing-page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/applemusic.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/applemusic.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/edit-page-music-player.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/edit-page-music-player.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editing-page.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs.html" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,7 +24,7 @@
     <session id="-1512782776">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
+          <entry key="project.closed" value="6" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.13" value="2" />
           <entry key="project.open.time.14" value="1" />
@@ -63,7 +63,7 @@
         <counts>
           <entry key="css" value="365" />
           <entry key="html" value="5470" />
-          <entry key="js" value="20110" />
+          <entry key="js" value="20117" />
           <entry key="scss" value="14" />
         </counts>
       </usages-collector>
@@ -71,7 +71,7 @@
         <counts>
           <entry key="CSS" value="365" />
           <entry key="HTML" value="5637" />
-          <entry key="JavaScript" value="19943" />
+          <entry key="JavaScript" value="19950" />
           <entry key="SCSS" value="14" />
         </counts>
       </usages-collector>
@@ -82,8 +82,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/editing-page.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4968">
-              <caret line="108" column="70" selection-start-line="108" selection-start-column="70" selection-end-line="108" selection-end-column="70" />
+            <state relative-caret-position="138">
+              <caret line="371" column="58" selection-start-line="371" selection-start-column="58" selection-end-line="371" selection-end-column="58" />
               <folding>
                 <element signature="n#!!block;n#showToast#0" />
                 <element signature="n#!!block;n#getUrlVars#0" />
@@ -96,34 +96,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/editing-page.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="482">
-              <caret line="127" column="60" selection-start-line="127" selection-start-column="60" selection-end-line="127" selection-end-column="60" />
-              <folding>
-                <element signature="n#head#0;n#html#0;n#!!top" />
-                <element signature="n#style#0;n#html#0;n#!!top" />
-                <element signature="n#style#0;n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#style#0;n#span#0;n#div#0;n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#a#0;n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#style#0;n#div#1;n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#div#0;n#div#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#div#0;n#div#0;n#div#0;n#div#5;n#div#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#button#0;n#div#0;n#div#0;n#div#5;n#div#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#script#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/applemusic.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="253">
-              <caret line="53" column="36" lean-forward="true" selection-start-line="53" selection-start-column="36" selection-end-line="53" selection-end-column="36" />
+              <caret line="53" column="36" selection-start-line="53" selection-start-column="36" selection-end-line="53" selection-end-column="36" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
               </folding>
@@ -201,10 +177,10 @@
         <option value="$PROJECT_DIR$/scripts/translation.js" />
         <option value="$PROJECT_DIR$/scripts/logs.js" />
         <option value="$PROJECT_DIR$/scripts/index.js" />
-        <option value="$PROJECT_DIR$/scripts/editing-page.js" />
         <option value="$PROJECT_DIR$/scripts/edit-page-music-player.js" />
         <option value="$PROJECT_DIR$/editing-page.html" />
         <option value="$PROJECT_DIR$/scripts/applemusic.js" />
+        <option value="$PROJECT_DIR$/scripts/editing-page.js" />
       </list>
     </option>
   </component>
@@ -265,7 +241,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="editing.templates" />
+    <property name="settings.editor.selected.configurable" value="configurable.stylesheets" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -327,16 +303,15 @@
       <workItem from="1534365817750" duration="28401000" />
       <workItem from="1534534512602" duration="26107000" />
       <workItem from="1534567822200" duration="112000" />
-      <workItem from="1537075894097" duration="17037000" />
+      <workItem from="1537075894097" duration="17838000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="158997000" />
+    <option name="totallyTimeSpent" value="159798000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1719" height="932" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16083086" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -658,7 +633,7 @@
     <entry file="file://$PROJECT_DIR$/scripts/applemusic.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
-          <caret line="53" column="36" lean-forward="true" selection-start-line="53" selection-start-column="36" selection-end-line="53" selection-end-column="36" />
+          <caret line="53" column="36" selection-start-line="53" selection-start-column="36" selection-end-line="53" selection-end-column="36" />
           <folding>
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
           </folding>
@@ -667,8 +642,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/editing-page.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4968">
-          <caret line="108" column="70" selection-start-line="108" selection-start-column="70" selection-end-line="108" selection-end-column="70" />
+        <state relative-caret-position="138">
+          <caret line="371" column="58" selection-start-line="371" selection-start-column="58" selection-end-line="371" selection-end-column="58" />
           <folding>
             <element signature="n#!!block;n#showToast#0" />
             <element signature="n#!!block;n#getUrlVars#0" />

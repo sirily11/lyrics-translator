@@ -9,6 +9,7 @@ chalice = "*"
 pyinstaller = "*"
 pyjwt = "*"
 cryptography = "*"
+staticjinja = "*"
 
 [dev-packages]
 "autopep8" = "*"

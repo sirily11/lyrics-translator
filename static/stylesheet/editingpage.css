@@ -1,0 +1,39 @@
+.word-length {
+
+    background-color: #1565c0;
+    color: white
+}
+
+.card-wide.mdl-card {
+    width: 100%;
+}
+
+.card-wide > .mdl-card__title {
+    color: #fff;
+    height: 4rem;
+    font-family: Helvetica, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', Arial, sans-serif;
+    background-color: #0095a8;
+}
+
+.card-wide > .mdl-card__menu {
+    color: #bdbdbd
+}
+
+.lyrics {
+    font-family: Helvetica, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', Arial, sans-serif;
+    font-size: 12px
+}
+
+.mdl-card__title-text {
+    font-size: 14pt
+}
+
+.hint-number {
+    color: white;
+    background: #007ac1
+}
+
+.hint-number2 {
+    color: white;
+    background: #4bacb8
+}

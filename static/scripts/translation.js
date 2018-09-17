@@ -88,7 +88,8 @@ var content = {
 		"createTimedLyrics" : "创建同步歌词",
 		"usingApplemusic" : "播放苹果音乐歌曲",
 		"uploadthetimedlyrics" : "同步歌词数据已经上传，请刷新页面",
-        "currentInfo" : "问题：在歌词显示的时候会出现间隔过短导致无法高亮单词的问题。"
+		"currentInfo" : "问题：在歌词显示的时候会出现间隔过短导致无法高亮单词的问题。",
+		"sentencesmobile": "以手机样式编辑"
 	}
 };
 $(".lang").each(function (index) {

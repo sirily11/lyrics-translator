@@ -72,9 +72,12 @@ $("select").on('change', function () {
             createHTMLCardSm(lines);
             lyricsDisplay.updateMode("sm");
         }
-    } else {
+    } else if (str === "sentences") {
         createHTMLWithNormalText(lines);
         lyricsDisplay.updateMode("normal");
+    } else {
+        createHTMLCardSm(lines);
+        lyricsDisplay.updateMode("sm");
     }
 });
 //detect the changes
@@ -85,7 +88,7 @@ $(document).on("change", "input", function () {
 $(document).on('change', '.lyrics', function () {
     var inputId = $(this).attr('id');
     var newValue = $(this).val();
-    changesList.push({id: inputId, value: newValue});
+    changesList.push({ id: inputId, value: newValue });
     totalChanged += 1;
     if (totalChanged > numberChangeToSave) {
         autoSaved(userID, title, artist, changesList);
