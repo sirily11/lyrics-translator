@@ -32,7 +32,6 @@
 <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
 
 <link rel="stylesheet" href="static/stylesheet/bundle.css">
-    <link rel="manifest" href="static/manifest.json">
     <link rel="stylesheet" href="static/stylesheet/index.css">
     <script src="static/firebase_stuff/firebase_init.js"></script>
     <script type="text/javascript">

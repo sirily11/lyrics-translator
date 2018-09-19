@@ -1,58 +1,66 @@
 <!DOCTYPE html>
 <html lang="zh-Hans">
-    <head>
-        <title>歌词翻译网站</title>
-        {% include "parts/header.html" %}
-        <link rel="stylesheet" href="static/stylesheet/index.css">
-        <script src="static/firebase_stuff/firebase_init.js"></script>
-        <script type="text/javascript">
+<head>
+    <title>歌词翻译网站</title>
+    {% include "parts/header.html" %}
+    <link rel="manifest" href="static/manifest.json">
+    <link rel="stylesheet" href="static/stylesheet/index.css">
+    <script src="static/firebase_stuff/firebase_init.js"></script>
+    <script type="text/javascript">
         var languageCode = navigator.language.substr(0, 2);
+        if ('serviceWorker' in navigator) {
+            // Use the window load event to keep the page load performant
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js',{cache: "no-cache"});
+            });
+        }
     </script>
-    </head>
-    <body>
-        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header"
-            style="margin-top:0px">
-            {% include "parts/mdl-head.html" %}
-            {% include "parts/drawer.html" %}
-            <main class="mdl-layout__content">
-                <div class="page-content main-content">
-                    <div class="container-fluid">
+
+</head>
+<body>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header"
+     style="margin-top:0px">
+    {% include "parts/mdl-head.html" %}
+    {% include "parts/drawer.html" %}
+    <main class="mdl-layout__content">
+        <div class="page-content main-content">
+            <div class="container-fluid">
                         <span class="mdl-chip">
                             <i class="material-icons mdl-chip__contact">chrome_reader_mode</i>
                             <a class="mdl-chip__text lang" id="doc-header"
-                                href="https://doc.mytranshelper.com"></a>
+                               href="https://doc.mytranshelper.com"></a>
                         </span>
-                        <div class="mdc-card" style="margin-top: 20px">
-                            <div class="mdl-card__title">
-                                <h2 class="mdl-card__title-text lang"
-                                    id="welcomeTextHeader"></h2>
-                            </div>
-                            <div class="mdl-card__supporting-text lang"
-                                id="welcomeText"></div>
-                            <div class="mdl-card__actions mdl-card--border"><a
-                                    class="mdl-button mdl-button--colored
-                                    mdl-js-button mdl-js-ripple-effect"
-                                    id="create-project-btn">
-                                    <div class="lang" id="start-project-btn"></div>
-                                </a></div>
-                        </div>
-                        <div style="margin-top: 20px;color: black">
-                            <i class="material-icons mdl-chip__contact">list</i>
-                            <span class="mdl-chip__text lang" id="projectTag"></span>
-                            <div class="mdl-spinner mdl-js-spinner is-active"
-                                id="musiclist-loadingbar"></div>
-                        </div>
-                        <div class="project-container" id="listOfMusic"></div>
-                        <div id="firebaseui-auth-container"
-                            style="margin-top:50px"></div>
+                <div class="mdc-card" style="margin-top: 20px">
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text lang"
+                            id="welcomeTextHeader"></h2>
                     </div>
+                    <div class="mdl-card__supporting-text lang"
+                         id="welcomeText"></div>
+                    <div class="mdl-card__actions mdl-card--border"><a
+                            class="mdl-button mdl-button--colored
+                                    mdl-js-button mdl-js-ripple-effect"
+                            id="create-project-btn">
+                        <div class="lang" id="start-project-btn"></div>
+                    </a></div>
                 </div>
-            </main>
+                <div style="margin-top: 20px;color: black">
+                    <i class="material-icons mdl-chip__contact">list</i>
+                    <span class="mdl-chip__text lang" id="projectTag"></span>
+                    <div class="mdl-spinner mdl-js-spinner is-active"
+                         id="musiclist-loadingbar"></div>
+                </div>
+                <div class="project-container" id="listOfMusic"></div>
+                <div id="firebaseui-auth-container"
+                     style="margin-top:50px"></div>
+            </div>
         </div>
-        {% include "parts/dialog.html" %}
-        <script src="static/scripts/translation.js"></script>
-        <link rel="stylesheet" href="static/stylesheet/bundle.css">
-        <script src="static/scripts/index.js"></script>
-        <script src="static/scripts/bundle.js" async></script>
-    </body>
+    </main>
+</div>
+{% include "parts/dialog.html" %}
+<script src="static/scripts/translation.js"></script>
+<link rel="stylesheet" href="static/stylesheet/bundle.css">
+<script src="static/scripts/index.js"></script>
+<script src="static/scripts/bundle.js" async></script>
+</body>
 </html>

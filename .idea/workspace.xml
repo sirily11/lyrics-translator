@@ -2,16 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c75b2d16-43d7-4699-bed7-d1ab95185c13" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/getLycis.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/manifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/scripts/workbox.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sw.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/liqiw.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/liqiw.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/lyrics-translator.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/lyrics-translator.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildtemplate.py" beforeDir="false" afterPath="$PROJECT_DIR$/buildtemplate.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editing-page.html" beforeDir="false" afterPath="$PROJECT_DIR$/editing-page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getLycis.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/scripts/logs.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/scripts/logs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/translator-python-server/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/translator-python-server/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs.html" beforeDir="false" afterPath="$PROJECT_DIR$/logs.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/firebase_stuff/firebase_init.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/firebase_stuff/firebase_init.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/scripts/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/scripts/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -37,39 +42,39 @@
           <entry key="project.closed" value="8" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.12" value="1" />
-          <entry key="project.open.time.13" value="2" />
+          <entry key="project.open.time.13" value="3" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.41" value="2" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.8" value="2" />
-          <entry key="project.opened" value="11" />
+          <entry key="project.opened" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="7" />
-          <entry key="html" value="25" />
-          <entry key="js" value="68" />
-          <entry key="json" value="2" />
+          <entry key="html" value="27" />
+          <entry key="js" value="73" />
+          <entry key="json" value="3" />
           <entry key="p8" value="1" />
           <entry key="py" value="4" />
           <entry key="rnc" value="1" />
           <entry key="scss" value="1" />
-          <entry key="ts" value="2" />
+          <entry key="ts" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="7" />
-          <entry key="HTML" value="25" />
-          <entry key="JSON" value="2" />
-          <entry key="JavaScript" value="68" />
+          <entry key="HTML" value="27" />
+          <entry key="JSON" value="3" />
+          <entry key="JavaScript" value="73" />
           <entry key="PLAIN_TEXT" value="2" />
           <entry key="Python" value="3" />
           <entry key="RNG Compact" value="1" />
           <entry key="SCSS" value="1" />
-          <entry key="TypeScript" value="2" />
+          <entry key="TypeScript" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -77,8 +82,9 @@
           <entry key="Python Console" value="99" />
           <entry key="css" value="365" />
           <entry key="dummy" value="4" />
-          <entry key="html" value="5927" />
-          <entry key="js" value="20117" />
+          <entry key="html" value="6014" />
+          <entry key="js" value="20642" />
+          <entry key="json" value="20" />
           <entry key="py" value="1595" />
           <entry key="scss" value="14" />
         </counts>
@@ -86,8 +92,9 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="365" />
-          <entry key="HTML" value="6094" />
-          <entry key="JavaScript" value="19950" />
+          <entry key="HTML" value="6181" />
+          <entry key="JSON" value="20" />
+          <entry key="JavaScript" value="20475" />
           <entry key="PLAIN_TEXT" value="4" />
           <entry key="Python" value="1694" />
           <entry key="SCSS" value="14" />
@@ -98,23 +105,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/getLycis.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
-              <folding>
-                <element signature="e#0#37#0" expanded="true" />
-                <marker date="1537167504848" expanded="true" signature="589:1211" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/buildtemplate.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="297">
-              <caret line="18" column="38" lean-forward="true" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
+              <caret line="18" column="38" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -122,8 +116,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/parts/dialog.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="49" column="8" lean-forward="true" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="8" />
+            <state relative-caret-position="398">
+              <caret line="50" column="63" selection-start-line="50" selection-start-column="63" selection-end-line="50" selection-end-column="63" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/scripts/editing-page.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="192">
+              <caret line="8" column="45" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -131,8 +134,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-168">
-              <caret line="8" column="59" selection-start-line="8" selection-start-column="59" selection-end-line="8" selection-end-column="59" />
+            <state relative-caret-position="-144">
+              <caret line="9" column="59" selection-start-line="9" selection-start-column="59" selection-end-line="9" selection-end-column="59" />
             </state>
           </provider>
         </entry>
@@ -171,6 +174,8 @@
       <find>console</find>
       <find>time</find>
       <find>search</find>
+      <find>testURL</find>
+      <find>showMusicList</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -211,6 +216,15 @@
         <option value="$PROJECT_DIR$/translator-python-server/app.py" />
         <option value="$PROJECT_DIR$/getLycis.py" />
         <option value="$PROJECT_DIR$/templates/parts/dialog.html" />
+        <option value="$PROJECT_DIR$/static/firebase_stuff/firebase_init.js" />
+        <option value="$PROJECT_DIR$/templates/parts/header.html" />
+        <option value="$PROJECT_DIR$/static/scripts/index.js" />
+        <option value="$PROJECT_DIR$/static/scripts/workbox.js" />
+        <option value="$PROJECT_DIR$/static/scripts/sw.js" />
+        <option value="$PROJECT_DIR$/static/sw.js" />
+        <option value="$PROJECT_DIR$/sw.js" />
+        <option value="$PROJECT_DIR$/templates/index.html" />
+        <option value="$PROJECT_DIR$/static/manifest.json" />
       </list>
     </option>
   </component>
@@ -227,7 +241,7 @@
       <path value="$PROJECT_DIR$/static/scripts/bower_components/jquery-ui/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="531" />
     <option name="y" value="-18" />
     <option name="width" value="1935" />
@@ -250,6 +264,12 @@
               <item name="lyrics-translator" type="b2602c69:ProjectViewProjectNode" />
               <item name="lyrics-translator" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="lyrics-translator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lyrics-translator" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="lyrics-translator" type="b2602c69:ProjectViewProjectNode" />
@@ -281,13 +301,16 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="configurable.stylesheets" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\liqiw\OneDrive\桌面\lyrics-translator" />
+      <recent name="C:\Users\liqiw\OneDrive\桌面\lyrics-translator\static" />
       <recent name="C:\Users\liqiw\OneDrive\桌面\lyrics-translator\scripts" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\liqiw\OneDrive\桌面\lyrics-translator\static" />
       <recent name="C:\Users\liqiw\OneDrive\桌面\lyrics-translator\scripts" />
     </key>
   </component>
@@ -303,36 +326,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.buildtemplate">
+  <component name="RunManager" selected="JavaScript Debug.index.html">
+    <configuration name="index.html (1)" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/lyrics-translator/templates/index.html">
+      <method v="2" />
+    </configuration>
     <configuration name="index.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/lyrics-translator/index.html">
       <method v="2" />
     </configuration>
-    <configuration name="app_editing.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="app_editing.js" working-dir="$PROJECT_DIR$/scripts">
+    <configuration name="index.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/lyrics-translator/index.html">
       <method v="2" />
     </configuration>
     <configuration name="appleMusic.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="appleMusic.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
-    <configuration name="buildtemplate" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="lyrics-translator" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/buildtemplate.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
+    <configuration name="sw.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/sw.js" working-dir="$PROJECT_DIR$/static/scripts">
       <method v="2" />
     </configuration>
     <configuration name="getLycis" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -358,14 +365,14 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="JavaScript Debug.index.html" />
       <item itemvalue="Python.getLycis" />
-      <item itemvalue="Python.buildtemplate" />
+      <item itemvalue="JavaScript Debug.index.html" />
+      <item itemvalue="JavaScript Debug.index.html (1)" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.buildtemplate" />
-        <item itemvalue="Python.getLycis" />
+        <item itemvalue="JavaScript Debug.index.html" />
+        <item itemvalue="JavaScript Debug.index.html (1)" />
         <item itemvalue="JavaScript Debug.index.html" />
       </list>
     </recent_temporary>
@@ -388,23 +395,24 @@
       <workItem from="1534534512602" duration="26107000" />
       <workItem from="1534567822200" duration="112000" />
       <workItem from="1537075894097" duration="17838000" />
+      <workItem from="1537328540996" duration="7919000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="159798000" />
+    <option name="totallyTimeSpent" value="167717000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="-6" width="1719" height="932" extended-state="6" />
+    <frame x="-6" y="-6" width="1719" height="932" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16656645" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16656645" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.329602" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2748756" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.2748756" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -429,12 +437,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/scripts/firebase-app.js" />
-    <entry file="file://$PROJECT_DIR$/scripts/jquery-1.12.4.js" />
-    <entry file="file://$PROJECT_DIR$/node_modules/@material/select/index.js" />
-    <entry file="file://$PROJECT_DIR$/node_modules/@material/textfield/index.js" />
-    <entry file="file://$PROJECT_DIR$/scripts/requirejs.js" />
-    <entry file="file://$PROJECT_DIR$/webpack.config.js" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/javascript/extLibs/http_unpkg.com_material-components-web@latest_dist_material-components-web.js" />
     <entry file="file://$PROJECT_DIR$/../docs/Import/ge_ci_fan_yi_wang_zhan/_book/gitbook/style.css">
       <provider selected="true" editor-type-id="text-editor">
@@ -455,13 +457,7 @@
     <entry file="file://$PROJECT_DIR$/stylesheet/bundle.css" />
     <entry file="file://$PROJECT_DIR$/scripts/popup.js" />
     <entry file="file://$PROJECT_DIR$/stylesheet/app.scss" />
-    <entry file="file://$PROJECT_DIR$/translator-python-server/test2.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="13" column="44" lean-forward="true" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/translator-python-server/test2.json" />
     <entry file="file://F:/image-restore/data.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
@@ -479,13 +475,6 @@
     <entry file="file://$PROJECT_DIR$/testLyrics.js" />
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/webstorm.jar!/resources/html5-schema/html5/common.rnc" />
     <entry file="file://$PROJECT_DIR$/scripts/jqueryPlugin.js" />
-    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es6.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="15536" column="4" selection-start-line="15536" selection-start-column="4" selection-end-line="15536" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/javascript/extLibs/http_code.getmdl.io_1.3.0_material.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
@@ -527,13 +516,6 @@
     <entry file="file://$PROJECT_DIR$/scripts/material-components-web.js" />
     <entry file="file://$PROJECT_DIR$/scripts/logs.js" />
     <entry file="file://$PROJECT_DIR$/scripts/index.js" />
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="143" column="68" selection-start-line="143" selection-start-column="64" selection-end-line="143" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/translation.js" />
     <entry file="file://$PROJECT_DIR$/scripts/material-kit.js" />
     <entry file="file://$PROJECT_DIR$/scripts/edit-page-music-player.js" />
@@ -546,48 +528,91 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/scripts/index.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/translator-python-server/app.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="397">
           <caret line="277" column="12" selection-start-line="277" selection-start-column="12" selection-end-line="277" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/getLycis.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-            <marker date="1537167504848" expanded="true" signature="589:1211" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/getLycis.py" />
     <entry file="file://$PROJECT_DIR$/buildtemplate.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="297">
-          <caret line="18" column="38" lean-forward="true" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-168">
-          <caret line="8" column="59" selection-start-line="8" selection-start-column="59" selection-end-line="8" selection-end-column="59" />
+          <caret line="18" column="38" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/parts/dialog.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="49" column="8" lean-forward="true" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="8" />
+        <state relative-caret-position="398">
+          <caret line="50" column="63" selection-start-line="50" selection-start-column="63" selection-end-line="50" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/scripts/editing-page.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="8" column="45" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es6.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="448" column="4" selection-start-line="448" selection-start-column="4" selection-end-line="448" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/scripts/workbox.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="4" selection-start-column="4" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/parts/header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="13" column="48" lean-forward="true" selection-start-line="13" selection-start-column="48" selection-end-line="13" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sw.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="470">
+          <caret line="32" column="2" selection-start-line="32" selection-start-column="2" selection-end-line="32" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/firebase_stuff/firebase_init.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-161">
+          <caret line="27" column="35" selection-start-line="27" selection-start-column="35" selection-end-line="27" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/scripts/index.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-144">
+          <caret line="9" column="59" selection-start-line="9" selection-start-column="59" selection-end-line="9" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="122" column="22" lean-forward="true" selection-start-line="122" selection-start-column="22" selection-end-line="122" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/manifest.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="27" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
         </state>
       </provider>
     </entry>

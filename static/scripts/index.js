@@ -1,8 +1,8 @@
-const testURL = "127.0.0.1:8000";
-const serverURL = "https://sa0biepvrj.execute-api.us-east-1.amazonaws.com/api";
-const usingURL = testURL;
-
-var uploaded = false;
+let uploaded = false;
+let db = new Dexie("transapp_db");
+db.version(1).stores({
+    projects: "++id,userID, artist,title"
+});
 
 function upload(lyrics, userID, title, artist) {
     console.log(lyrics);
@@ -19,7 +19,7 @@ function upload(lyrics, userID, title, artist) {
     uploaded = true
 }
 
-var dialog = document.querySelector('dialog');
+let dialog = document.querySelector('dialog');
 if (!dialog.showModal) {
     dialogPolyfill.registerDialog(dialog);
 }
@@ -64,15 +64,22 @@ $('#close').click(function () {
 
 function showMusicList(userID) {
     $.getJSON(`https://api.mytranshelper.com/api/get_all_projects_list/${userID}`).done(function (data) {
+        // Store the data into the local database
+        console.log("Stored the projects into the database");
         $('#musiclist-loadingbar').fadeOut(1000);
-        var row = "";
-        var col = "";
+        let col = "";
+        let text = "";
         if (languageCode.includes('zh')) {
-            var text = content['zh']['loadProject']
+            text = content['zh']['loadProject']
         } else {
-            var text = content['en']['loadProject']
+            text = content['en']['loadProject']
         }
         for (var i = 0; i < data.length; i++) {
+            db.projects.put({
+                userID : uid,
+                artist: decodeURI(data[i]['artist']).toString(),
+                title: decodeURI(data[i]['title']).toString()
+            });
             col += `
 							<div class="col-sm">
 								<div class=" project-card mdc-card">

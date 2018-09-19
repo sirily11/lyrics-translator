@@ -25,10 +25,10 @@ initApp = function () {
 
                 showMusicList(uid)
             });
-            $('#login-btn').hide()
+            $('#login-btn').hide();
             $('#logout-btn').show()
         } else {
-            $('#login-btn').show()
+            $('#login-btn').show();
             $('#logout-btn').hide()
         }
     }, function (error) {

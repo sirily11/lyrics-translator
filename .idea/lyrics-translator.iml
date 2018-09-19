@@ -16,5 +16,6 @@
     <orderEntry type="library" name="material-components-web" level="application" />
     <orderEntry type="library" name="popper" level="application" />
     <orderEntry type="library" name="musickit" level="application" />
+    <orderEntry type="library" name="dexie" level="application" />
   </component>
 </module>
