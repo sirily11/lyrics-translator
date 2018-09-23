@@ -11,7 +11,8 @@ function upload(lyrics, userID, title, artist) {
     for (var l = 0; l < lyrics.length; l++) {
         newLyrics += lyrics[l] + "*newline*";
     }
-    $.getJSON(`https://api.mytranshelper.com/api/start-project/${userID}/${username}/${emailAddress}/${title}/${artist}/${newLyrics}`).done(function () {
+    let email = "someeamil";
+    $.getJSON(`https://api.mytranshelper.com/api/start-project/${userID}/${username}/${email}/${title}/${artist}/${newLyrics}`).done(function () {
         $('#loading-bar-for-upload').fadeOut(1000)
     }).fail(function () {
         alert("Failed to upload")
@@ -29,9 +30,9 @@ $('#create-project-btn').click(function () {
 //When the user click on the upload button
 $('#uploadBtn').click(function () {
     //first get the song name and artist info
-    var songName = $('#songName').val()
-    var artist = $('#artist').val()
-    var lyrics = $('#lyrics').val()
+    var songName = $('#songName').val();
+    var artist = $('#artist').val();
+    var lyrics = $('#lyrics').val();
     //Then if the song name hasn't been input
     if (songName == "" || artist == "") {
         //show the error messege

@@ -134,9 +134,9 @@ function getUrlVars() {
 }
 
 function replaceAll(originString, replaceFrom, replaceTo) {
-    var returnStr = ""
+    var returnStr = "";
     for (c in originString) {
-        var char = originString[c]
+        var char = originString[c];
         if (originString[c] == replaceFrom) {
             char = replaceTo
         }

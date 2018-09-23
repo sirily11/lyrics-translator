@@ -25,6 +25,11 @@ const versionList =
         time: "2018-09-16",
         eng: "Added normal text's auto saving function. Fixed the displaying bug on the home screen as well as improved the editing page's ui.",
         zh: "增加了全文本编辑时的自动保存功能，修复了主页显示Bug。同时还改善了编辑界面。"
+    }, {
+        version: 0.43,
+        time: "2018-09-23",
+        eng: "Moved from firebase login to custom login page.",
+        zh: "从firebase login转到自制login页面。"
     }
     ];
 

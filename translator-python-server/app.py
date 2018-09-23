@@ -234,7 +234,7 @@ def translate_line(changes, user_id, artist, title):
     s3.Object(BUCKET_NAME, FILE_NAME).put(Body=json.dumps(jsonData))
 
 
-@app.route('/start-project/{user_id}/{user_name}/{email_address}/{title}/{artist}/{lyrics}', cors=True)
+@app.route('/start-project/{user_id}/{user_name}/{email_address}/{title}/{artist}/{lyrics}', cors=True, methods=['PUT'])
 def start_project(user_id, user_name, email_address, title, artist, lyrics):
     lyrics = urllib.parse.unquote(lyrics)
     lyrics_obj = Lyrics(lyrics)
